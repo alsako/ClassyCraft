@@ -1,5 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
+import raf.dsw.classycraft.app.controller.ActionManager;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,10 +9,18 @@ public class MainFrame extends JFrame {
 
     private static MainFrame instance;
 
+    private ActionManager actionManager;
+
     private MainFrame(){
     }
 
+    public ActionManager getActionManager() {
+        return actionManager;
+    }
+
     private void initialize(){
+
+        actionManager = new ActionManager();
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
