@@ -1,4 +1,6 @@
-package raf.dsw.classycraft.app.controller;
+package raf.dsw.classycraft.app.controller.actionImplementations;
+
+import raf.dsw.classycraft.app.controller.AbstractClassyAction;
 
 import javax.swing.*;
 import java.awt.*;

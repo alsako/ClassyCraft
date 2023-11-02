@@ -1,10 +1,12 @@
-package raf.dsw.classycraft.app.controller;
+package raf.dsw.classycraft.app.controller.actionImplementations;
+
+import raf.dsw.classycraft.app.controller.AbstractClassyAction;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class AboutUsAction extends AbstractClassyAction{
+public class AboutUsAction extends AbstractClassyAction {
 
     public AboutUsAction(){
         putValue(SMALL_ICON, loadIcon("/images/aboutUs.png"));
