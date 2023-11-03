@@ -1,8 +1,8 @@
 package raf.dsw.classycraft.app.controller;
 
 
-import raf.dsw.classycraft.app.controller.actionImplementations.AboutUsAction;
-import raf.dsw.classycraft.app.controller.actionImplementations.ExitAction;
+import raf.dsw.classycraft.app.controller.actionsImpl.AboutUsAction;
+import raf.dsw.classycraft.app.controller.actionsImpl.ExitAction;
 
 public class ActionManager {
 
