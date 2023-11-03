@@ -1,4 +1,4 @@
-package raf.dsw.classycraft.app.controller.actionImplementations;
+package raf.dsw.classycraft.app.controller.actionsImpl;
 
 import raf.dsw.classycraft.app.controller.AbstractClassyAction;
 
