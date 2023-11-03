@@ -1,12 +1,12 @@
 package raf.dsw.classycraft.app.messagegen;
-import raf.dsw.classycraft.app.observer.Notification;
+
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Message extends Notification {
+public class Message{
 
     public String text;
     public MessageType type;
