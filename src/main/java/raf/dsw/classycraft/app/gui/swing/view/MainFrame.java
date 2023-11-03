@@ -1,11 +1,13 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
 import raf.dsw.classycraft.app.controller.ActionManager;
+import raf.dsw.classycraft.app.messagegen.Message;
+import raf.dsw.classycraft.app.observer.ISubscriber;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements ISubscriber {
 
     private static MainFrame instance;
 
@@ -44,5 +46,11 @@ public class MainFrame extends JFrame {
             instance.initialize();
         }
         return instance;
+    }
+
+
+    @Override
+    public void update(Object message) {
+        JOptionPane.showMessageDialog(MainFrame.getInstance(), ((Message)message).toString());
     }
 }
