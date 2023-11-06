@@ -4,6 +4,7 @@ import raf.dsw.classycraft.app.model.modelImpl.ProjectExplorer;
 
 public interface ClassyRepository {
 
+
     public ProjectExplorer getRoot();
 
 }

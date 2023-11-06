@@ -15,12 +15,14 @@ public class MessageGeneratorImpl implements MessageGenerator {
         LocalDateTime timestamp = LocalDateTime.now();
         switch (event){
             case NAME_CANNOT_BE_EMPTY:
-            case CANNOT_ADD_CHILD_TO_LEAF:
                 return new Message(MessageType.ERROR, timestamp, event.toString());
             case NODE_CANNOT_BE_DELETED:
+            case CANNOT_ADD_CHILD_TO_LEAF:
                 return new Message(MessageType.INFO, timestamp, event.toString());
-            case PROBA:
-                return new Message(MessageType.INFO, timestamp, "OVO JE PROBA");
+            case PARENT_NOT_SELECTED:
+                return new Message(MessageType.WARNING, timestamp, event.toString());
+            //case PROBA:
+               // return new Message(MessageType.INFO, timestamp, "OVO JE PROBA");
 
         }
         return null;

@@ -1,5 +1,10 @@
 package raf.dsw.classycraft.app.model.modelAbs;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public abstract class ClassyNode {
 
     String name;
@@ -8,6 +13,9 @@ public abstract class ClassyNode {
     public ClassyNode(String name, ClassyNode parent) {
         this.name = name;
         this.parent = parent;
+    }
+
+    public ClassyNode() {
     }
 
     public String getName() {
