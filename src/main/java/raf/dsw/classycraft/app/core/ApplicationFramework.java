@@ -19,8 +19,8 @@ public class ApplicationFramework {
     }
 
     public void initialize(){
-        MainFrame.getInstance().setVisible(true);
         classyRepository = new ClassyRepositoryImpl();
+        MainFrame.getInstance().setVisible(true);
         messageGenerator = new MessageGeneratorImpl();
         messageGenerator.addSubscriber(MainFrame.getInstance());
         LoggerFactory loggerFactory = new LoggerFactory();
@@ -32,6 +32,10 @@ public class ApplicationFramework {
 
     public MessageGenerator getMessageGenerator() {
         return messageGenerator;
+    }
+
+    public ClassyRepository getClassyRepository() {
+        return classyRepository;
     }
 
     public static ApplicationFramework getInstance(){

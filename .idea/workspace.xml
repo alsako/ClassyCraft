@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="13bb3694-ac11-4858-b86a-99967c2a1f33" name="Changes" comment="commit 2">
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/NewProjectAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTreeImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeCellEditor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeSelectionListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/model/ClassyTreeItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/view/ClassyTreeCellRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/view/ClassyTreeView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/DiagramFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/FactoryUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/NodeFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/PackageFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/ProjectFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/diagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/package.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/plus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/project.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/tree.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dizajn-softvera-projekat-tim_aleksandrakovacevic_vukasinkovacevi.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/AppCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/AppCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/ActionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/ActionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ApplicationFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ApplicationFramework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ClassyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ClassyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ClassyRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ClassyRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MyMenyBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MyMenyBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MyToolBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MyToolBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelAbs/ClassyNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelAbs/ClassyNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelAbs/ClassyNodeComposite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelAbs/ClassyNodeComposite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Diagram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/AppCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/AppCore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/controller/ActionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/controller/ActionManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ApplicationFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ApplicationFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ClassyRepositoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ClassyRepositoryImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MainFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MyMenyBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MyMenyBar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MyToolBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MyToolBar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelAbs/ClassyNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelAbs/ClassyNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelAbs/ClassyNodeComposite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelAbs/ClassyNodeComposite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Diagram.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Diagram.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Package.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Package.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Project.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="3996a0e0-cb6e-4eb9-94eb-aee66182ce57" />
+        <option name="url" value="https://github.com/Dizajn-Softvera-RAF/dizajn-softvera-projekat-tim_aleksandrakovacevic_vukasinkovacevi.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Xf0XU0tIl7YfAX8M162FZG5uFG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vukasin\AppData\Local\Temp\dizajn-softvera-projekat-tim_aleksandrakovacevic_vukasinkovacevi\src\main\resources\images" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AppCore" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="raf.dsw.classycraft.app.AppCore" />
+      <module name="dizajn-softvera-projekat-tim_aleksandrakovacevic_vukasinkovacevi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="raf.dsw.classycraft.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AppCore" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="13bb3694-ac11-4858-b86a-99967c2a1f33" name="Changes" comment="" />
+      <created>1699004865984</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699004865984</updated>
+    </task>
+    <task id="LOCAL-00001" summary="commit 2">
+      <created>1699052681006</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699052681006</updated>
+    </task>
+    <task id="LOCAL-00002" summary="commit 2">
+      <created>1699052692971</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1699052692971</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commit 2">
+      <created>1699053649649</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699053649649</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 2" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

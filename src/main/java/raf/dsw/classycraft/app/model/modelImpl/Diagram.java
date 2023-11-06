@@ -8,4 +8,6 @@ public class Diagram extends ClassyNode {
         super(name, parent);
     }
 
+    public Diagram() {
+    }
 }
