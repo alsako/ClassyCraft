@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.tree;
 
+import lombok.Getter;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
@@ -14,7 +15,7 @@ import raf.dsw.classycraft.app.model.modelImpl.ProjectExplorer;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
-
+@Getter
 public class ClassyTreeImpl implements ClassyTree{
 
     private ClassyTreeView treeView;

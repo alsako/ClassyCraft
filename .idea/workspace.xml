@@ -4,41 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13bb3694-ac11-4858-b86a-99967c2a1f33" name="Changes" comment="Napravljen DeleteNodeAction">
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/DeleteNodeAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/SetAuthorAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/NewPackageOption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/author.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/minus.png" afterDir="false" />
+    <list default="true" id="13bb3694-ac11-4858-b86a-99967c2a1f33" name="Changes" comment="Dodat dijalog za pravljenje paekta i SetAuthorAction">
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/TreeMouseListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/PackageView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/AppCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/AppCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/ActionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/ActionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/NewProjectAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/NewProjectAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ApplicationFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ApplicationFramework.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTreeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTreeImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/model/ClassyTreeItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/model/ClassyTreeItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MyMenyBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MyMenyBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MyToolBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MyToolBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/DiagramFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/DiagramFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/FactoryUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/FactoryUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/PackageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/factory/PackageFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeSelectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeSelectionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/AppCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/AppCore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/controller/ActionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/controller/ActionManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MyMenyBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MyMenyBar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MyToolBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MyToolBar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ApplicationFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ApplicationFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MainFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Package.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Package.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Project.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699053649649</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Dodat dijalog za pravljenje paekta i SetAuthorAction">
+      <created>1699278495010</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699278495010</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,7 +169,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit 2" />
     <MESSAGE value="Napravljen DeleteNodeAction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Napravljen DeleteNodeAction" />
+    <MESSAGE value="Dodat dijalog za pravljenje paekta i SetAuthorAction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodat dijalog za pravljenje paekta i SetAuthorAction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

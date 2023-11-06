@@ -1,10 +1,15 @@
 package raf.dsw.classycraft.app.model.modelImpl;
 
+import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Setter
+@Getter
 public class Package extends ClassyNodeComposite {
 
 
@@ -54,6 +59,22 @@ public class Package extends ClassyNodeComposite {
                 i++;
         }
         return i;
+    }
+
+    public List<String> getDiagramChildrenNames(){
+        List<String> diagramChildren = new ArrayList<>();
+        for (ClassyNode child:this.getChildren()) {
+            if (child instanceof Diagram)
+                diagramChildren.add(child.getName());
+        }
+        return diagramChildren;
+    }
+
+    public Project getParentProject(){
+        if (this.getParent() instanceof Project)
+            return (Project) this.getParent();
+        else
+            return ((Package)this.getParent()).getParentProject();
     }
 
 }
