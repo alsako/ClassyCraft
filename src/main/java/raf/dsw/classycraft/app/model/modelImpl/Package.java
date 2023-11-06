@@ -2,18 +2,20 @@ package raf.dsw.classycraft.app.model.modelImpl;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.classycraft.app.messagegen.Event;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
+import raf.dsw.classycraft.app.observer.IPublisher;
+import raf.dsw.classycraft.app.observer.ISubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 @Getter
-public class Package extends ClassyNodeComposite {
+public class Package extends ClassyNodeComposite implements IPublisher {
 
-
-
+    List<ISubscriber> subscribers;
     public Package(String name, ClassyNode parent) {
         super(name, parent);
     }
@@ -77,4 +79,30 @@ public class Package extends ClassyNodeComposite {
             return ((Package)this.getParent()).getParentProject();
     }
 
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        if(sub == null)
+            return;
+        if(this.subscribers ==null)
+            this.subscribers = new ArrayList<>();
+        if(this.subscribers.contains(sub))
+            return;
+        this.subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        if(sub == null || this.subscribers == null || !this.subscribers.contains(sub))
+            return;
+        this.subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Object packageNotification) {
+        if(packageNotification == null ||this.subscribers == null || this.subscribers.isEmpty())
+            return;
+        for (ISubscriber sub: subscribers) {
+            sub.update(packageNotification);
+        }
+    }
 }

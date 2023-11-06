@@ -4,11 +4,15 @@ import lombok.Getter;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
+import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.messagegen.Event;
+import raf.dsw.classycraft.app.model.PackageNotification;
+import raf.dsw.classycraft.app.model.PackageNtfType;
 import raf.dsw.classycraft.app.model.factory.FactoryUtils;
 import raf.dsw.classycraft.app.model.factory.NodeFactory;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
+import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.model.modelImpl.Package;
 import raf.dsw.classycraft.app.model.modelImpl.Project;
 import raf.dsw.classycraft.app.model.modelImpl.ProjectExplorer;
@@ -41,6 +45,12 @@ public class ClassyTreeImpl implements ClassyTree{
             return ;
         }
         ClassyNode child = createChild(parent.getClassyNode());
+        if (child instanceof Package) //observer
+            ((Package)child).addSubscriber(MainFrame.getInstance().getPackageView());
+        else if (child instanceof Diagram) {
+            PackageNotification pn = new PackageNotification(child.getName(), PackageNtfType.ADD_CHILD);
+            ((Package)parent.getClassyNode()).notifySubscribers(pn);
+        }
         parent.add(new ClassyTreeItem(child));
         ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
         treeView.expandPath(treeView.getSelectionPath());
@@ -56,6 +66,15 @@ public class ClassyTreeImpl implements ClassyTree{
             ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NODE_CANNOT_BE_DELETED);
             return;
         }
+        //observer
+        if (node.getClassyNode() instanceof Package)
+            ((Package)node.getClassyNode()).notifySubscribers(PackageNtfType.DELETE);
+        else if (node.getClassyNode() instanceof Project) {
+            for (ClassyNode child:((Project) node.getClassyNode()).getChildren()) {
+                ((Package)child).notifySubscribers(PackageNtfType.DELETE);
+            }
+        }
+
         ClassyNodeComposite parent = (ClassyNodeComposite) node.getClassyNode().getParent();
         parent.removeChild(node.getClassyNode());
         node.removeAllChildren();

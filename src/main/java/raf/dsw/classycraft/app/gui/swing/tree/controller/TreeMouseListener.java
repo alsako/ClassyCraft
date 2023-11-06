@@ -1,18 +1,13 @@
 package raf.dsw.classycraft.app.gui.swing.tree.controller;
 
-import raf.dsw.classycraft.app.gui.swing.tree.ClassyTree;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
-import raf.dsw.classycraft.app.gui.swing.view.PackageView;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelImpl.Package;
 import raf.dsw.classycraft.app.model.modelImpl.Project;
 
-import javax.swing.tree.TreePath;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TreeMouseListener extends MouseAdapter {
@@ -35,7 +30,10 @@ public class TreeMouseListener extends MouseAdapter {
                 List<String> diagramNames = ((Package)node).getDiagramChildrenNames();
                 System.out.println("diagramNames = " + diagramNames);
                 System.out.println("packName = " + packName);
-                MainFrame.getInstance().getPackageView().updatePackageView(packName, packAuthor, diagramNames);
+                MainFrame.getInstance().getPackageView().setPackageName(packName);
+                MainFrame.getInstance().getPackageView().setAuthor(packAuthor);
+                MainFrame.getInstance().getPackageView().setDiagramNames(diagramNames);
+                MainFrame.getInstance().getPackageView().showPackageView();
                 MainFrame.getInstance().revalidate();
                 MainFrame.getInstance().repaint();
             }

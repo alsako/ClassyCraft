@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13bb3694-ac11-4858-b86a-99967c2a1f33" name="Changes" comment="Dodat dijalog za pravljenje paekta i SetAuthorAction">
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/TreeMouseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/PackageView.java" afterDir="false" />
+    <list default="true" id="13bb3694-ac11-4858-b86a-99967c2a1f33" name="Changes" comment="Kreiran PackageView i implementirano otvaranje TabbedPane-a na dvoklik Package elementa">
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/PackageNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/PackageNtfType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ApplicationFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ApplicationFramework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/SetAuthorAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/SetAuthorAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTreeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTreeImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeSelectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeSelectionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeCellEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeCellEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/TreeMouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/TreeMouseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/PackageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/PackageView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ApplicationFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ApplicationFramework.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/gui/swing/view/MainFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Package.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Package.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699278495010</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Kreiran PackageView i implementirano otvaranje TabbedPane-a na dvoklik Package elementa">
+      <created>1699295625328</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699295625328</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,7 +174,8 @@
     <MESSAGE value="commit 2" />
     <MESSAGE value="Napravljen DeleteNodeAction" />
     <MESSAGE value="Dodat dijalog za pravljenje paekta i SetAuthorAction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodat dijalog za pravljenje paekta i SetAuthorAction" />
+    <MESSAGE value="Kreiran PackageView i implementirano otvaranje TabbedPane-a na dvoklik Package elementa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kreiran PackageView i implementirano otvaranje TabbedPane-a na dvoklik Package elementa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
