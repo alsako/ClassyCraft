@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.model.factory;
 
+import raf.dsw.classycraft.app.controller.actionsImpl.NewProjectAction;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
 import raf.dsw.classycraft.app.model.modelImpl.Package;
@@ -18,7 +19,12 @@ public class FactoryUtils {
         else if (parent instanceof Project) {
             return packageFactory;
         } else if (parent instanceof Package) {
-            return diagramFactory;
+            if (NewProjectAction.selectedOption.equalsIgnoreCase("package"))
+                return packageFactory;
+            else if (NewProjectAction.selectedOption.equalsIgnoreCase("diagram")) {
+                return diagramFactory;
+            }
+            else return null;
         }
         else return null;
     }

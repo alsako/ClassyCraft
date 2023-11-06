@@ -8,6 +8,7 @@ import raf.dsw.classycraft.app.model.factory.FactoryUtils;
 import raf.dsw.classycraft.app.model.factory.NodeFactory;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
+import raf.dsw.classycraft.app.model.modelImpl.Package;
 import raf.dsw.classycraft.app.model.modelImpl.Project;
 import raf.dsw.classycraft.app.model.modelImpl.ProjectExplorer;
 
@@ -38,12 +39,26 @@ public class ClassyTreeImpl implements ClassyTree{
             ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.CANNOT_ADD_CHILD_TO_LEAF);
             return ;
         }
-
-
         ClassyNode child = createChild(parent.getClassyNode());
         parent.add(new ClassyTreeItem(child));
         ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
         treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+    public void removeChild(ClassyTreeItem node){
+        if (node==null) {
+            ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NODE_NOT_SELECTED);
+            return;
+        }
+        if (node.getClassyNode() instanceof ProjectExplorer) {
+            ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NODE_CANNOT_BE_DELETED);
+            return;
+        }
+        ClassyNodeComposite parent = (ClassyNodeComposite) node.getClassyNode().getParent();
+        parent.removeChild(node.getClassyNode());
+        node.removeAllChildren();
+        node.removeFromParent();
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
@@ -52,13 +67,10 @@ public class ClassyTreeImpl implements ClassyTree{
         return (ClassyTreeItem) treeView.getLastSelectedPathComponent();
     }
 
-    private static int projectNum = 1;
-
+//    private static int projectNum = 1;
     private ClassyNode createChild(ClassyNode parent){
-
         NodeFactory nodeFactory = FactoryUtils.returnNodeFactory((ClassyNodeComposite) parent);
         return nodeFactory.orderNode((ClassyNodeComposite) parent);
-
 //        if(parent instanceof ProjectExplorer){
 //            return new Project(" Project "+ projectNum++, parent);
 //        }

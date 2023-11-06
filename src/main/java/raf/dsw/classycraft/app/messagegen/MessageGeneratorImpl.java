@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.messagegen;
 
+import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ public class MessageGeneratorImpl implements MessageGenerator {
             case CANNOT_ADD_CHILD_TO_LEAF:
                 return new Message(MessageType.INFO, timestamp, event.toString());
             case PARENT_NOT_SELECTED:
+            case NODE_NOT_SELECTED:
                 return new Message(MessageType.WARNING, timestamp, event.toString());
             //case PROBA:
                // return new Message(MessageType.INFO, timestamp, "OVO JE PROBA");

@@ -1,10 +1,13 @@
 package raf.dsw.classycraft.app.model.modelImpl;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
 
 import java.nio.file.Path;
-
+@Setter
+@Getter
 public class Project extends ClassyNodeComposite {
 
     public String author;
@@ -24,11 +27,10 @@ public class Project extends ClassyNodeComposite {
         }
     }
 
-    public Project() {
-    }
-
     @Override
     public void removeChild(ClassyNode child) {
-
+        if (child != null &&  child instanceof Package){
+            this.getChildren().remove(child);
+        }
     }
 }

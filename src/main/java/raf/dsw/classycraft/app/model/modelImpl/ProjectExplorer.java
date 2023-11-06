@@ -23,6 +23,8 @@ public class ProjectExplorer extends ClassyNodeComposite {
 
     @Override
     public void removeChild(ClassyNode child) {
-
+        if (child != null &&  child instanceof Project){
+            this.getChildren().remove(child);
+        }
     }
 }
