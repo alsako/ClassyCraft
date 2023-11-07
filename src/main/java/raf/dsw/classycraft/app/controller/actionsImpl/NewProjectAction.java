@@ -40,11 +40,10 @@ public class NewProjectAction extends AbstractClassyAction {
             newPackageOption.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-                    // Here, you can perform actions that depend on the selectedOption
                     selectedOption = newPackageOption.getSelectedOption();
                     System.out.println("Selected Option: " + selectedOption);
                     MainFrame.getInstance().getClassyTree().addChild(selected);
-                    return;
+//                    return;
                 }
             });
 

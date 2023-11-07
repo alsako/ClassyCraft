@@ -48,8 +48,11 @@ public class ClassyTreeImpl implements ClassyTree{
         if (child instanceof Package) //observer
             ((Package)child).addSubscriber(MainFrame.getInstance().getPackageView());
         else if (child instanceof Diagram) {
-            PackageNotification pn = new PackageNotification(child.getName(), PackageNtfType.ADD_CHILD);
-            ((Package)parent.getClassyNode()).notifySubscribers(pn);
+            if(MainFrame.getInstance().getPackageView().getCurrentPackage() != null
+                    && MainFrame.getInstance().getPackageView().getCurrentPackage().equals(parent.getClassyNode())) {
+                PackageNotification pn = new PackageNotification(child.getName(), PackageNtfType.ADD_CHILD);
+                ((Package) parent.getClassyNode()).notifySubscribers(pn);
+            }
         }
         parent.add(new ClassyTreeItem(child));
         ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);

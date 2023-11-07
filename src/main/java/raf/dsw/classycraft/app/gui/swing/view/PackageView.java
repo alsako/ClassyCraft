@@ -1,21 +1,26 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
+import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.classycraft.app.model.PackageNotification;
 import raf.dsw.classycraft.app.model.PackageNtfType;
+import raf.dsw.classycraft.app.model.modelImpl.Package;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Setter
+@Getter
 public class PackageView extends JPanel implements ISubscriber {
 
+    Package currentPackage;
     String packageName;
     String author;
-    List<String> diagramNames;
+    List<String> diagramNames = new ArrayList<>();
 
     public PackageView() {
     }

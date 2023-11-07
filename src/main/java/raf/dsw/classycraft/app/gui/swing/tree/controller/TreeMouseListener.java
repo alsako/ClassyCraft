@@ -22,14 +22,19 @@ public class TreeMouseListener extends MouseAdapter {
             ClassyNode node = selected.getClassyNode();
             if (node instanceof Package) {
                 System.out.println("Dvoklik na = " + ((Package)node).getName());
+
                 String packName = node.getName();
                 String packAuthor = "Unspecified";
+
                 Project parentProject = ((Package)node).getParentProject();
                 if(parentProject.getAuthor()!=null)
                     packAuthor = parentProject.getAuthor();
+
                 List<String> diagramNames = ((Package)node).getDiagramChildrenNames();
+
                 System.out.println("diagramNames = " + diagramNames);
                 System.out.println("packName = " + packName);
+                MainFrame.getInstance().getPackageView().setCurrentPackage((Package)node);
                 MainFrame.getInstance().getPackageView().setPackageName(packName);
                 MainFrame.getInstance().getPackageView().setAuthor(packAuthor);
                 MainFrame.getInstance().getPackageView().setDiagramNames(diagramNames);
