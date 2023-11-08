@@ -1,8 +1,10 @@
 package raf.dsw.classycraft.app.controller.actionsImpl;
 
 import raf.dsw.classycraft.app.controller.AbstractClassyAction;
+import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
+import raf.dsw.classycraft.app.messagegen.Event;
 import raf.dsw.classycraft.app.model.PackageNotification;
 import raf.dsw.classycraft.app.model.PackageNtfType;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
@@ -61,6 +63,8 @@ public class SetAuthorAction extends AbstractClassyAction {
             frame.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                    if (authorName.isEmpty())
+                        ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NAME_CANNOT_BE_EMPTY);
                     ((Project)node).setAuthor(authorName);
                     if (!(((Project)node).getChildren().isEmpty())){
                         for (ClassyNode child:((Project) node).getChildren()) {
@@ -72,6 +76,9 @@ public class SetAuthorAction extends AbstractClassyAction {
                 }
             });
 
+        }
+        else {
+            ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.AUTHOR_MUST_BE_A_PROJECT);
         }
     }
 }

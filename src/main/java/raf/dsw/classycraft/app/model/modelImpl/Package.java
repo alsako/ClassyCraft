@@ -79,6 +79,19 @@ public class Package extends ClassyNodeComposite implements IPublisher {
             return ((Package)this.getParent()).getParentProject();
     }
 
+    public Diagram getLastDiagramChild(){
+        int length = this.getChildren().size();
+        for (int i = length-1; i>=0; i--){
+            if (this.getChildren().get(i) instanceof Diagram)
+                return (Diagram) this.getChildren().get(i);
+        }
+        return null;
+    }
+
+    public String getAuthor(){
+        return this.getParentProject().getAuthor();
+    }
+
     @Override
     public void addSubscriber(ISubscriber sub) {
         if(sub == null)

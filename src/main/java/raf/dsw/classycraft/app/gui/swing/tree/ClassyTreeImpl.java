@@ -6,6 +6,7 @@ import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.messagegen.Event;
+import raf.dsw.classycraft.app.model.DiagramNtfType;
 import raf.dsw.classycraft.app.model.PackageNotification;
 import raf.dsw.classycraft.app.model.PackageNtfType;
 import raf.dsw.classycraft.app.model.factory.FactoryUtils;
@@ -45,19 +46,21 @@ public class ClassyTreeImpl implements ClassyTree{
             return ;
         }
         ClassyNode child = createChild(parent.getClassyNode());
-        if (child instanceof Package) //observer
-            ((Package)child).addSubscriber(MainFrame.getInstance().getPackageView());
-        else if (child instanceof Diagram) {
-            if(MainFrame.getInstance().getPackageView().getCurrentPackage() != null
-                    && MainFrame.getInstance().getPackageView().getCurrentPackage().equals(parent.getClassyNode())) {
-                PackageNotification pn = new PackageNotification(child.getName(), PackageNtfType.ADD_CHILD);
-                ((Package) parent.getClassyNode()).notifySubscribers(pn);
-            }
-        }
         parent.add(new ClassyTreeItem(child));
         ((ClassyNodeComposite) parent.getClassyNode()).addChild(child);
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
+
+        //observer
+        if (child instanceof Diagram) {
+            if(MainFrame.getInstance().getPackageView().getPack() != null
+                    && MainFrame.getInstance().getPackageView().getPack().equals(parent.getClassyNode())) {
+                PackageNotification pn = new PackageNotification(child.getName(), PackageNtfType.ADD_CHILD);
+                ((Package) parent.getClassyNode()).notifySubscribers(pn);
+            }
+
+        }
+
     }
 
     public void removeChild(ClassyTreeItem node){
@@ -69,19 +72,29 @@ public class ClassyTreeImpl implements ClassyTree{
             ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NODE_CANNOT_BE_DELETED);
             return;
         }
+
+
         //observer
-        if (node.getClassyNode() instanceof Package)
-            ((Package)node.getClassyNode()).notifySubscribers(PackageNtfType.DELETE);
+        if (node.getClassyNode() instanceof Package) {
+            ((Package) node.getClassyNode()).notifySubscribers(PackageNtfType.DELETE);
+            for (ClassyNode child:((Package) node.getClassyNode()).getChildren()) {
+                if (child instanceof Diagram)
+                    ((Diagram)child).notifySubscribers(DiagramNtfType.DELETE);
+            }
+        }
         else if (node.getClassyNode() instanceof Project) {
             for (ClassyNode child:((Project) node.getClassyNode()).getChildren()) {
                 ((Package)child).notifySubscribers(PackageNtfType.DELETE);
             }
+        } else if (node.getClassyNode() instanceof Diagram) {
+            ((Diagram)node.getClassyNode()).notifySubscribers(DiagramNtfType.DELETE);
         }
 
         ClassyNodeComposite parent = (ClassyNodeComposite) node.getClassyNode().getParent();
         parent.removeChild(node.getClassyNode());
         node.removeAllChildren();
         node.removeFromParent();
+
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
@@ -90,13 +103,8 @@ public class ClassyTreeImpl implements ClassyTree{
         return (ClassyTreeItem) treeView.getLastSelectedPathComponent();
     }
 
-//    private static int projectNum = 1;
     private ClassyNode createChild(ClassyNode parent){
         NodeFactory nodeFactory = FactoryUtils.returnNodeFactory((ClassyNodeComposite) parent);
         return nodeFactory.orderNode((ClassyNodeComposite) parent);
-//        if(parent instanceof ProjectExplorer){
-//            return new Project(" Project "+ projectNum++, parent);
-//        }
-//        return null;
     }
 }
