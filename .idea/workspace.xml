@@ -4,21 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13bb3694-ac11-4858-b86a-99967c2a1f33" name="Changes" comment="Popravljen observer za slucaj dodavanja dijagrama">
-      <change afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/DiagramNtfType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/SetAuthorAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/SetAuthorAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTreeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTreeImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeCellEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeCellEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/TreeMouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/TreeMouseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/DiagramView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/DiagramView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/PackageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/PackageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Diagram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" afterDir="false" />
+    <list default="true" id="13bb3694-ac11-4858-b86a-99967c2a1f33" name="Changes" comment="Dodat slucaj postojanja istoimenog deteta u MessageGenerator">
       <change beforePath="$PROJECT_DIR$/src/main/resources/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Diagram.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Diagram.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ClassyRepositoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ClassyRepositoryImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelAbs/ClassyNodeComposite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelAbs/ClassyNodeComposite.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +147,28 @@
       <option name="project" value="LOCAL" />
       <updated>1699353111824</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Povezani Diagram i DiagramView observerom, izmenjen PackageView + dodate nove porukeu MessageGeneratoru">
+      <created>1699484447940</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699484447940</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Povezani Diagram i DiagramView observerom, izmenjen PackageView + dodate nove porukeu MessageGeneratoru">
+      <created>1699484746363</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1699484746363</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Dodat slucaj postojanja istoimenog deteta u MessageGenerator">
+      <created>1699490967786</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699490967786</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -201,7 +212,9 @@
     <MESSAGE value="Dodat dijalog za pravljenje paekta i SetAuthorAction" />
     <MESSAGE value="Kreiran PackageView i implementirano otvaranje TabbedPane-a na dvoklik Package elementa" />
     <MESSAGE value="Popravljen observer za slucaj dodavanja dijagrama" />
-    <option name="LAST_COMMIT_MESSAGE" value="Popravljen observer za slucaj dodavanja dijagrama" />
+    <MESSAGE value="Povezani Diagram i DiagramView observerom, izmenjen PackageView + dodate nove porukeu MessageGeneratoru" />
+    <MESSAGE value="Dodat slucaj postojanja istoimenog deteta u MessageGenerator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodat slucaj postojanja istoimenog deteta u MessageGenerator" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

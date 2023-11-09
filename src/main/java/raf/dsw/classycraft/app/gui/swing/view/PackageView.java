@@ -7,7 +7,6 @@ import raf.dsw.classycraft.app.model.PackageNtfType;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.model.modelImpl.Package;
-import raf.dsw.classycraft.app.model.modelImpl.Project;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 
 import javax.swing.*;
@@ -62,6 +61,7 @@ public class PackageView extends JPanel implements ISubscriber {
         this.packLabel.setText("package: " + this.packageName);
         if (this.author!=null)
             this.authorLabel.setText("author: " + this.author);
+        else this.authorLabel.setText("");
 
 
         if (this.pack!=null){
@@ -75,7 +75,7 @@ public class PackageView extends JPanel implements ISubscriber {
         }
 
         for (DiagramView tab:this.tabs) {
-            tabbedPane.addTab(tab.getDiagram().getName(), tab);
+            tabbedPane.addTab(tab.getDiagram().getName(),new ImageIcon("src/main/resources/images/diagram.png"), tab);
         }
 
 
@@ -104,7 +104,7 @@ public class PackageView extends JPanel implements ISubscriber {
                 DiagramView newTab = new DiagramView(addedDiagram);
                 addedDiagram.addSubscriber(newTab);
                 tabs.add(newTab);
-                tabbedPane.addTab(newTab.getDiagram().getName(), newTab);
+                tabbedPane.addTab(newTab.getDiagram().getName(),new ImageIcon("src/main/resources/images/diagram.png"), newTab);
                 break;
             case AUTHOR_CHANGED:
                 this.setAuthor(name);

@@ -7,6 +7,8 @@ import raf.dsw.classycraft.app.messagegen.Event;
 import raf.dsw.classycraft.app.model.DiagramNtfType;
 import raf.dsw.classycraft.app.model.PackageNotification;
 import raf.dsw.classycraft.app.model.PackageNtfType;
+import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
+import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
 import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.model.modelImpl.Package;
 
@@ -52,19 +54,26 @@ public class ClassyTreeCellEditor extends DefaultTreeCellEditor implements Actio
             return ;
         }
         ClassyTreeItem clicked = (ClassyTreeItem) clickedOn;
+        ClassyNode clickedNode = ((ClassyTreeItem) clickedOn).getClassyNode();
+
         if (e.getActionCommand().isEmpty()) {
             ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NAME_CANNOT_BE_EMPTY);
             return;
         }
+        else if(((ClassyNodeComposite)(clickedNode.getParent())).childNameTaken(e.getActionCommand())){
+                ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NAME_TAKEN);
+                return;
+        }
+
 
         clicked.setName(e.getActionCommand());
         //observer
-        if (((ClassyTreeItem) clickedOn).getClassyNode() instanceof Package) {
+        if (clickedNode instanceof Package) {
             PackageNotification pn = new PackageNotification(e.getActionCommand(), PackageNtfType.RENAME);
-            ((Package) (((ClassyTreeItem) clickedOn).getClassyNode())).notifySubscribers(pn);
+            ((Package)clickedNode).notifySubscribers(pn);
         }
-        if (((ClassyTreeItem) clickedOn).getClassyNode() instanceof Diagram) {
-            ((Diagram) (((ClassyTreeItem) clickedOn).getClassyNode())).notifySubscribers(DiagramNtfType.RENAME);
+        if (clickedNode instanceof Diagram) {
+            ((Diagram) clickedNode).notifySubscribers(DiagramNtfType.RENAME);
         }
 
 

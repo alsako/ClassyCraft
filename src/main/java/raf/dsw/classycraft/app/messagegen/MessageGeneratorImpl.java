@@ -20,6 +20,7 @@ public class MessageGeneratorImpl implements MessageGenerator {
             case CANNOT_ADD_CHILD_TO_LEAF:
                 return new Message(MessageType.ERROR, timestamp, event.toString());
             case AUTHOR_MUST_BE_A_PROJECT:
+            case NAME_TAKEN:
                 return new Message(MessageType.INFO, timestamp, event.toString());
             case PARENT_NOT_SELECTED:
             case NODE_NOT_SELECTED:

@@ -19,6 +19,14 @@ public abstract class ClassyNodeComposite extends ClassyNode{
         this.children = new ArrayList<>();
     }
 
+    public boolean childNameTaken(String name){
+        for (ClassyNode child:this.getChildren()) {
+            if (child.getName().trim().equals(name.trim()))
+                return true;
+        }
+        return false;
+    }
+
     public abstract void addChild(ClassyNode child);
 
     public abstract void removeChild(ClassyNode child);
