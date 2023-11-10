@@ -38,11 +38,11 @@ public class ClassyTreeImpl implements ClassyTree{
     @Override
     public void addChild(ClassyTreeItem parent) {
         if (parent == null) {
-            ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.PARENT_NOT_SELECTED);
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.PARENT_NOT_SELECTED);
             return ;
         }
         if(!(parent.getClassyNode() instanceof ClassyNodeComposite)) {
-            ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.CANNOT_ADD_CHILD_TO_LEAF);
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.CANNOT_ADD_CHILD_TO_LEAF);
             return ;
         }
         ClassyNode child = createChild(parent.getClassyNode());
@@ -52,43 +52,43 @@ public class ClassyTreeImpl implements ClassyTree{
         SwingUtilities.updateComponentTreeUI(treeView);
 
         //observer
-        if (child instanceof Diagram) {
-            if(MainFrame.getInstance().getPackageView().getPack() != null
-                    && MainFrame.getInstance().getPackageView().getPack().equals(parent.getClassyNode())) {
-                PackageNotification pn = new PackageNotification(child.getName(), PackageNtfType.ADD_CHILD);
-                ((Package) parent.getClassyNode()).notifySubscribers(pn);
-            }
-
-        }
+//        if (child instanceof Diagram) {
+//            if(MainFrame.getInstance().getPackageView().getPack() != null
+//                    && MainFrame.getInstance().getPackageView().getPack().equals(parent.getClassyNode())) {
+//                PackageNotification pn = new PackageNotification(child.getName(), PackageNtfType.ADD_CHILD);
+//                ((Package) parent.getClassyNode()).notifySubscribers(pn);
+//            }
+//
+//        }
 
     }
 
     public void removeChild(ClassyTreeItem node){
         if (node==null) {
-            ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NODE_NOT_SELECTED);
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NODE_NOT_SELECTED);
             return;
         }
         if (node.getClassyNode() instanceof ProjectExplorer) {
-            ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NODE_CANNOT_BE_DELETED);
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NODE_CANNOT_BE_DELETED);
             return;
         }
 
 
         //observer
-        if (node.getClassyNode() instanceof Package) {
-            ((Package) node.getClassyNode()).notifySubscribers(PackageNtfType.DELETE);
-            for (ClassyNode child:((Package) node.getClassyNode()).getChildren()) {
-                if (child instanceof Diagram)
-                    ((Diagram)child).notifySubscribers(DiagramNtfType.DELETE);
-            }
-        }
-        else if (node.getClassyNode() instanceof Project) {
-            for (ClassyNode child:((Project) node.getClassyNode()).getChildren()) {
-                ((Package)child).notifySubscribers(PackageNtfType.DELETE);
-            }
-        } else if (node.getClassyNode() instanceof Diagram) {
-            ((Diagram)node.getClassyNode()).notifySubscribers(DiagramNtfType.DELETE);
-        }
+//        if (node.getClassyNode() instanceof Package) {
+//            ((Package) node.getClassyNode()).notifySubscribers(PackageNtfType.DELETE);
+//            for (ClassyNode child:((Package) node.getClassyNode()).getChildren()) {
+//                if (child instanceof Diagram)
+//                    ((Diagram)child).notifySubscribers(DiagramNtfType.DELETE);
+//            }
+//        }
+//        else if (node.getClassyNode() instanceof Project) {
+//            for (ClassyNode child:((Project) node.getClassyNode()).getChildren()) {
+//                ((Package)child).notifySubscribers(PackageNtfType.DELETE);
+//            }
+//        } else if (node.getClassyNode() instanceof Diagram) {
+//            ((Diagram)node.getClassyNode()).notifySubscribers(DiagramNtfType.DELETE);
+//        }
 
         ClassyNodeComposite parent = (ClassyNodeComposite) node.getClassyNode().getParent();
         parent.removeChild(node.getClassyNode());

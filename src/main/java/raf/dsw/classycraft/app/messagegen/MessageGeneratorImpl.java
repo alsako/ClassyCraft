@@ -1,6 +1,5 @@
 package raf.dsw.classycraft.app.messagegen;
 
-import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 
 import java.time.LocalDateTime;
@@ -12,7 +11,7 @@ public class MessageGeneratorImpl implements MessageGenerator {
     List<ISubscriber> subscribers;
 
     @Override
-    public Message generateMessage(Event event) {
+    public Message formulateMessage(Event event) {
         LocalDateTime timestamp = LocalDateTime.now();
         switch (event){
             case NAME_CANNOT_BE_EMPTY:
@@ -30,6 +29,12 @@ public class MessageGeneratorImpl implements MessageGenerator {
 
         }
         return null;
+    }
+
+    @Override
+    public void generateMessage(Event event){
+        Message message = formulateMessage(event);
+        this.notifySubscribers(message);
     }
 
     @Override
@@ -51,11 +56,11 @@ public class MessageGeneratorImpl implements MessageGenerator {
     }
 
     @Override
-    public void notifySubscribers(Object event) {
-        if(event == null ||this.subscribers == null || this.subscribers.isEmpty())
+    public void notifySubscribers(Object message) {
+        if(message == null ||this.subscribers == null || this.subscribers.isEmpty())
             return;
         for (ISubscriber sub: subscribers) {
-            sub.update(generateMessage((Event) event));
+            sub.update((Message)message);
         }
     }
 

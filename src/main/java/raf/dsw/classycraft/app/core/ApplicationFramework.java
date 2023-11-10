@@ -9,6 +9,8 @@ import raf.dsw.classycraft.app.logger.LoggerType;
 import raf.dsw.classycraft.app.messagegen.MessageGenerator;
 import raf.dsw.classycraft.app.messagegen.MessageGeneratorImpl;
 
+import java.io.FileWriter;
+
 public class ApplicationFramework {
 
     private static ApplicationFramework instance;
@@ -29,6 +31,15 @@ public class ApplicationFramework {
         LoggerFactory loggerFactory = new LoggerFactory();
         consoleLogger = loggerFactory.createLogger(LoggerType.CONSOLE);
         fileLogger = loggerFactory.createLogger(LoggerType.FILE);
+        //restartuje log.txt
+        try {
+            String filePath = "src/main/resources/log.txt";
+            FileWriter fileWriter = new FileWriter(filePath, false);
+            fileWriter.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         messageGenerator.addSubscriber(fileLogger);
         messageGenerator.addSubscriber(consoleLogger);
         //tree action listener

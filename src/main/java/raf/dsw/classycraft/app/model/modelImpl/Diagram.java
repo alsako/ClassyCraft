@@ -1,5 +1,8 @@
 package raf.dsw.classycraft.app.model.modelImpl;
 
+import raf.dsw.classycraft.app.core.ApplicationFramework;
+import raf.dsw.classycraft.app.messagegen.Event;
+import raf.dsw.classycraft.app.model.DiagramNtfType;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.observer.IPublisher;
 import raf.dsw.classycraft.app.observer.ISubscriber;
@@ -16,6 +19,17 @@ public class Diagram extends ClassyNode implements IPublisher {
     }
 
     public Diagram() {
+    }
+
+    @Override
+    public void setName(String name) {
+        if (name.isEmpty()){
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NAME_CANNOT_BE_EMPTY);
+            return;
+        }
+        super.setName(name);
+        this.notifySubscribers(DiagramNtfType.RENAME);
+
     }
 
     @Override

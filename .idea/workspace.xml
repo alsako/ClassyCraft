@@ -5,10 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13bb3694-ac11-4858-b86a-99967c2a1f33" name="Changes" comment="Dodat slucaj postojanja istoimenog deteta u MessageGenerator">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/SetAuthorAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/controller/actionsImpl/SetAuthorAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ApplicationFramework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/core/ApplicationFramework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTreeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/ClassyTreeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeCellEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/tree/controller/ClassyTreeCellEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/DiagramView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/gui/swing/view/DiagramView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/logger/FileLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/logger/FileLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Diagram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Diagram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Package.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ClassyRepositoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ClassyRepositoryImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelAbs/ClassyNodeComposite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelAbs/ClassyNodeComposite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ApplicationFramework.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/core/ApplicationFramework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/messagegen/MessageGeneratorImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Diagram.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Diagram.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Package.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Package.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/Project.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/raf/dsw/classycraft/app/model/modelImpl/ProjectExplorer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699490967786</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Dodat slucaj postojanja istoimenog deteta u MessageGenerator">
+      <created>1699539513449</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699539513449</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
