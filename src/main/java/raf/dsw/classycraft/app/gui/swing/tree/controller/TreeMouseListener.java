@@ -21,7 +21,7 @@ public class TreeMouseListener extends MouseAdapter {
             ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
             ClassyNode node = selected.getClassyNode();
             if (node instanceof Package) {
-                System.out.println("Dvoklik na = " + ((Package)node).getName());
+//                System.out.println("Dvoklik na = " + ((Package)node).getName());
                 MainFrame.getInstance().getPackageView().updatePackageView((Package) node);
                 MainFrame.getInstance().revalidate();
                 MainFrame.getInstance().repaint();

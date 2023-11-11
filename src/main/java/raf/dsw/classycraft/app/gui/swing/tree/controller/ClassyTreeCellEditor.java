@@ -54,27 +54,8 @@ public class ClassyTreeCellEditor extends DefaultTreeCellEditor implements Actio
             return ;
         }
         ClassyTreeItem clicked = (ClassyTreeItem) clickedOn;
-//        ClassyNode clickedNode = ((ClassyTreeItem) clickedOn).getClassyNode();
-
-//        if (e.getActionCommand().isEmpty()) {
-//            ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NAME_CANNOT_BE_EMPTY);
-//            return;
-//        }
-//        else if(((ClassyNodeComposite)(clickedNode.getParent())).childNameTaken(e.getActionCommand())){
-//                ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NAME_TAKEN);
-//                return;
-//        }
-
-
         clicked.setName(e.getActionCommand());
-        //observer
-//        if (clickedNode instanceof Package) {
-//            PackageNotification pn = new PackageNotification(e.getActionCommand(), PackageNtfType.RENAME);
-//            ((Package)clickedNode).notifySubscribers(pn);
-//        }
-//        if (clickedNode instanceof Diagram) {
-//            ((Diagram) clickedNode).notifySubscribers(DiagramNtfType.RENAME);
-//        }
+
 
 
     }

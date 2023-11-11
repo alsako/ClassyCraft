@@ -18,9 +18,6 @@ public class Diagram extends ClassyNode implements IPublisher {
         super(name, parent);
     }
 
-    public Diagram() {
-    }
-
     @Override
     public void setName(String name) {
         if (name.isEmpty()){

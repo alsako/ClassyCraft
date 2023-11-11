@@ -51,15 +51,7 @@ public class ClassyTreeImpl implements ClassyTree{
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
 
-        //observer
-//        if (child instanceof Diagram) {
-//            if(MainFrame.getInstance().getPackageView().getPack() != null
-//                    && MainFrame.getInstance().getPackageView().getPack().equals(parent.getClassyNode())) {
-//                PackageNotification pn = new PackageNotification(child.getName(), PackageNtfType.ADD_CHILD);
-//                ((Package) parent.getClassyNode()).notifySubscribers(pn);
-//            }
-//
-//        }
+
 
     }
 
@@ -74,21 +66,7 @@ public class ClassyTreeImpl implements ClassyTree{
         }
 
 
-        //observer
-//        if (node.getClassyNode() instanceof Package) {
-//            ((Package) node.getClassyNode()).notifySubscribers(PackageNtfType.DELETE);
-//            for (ClassyNode child:((Package) node.getClassyNode()).getChildren()) {
-//                if (child instanceof Diagram)
-//                    ((Diagram)child).notifySubscribers(DiagramNtfType.DELETE);
-//            }
-//        }
-//        else if (node.getClassyNode() instanceof Project) {
-//            for (ClassyNode child:((Project) node.getClassyNode()).getChildren()) {
-//                ((Package)child).notifySubscribers(PackageNtfType.DELETE);
-//            }
-//        } else if (node.getClassyNode() instanceof Diagram) {
-//            ((Diagram)node.getClassyNode()).notifySubscribers(DiagramNtfType.DELETE);
-//        }
+
 
         ClassyNodeComposite parent = (ClassyNodeComposite) node.getClassyNode().getParent();
         parent.removeChild(node.getClassyNode());
