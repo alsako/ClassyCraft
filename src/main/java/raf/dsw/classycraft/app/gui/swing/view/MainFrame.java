@@ -1,5 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.classycraft.app.controller.ActionManager;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTree;
@@ -12,7 +14,8 @@ import java.awt.*;
 
 
 
-
+@Getter
+@Setter
 public class MainFrame extends JFrame implements ISubscriber {
 
     private static MainFrame instance;
@@ -20,6 +23,8 @@ public class MainFrame extends JFrame implements ISubscriber {
     private ActionManager actionManager;
 
     private ClassyTree classyTree;
+    private PackageView packageView;
+    private JTree projectExplorer;
 
     private MainFrame(){
     }
@@ -28,10 +33,14 @@ public class MainFrame extends JFrame implements ISubscriber {
         return actionManager;
     }
 
-    private void initialize(){
-
+    private void initialise(){
         actionManager = new ActionManager();
         classyTree = new ClassyTreeImpl();
+        projectExplorer = classyTree.generateTree(ApplicationFramework.getInstance().getClassyRepository().getRoot());
+        initialiseGUI();
+    }
+
+    public void initialiseGUI(){
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -48,14 +57,12 @@ public class MainFrame extends JFrame implements ISubscriber {
         MyToolBar myToolBar = new MyToolBar();
         add(myToolBar, BorderLayout.NORTH);
 
-        JTree projectExplorer = classyTree.generateTree(ApplicationFramework.getInstance().getClassyRepository().getRoot());
-
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
-        JPanel panel = new JPanel();
+        packageView = new PackageView();
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         splitPane.setLeftComponent(scroll);
-        splitPane.setRightComponent(panel);
+        splitPane.setRightComponent(packageView);
         getContentPane().add(splitPane);
         splitPane.setDividerLocation(200);
         splitPane.setOneTouchExpandable(true);
@@ -64,7 +71,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     public static MainFrame getInstance() {
         if (instance==null) {
             instance = new MainFrame();
-            instance.initialize();
+            instance.initialise();
         }
         return instance;
     }

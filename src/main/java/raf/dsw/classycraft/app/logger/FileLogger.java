@@ -17,8 +17,8 @@ public class FileLogger implements Logger{
     public void update(Object message) {
         try{
             String filePath = "src/main/resources/log.txt";
-            FileWriter writer = new FileWriter(filePath);
-            writer.write(((Message)message).toString());
+            FileWriter writer = new FileWriter(filePath, true);
+            writer.write(((Message)message).toString() + '\n');
             writer.close();
         }catch(IOException ex){
             ex.printStackTrace();

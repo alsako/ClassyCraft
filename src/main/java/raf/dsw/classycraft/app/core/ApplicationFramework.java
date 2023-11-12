@@ -1,11 +1,15 @@
 package raf.dsw.classycraft.app.core;
 
+import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImpl;
+import raf.dsw.classycraft.app.gui.swing.tree.controller.TreeMouseListener;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.logger.Logger;
 import raf.dsw.classycraft.app.logger.LoggerFactory;
 import raf.dsw.classycraft.app.logger.LoggerType;
 import raf.dsw.classycraft.app.messagegen.MessageGenerator;
 import raf.dsw.classycraft.app.messagegen.MessageGeneratorImpl;
+
+import java.io.FileWriter;
 
 public class ApplicationFramework {
 
@@ -21,13 +25,27 @@ public class ApplicationFramework {
     public void initialize(){
         classyRepository = new ClassyRepositoryImpl();
         MainFrame.getInstance().setVisible(true);
+        //message generator and loggers
         messageGenerator = new MessageGeneratorImpl();
         messageGenerator.addSubscriber(MainFrame.getInstance());
         LoggerFactory loggerFactory = new LoggerFactory();
         consoleLogger = loggerFactory.createLogger(LoggerType.CONSOLE);
         fileLogger = loggerFactory.createLogger(LoggerType.FILE);
+        //restartuje log.txt
+        try {
+            String filePath = "src/main/resources/log.txt";
+            FileWriter fileWriter = new FileWriter(filePath, false);
+            fileWriter.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         messageGenerator.addSubscriber(fileLogger);
         messageGenerator.addSubscriber(consoleLogger);
+        //tree action listener
+        ClassyTreeImpl tree = (ClassyTreeImpl) MainFrame.getInstance().getClassyTree();
+        tree.getTreeView().addMouseListener(new TreeMouseListener());
+
     }
 
     public MessageGenerator getMessageGenerator() {

@@ -7,7 +7,7 @@ public class ClassyRepositoryImpl implements ClassyRepository{
     private ProjectExplorer root;
 
     public ClassyRepositoryImpl() {
-       root = new ProjectExplorer("My Project Explotrer");
+       root = new ProjectExplorer("My Project Explorer");
     }
 
 
