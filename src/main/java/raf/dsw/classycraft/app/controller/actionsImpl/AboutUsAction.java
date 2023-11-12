@@ -24,7 +24,7 @@ public class AboutUsAction extends AbstractClassyAction {
         int screenWidth = screenSize.width;
         aboutUsFrame.setSize(screenWidth / 3, screenHeight / 3);
         aboutUsFrame.setLocationRelativeTo(null);
-        aboutUsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        aboutUsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //paneli
         JPanel parentPanel = new JPanel();
