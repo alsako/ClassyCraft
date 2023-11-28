@@ -42,6 +42,10 @@ public class NewProjectAction extends AbstractClassyAction {
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                     selectedOption = newPackageOption.getSelectedOption();
                     System.out.println("Selected Option: " + selectedOption);
+                    if (selectedOption==null){
+                        ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.OPTION_NOT_SELECTED);
+                        return;
+                    }
                     MainFrame.getInstance().getClassyTree().addChild(selected);
 //                    return;
                 }
