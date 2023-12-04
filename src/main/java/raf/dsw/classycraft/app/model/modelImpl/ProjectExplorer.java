@@ -2,7 +2,7 @@ package raf.dsw.classycraft.app.model.modelImpl;
 
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.messagegen.Event;
-import raf.dsw.classycraft.app.model.PackageNtfType;
+import raf.dsw.classycraft.app.model.notifications.PackageNtfType;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
 

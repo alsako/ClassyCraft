@@ -2,17 +2,21 @@ package raf.dsw.classycraft.app.gui.swing.view;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.classycraft.app.model.PackageNotification;
-import raf.dsw.classycraft.app.model.PackageNtfType;
+import raf.dsw.classycraft.app.gui.swing.painters.ElementPainter;
+import raf.dsw.classycraft.app.model.notifications.PackageNotification;
+import raf.dsw.classycraft.app.model.notifications.PackageNtfType;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.model.modelImpl.Package;
 import raf.dsw.classycraft.app.observer.ISubscriber;
+import raf.dsw.classycraft.app.state.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Setter
@@ -22,12 +26,18 @@ public class PackageView extends JPanel implements ISubscriber {
     private String packageName = "";
     private String author = "";
     private Package pack;
+
+    private StateManager stateManager;
     private List<DiagramView> tabs = new ArrayList<>();
+    Map<Diagram, List<ElementPainter>> diagramPainters = new HashMap<>();
+
     private JTabbedPane tabbedPane = new JTabbedPane();
     private JLabel packLabel = new JLabel();
     private JLabel authorLabel = new JLabel();
 
     public PackageView() {
+
+        stateManager = new StateManager();
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -70,6 +80,7 @@ public class PackageView extends JPanel implements ISubscriber {
                     DiagramView tab = new DiagramView((Diagram)child);
                     ((Diagram)child).addSubscriber(tab);
                     tabs.add(tab);
+                    diagramPainters.putIfAbsent((Diagram)child, new ArrayList<>());
                 }
             }
         }
@@ -105,6 +116,7 @@ public class PackageView extends JPanel implements ISubscriber {
                 addedDiagram.addSubscriber(newTab);
                 tabs.add(newTab);
                 tabbedPane.addTab(newTab.getDiagram().getName(),new ImageIcon("src/main/resources/images/diagram.png"), newTab);
+                diagramPainters.putIfAbsent(addedDiagram, new ArrayList<>());
                 break;
             case AUTHOR_CHANGED:
                 this.setAuthor(name);
@@ -115,4 +127,61 @@ public class PackageView extends JPanel implements ISubscriber {
         MainFrame.getInstance().revalidate();
         MainFrame.getInstance().repaint();
     }
+
+
+    public void startAddConnectionState(){
+        this.stateManager.setAddConnectionState();
+    }
+
+    public void startAddInterclassState(){
+        this.stateManager.setAddInterclassState();
+    }
+
+    public void startAddMethodState(){this.stateManager.setAddMethodState();}
+
+    public void startDeleteElementState(){this.stateManager.setDeleteElementState();}
+
+    public void misKliknut(Point p){
+        if (this.tabbedPane!=null) {
+            DiagramView diagramView = (DiagramView) this.tabbedPane.getSelectedComponent();
+            this.stateManager.getCurrentState().misKliknut(p, diagramView);
+        }
+    }
+
+    public void misPrevucen(Point p){
+        if (this.tabbedPane!=null) {
+            DiagramView diagramView = (DiagramView) this.tabbedPane.getSelectedComponent();
+            this.stateManager.getCurrentState().misPrevucen(p, diagramView);
+        }
+    }
+    public void misOtpusten(Point p){
+        if (this.tabbedPane!=null) {
+            DiagramView diagramView = (DiagramView) this.tabbedPane.getSelectedComponent();
+            this.stateManager.getCurrentState().misOtpusten(p, diagramView);
+        }
+    }
+
+    public void addPainterToMap(ElementPainter painter){
+        Diagram selectedDiagram = ((DiagramView)tabbedPane.getSelectedComponent()).getDiagram();
+        diagramPainters.get(selectedDiagram).add(painter);
+        selectedDiagram.addChild(painter.getElement());
+        repaint();
+    }
+
+    public void removePainterFromMap(ElementPainter painter){
+        Diagram selectedDiagram = ((DiagramView)tabbedPane.getSelectedComponent()).getDiagram();
+        diagramPainters.get(selectedDiagram).remove(painter);
+        selectedDiagram.removeChild(painter.getElement());
+        repaint();
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if(tabbedPane == null || tabs == null || tabs.size() == 0) return;
+        DiagramView selectedDiagram = (DiagramView) tabbedPane.getSelectedComponent();
+        selectedDiagram.setPainters(diagramPainters.get(selectedDiagram.getDiagram()));
+        selectedDiagram.revalidate();
+        selectedDiagram.repaint();
+    }
+
 }

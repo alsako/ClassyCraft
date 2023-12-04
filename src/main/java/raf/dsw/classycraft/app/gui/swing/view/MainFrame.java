@@ -57,6 +57,9 @@ public class MainFrame extends JFrame implements ISubscriber {
         MyToolBar myToolBar = new MyToolBar();
         add(myToolBar, BorderLayout.NORTH);
 
+        MySideBar mySideBar = new MySideBar();
+        add(mySideBar, BorderLayout.EAST);
+
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
         packageView = new PackageView();

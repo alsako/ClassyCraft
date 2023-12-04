@@ -4,13 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.messagegen.Event;
-import raf.dsw.classycraft.app.model.DiagramNtfType;
-import raf.dsw.classycraft.app.model.PackageNotification;
-import raf.dsw.classycraft.app.model.PackageNtfType;
+import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
+import raf.dsw.classycraft.app.model.notifications.PackageNotification;
+import raf.dsw.classycraft.app.model.notifications.PackageNtfType;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
 
-import java.nio.file.Path;
 @Setter
 @Getter
 public class Project extends ClassyNodeComposite {

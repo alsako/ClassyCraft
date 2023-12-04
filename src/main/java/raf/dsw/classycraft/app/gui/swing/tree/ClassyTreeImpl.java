@@ -6,30 +6,30 @@ import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.tree.view.ClassyTreeView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.messagegen.Event;
-import raf.dsw.classycraft.app.model.DiagramNtfType;
-import raf.dsw.classycraft.app.model.PackageNotification;
-import raf.dsw.classycraft.app.model.PackageNtfType;
 import raf.dsw.classycraft.app.model.factory.FactoryUtils;
 import raf.dsw.classycraft.app.model.factory.NodeFactory;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
-import raf.dsw.classycraft.app.model.modelImpl.Diagram;
-import raf.dsw.classycraft.app.model.modelImpl.Package;
-import raf.dsw.classycraft.app.model.modelImpl.Project;
 import raf.dsw.classycraft.app.model.modelImpl.ProjectExplorer;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
+import java.util.Enumeration;
+
 @Getter
 public class ClassyTreeImpl implements ClassyTree{
 
     private ClassyTreeView treeView;
     private DefaultTreeModel treeModel;
 
+    ClassyTreeItem root;
+
 
     @Override
     public ClassyTreeView generateTree(ProjectExplorer projectExplorer) {
-        ClassyTreeItem root = new ClassyTreeItem(projectExplorer);
+        root = new ClassyTreeItem(projectExplorer);
         treeModel = new DefaultTreeModel(root);
         treeView = new ClassyTreeView(treeModel);
         return treeView;
@@ -65,9 +65,6 @@ public class ClassyTreeImpl implements ClassyTree{
             return;
         }
 
-
-
-
         ClassyNodeComposite parent = (ClassyNodeComposite) node.getClassyNode().getParent();
         parent.removeChild(node.getClassyNode());
         node.removeAllChildren();
@@ -85,4 +82,35 @@ public class ClassyTreeImpl implements ClassyTree{
         NodeFactory nodeFactory = FactoryUtils.returnNodeFactory((ClassyNodeComposite) parent);
         return nodeFactory.orderNode((ClassyNodeComposite) parent);
     }
+
+    public TreePath findPathToNode(ClassyTreeItem root, ClassyNode current) {
+        Enumeration<TreeNode> element = root.depthFirstEnumeration();
+        while (element.hasMoreElements()) {
+            ClassyTreeItem node = (ClassyTreeItem) element.nextElement();
+            if (node.getClassyNode().equals(current)) {
+                return new TreePath(node.getPath());
+            }
+        }
+        return null;
+    }
+    public void addToTree(ClassyNode parent, ClassyNode child){
+        TreePath pathToDiagram = ((ClassyTreeImpl)MainFrame.getInstance().getClassyTree()).findPathToNode(root, parent);
+        ClassyTree tree = MainFrame.getInstance().getClassyTree();
+        ((ClassyTreeImpl)tree).getTreeView().setSelectionPath(pathToDiagram);
+        ClassyTreeItem parentItem = tree.getSelectedNode();
+        parentItem.add(new ClassyTreeItem(child));
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+    public void removeFromTree(ClassyNode child){
+        TreePath pathToChild = ((ClassyTreeImpl)MainFrame.getInstance().getClassyTree()).findPathToNode(root, child);
+        ClassyTree tree = MainFrame.getInstance().getClassyTree();
+        ((ClassyTreeImpl)tree).getTreeView().setSelectionPath(pathToChild);
+        ClassyTreeItem childItem = tree.getSelectedNode();
+        tree.removeChild(childItem);
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+
 }

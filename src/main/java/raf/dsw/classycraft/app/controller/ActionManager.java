@@ -12,6 +12,10 @@ public class ActionManager {
     private NewProjectAction newProjectAction;
     private DeleteNodeAction deleteNodeAction;
     private SetAuthorAction setAuthorAction;
+    private NewInterclassAction newInterclassAction;
+    private NewConnectionAction newConnectionAction;
+    private NewMethodAction newMethodAction;
+    private DeleteElementAction deleteElementAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -19,6 +23,10 @@ public class ActionManager {
         newProjectAction = new NewProjectAction();
         deleteNodeAction = new DeleteNodeAction();
         setAuthorAction = new SetAuthorAction();
+        newInterclassAction = new NewInterclassAction();
+        newConnectionAction = new NewConnectionAction();
+        newMethodAction = new NewMethodAction();
+        deleteElementAction = new DeleteElementAction();
     }
 
 }

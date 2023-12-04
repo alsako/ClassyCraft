@@ -1,4 +1,4 @@
-package raf.dsw.classycraft.app.model;
+package raf.dsw.classycraft.app.model.notifications;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
