@@ -19,7 +19,16 @@ public class Klasa extends Interclass {
     }
 
     @Override
-    public String toString() {
-        return "Klasa " + this.getName() + " roditelj: " + this.getParent();
+    public Interclass duplicate() {
+        Klasa duplicate = new Klasa(this.getName(), this.getParent(), this.getX()+10, this.getY()+10);
+        duplicate.setHeight(this.getHeight());
+        duplicate.setWidth(this.getWidth());
+        duplicate.setClassContentList(this.getClassContentList());
+        duplicate.setVisibility(this.isVisibility());
+        duplicate.setColourInside(this.getColourInside());
+        duplicate.setStrokeWidth(this.getStrokeWidth());
+        duplicate.setColourOutline(this.getColourOutline());
+        return duplicate;
     }
+
 }

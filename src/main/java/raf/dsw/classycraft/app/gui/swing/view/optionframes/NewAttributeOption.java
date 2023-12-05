@@ -4,23 +4,21 @@ import lombok.Getter;
 import raf.dsw.classycraft.app.model.modelImpl.classes.VisibilityTypes;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 @Getter
-public class NewMethodOption extends JFrame {
-
+public class NewAttributeOption extends JFrame {
     private JRadioButton publicRadioButton;
     private JRadioButton privateRadioButton;
     private JRadioButton protectedRadioButton;
 
     private JTextField nameInput;
-    private JTextField returnInput;
+    private JTextField typeInput;
 
     private JLabel visibilityLabel;
     private JLabel nameLabel;
-    private JLabel returnLabel;
+    private JLabel typeLabel;
 
     private JButton confirmButton;
 
@@ -29,7 +27,7 @@ public class NewMethodOption extends JFrame {
     private String enteredType;
     private VisibilityTypes selectedVisibility;
 
-    public NewMethodOption() throws HeadlessException {
+    public NewAttributeOption() throws HeadlessException {
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -37,11 +35,10 @@ public class NewMethodOption extends JFrame {
         int screenWidth = screenSize.width;
         setSize(screenWidth / 4, screenHeight / 2);
         setLocationRelativeTo(null);
-        setTitle("Method setup");
+        setTitle("Attribute setup");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        int padding = 10;
 
 
         publicRadioButton = new JRadioButton("public");
@@ -54,13 +51,13 @@ public class NewMethodOption extends JFrame {
         bg.add(protectedRadioButton);
 
         visibilityLabel = new JLabel("Choose visibility:");
-        returnLabel = new JLabel("Enter return type:");
-        nameLabel = new JLabel("Enter method name:");
+        typeLabel = new JLabel("Enter return type:");
+        nameLabel = new JLabel("Enter attribute name:");
 
         nameInput = new JTextField(20);
         nameInput.setMaximumSize(new Dimension(nameInput.getPreferredSize().width, nameInput.getPreferredSize().height));
-        returnInput = new JTextField(20);
-        returnInput.setMaximumSize(new Dimension(returnInput.getPreferredSize().width, returnInput.getPreferredSize().height));
+        typeInput = new JTextField(20);
+        typeInput.setMaximumSize(new Dimension(typeInput.getPreferredSize().width, typeInput.getPreferredSize().height));
 
 
 
@@ -88,7 +85,7 @@ public class NewMethodOption extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 enteredName = nameInput.getText();
-                enteredType = returnInput.getText();
+                enteredType = typeInput.getText();
                 dispose();
             }
         });
@@ -100,9 +97,9 @@ public class NewMethodOption extends JFrame {
         panel.add(nameLabel);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(nameInput);
-        panel.add(returnLabel);
+        panel.add(typeLabel);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(returnInput);
+        panel.add(typeInput);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(confirmButton);
 

@@ -1,22 +1,20 @@
 package raf.dsw.classycraft.app.state;
 
-import com.sun.tools.javac.Main;
 import raf.dsw.classycraft.app.controller.actionsImpl.NewConnectionAction;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
-import raf.dsw.classycraft.app.gui.swing.painters.*;
+import raf.dsw.classycraft.app.gui.swing.view.painters.*;
+import raf.dsw.classycraft.app.gui.swing.view.painters.connections.*;
+import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.InterclassPainter;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImpl;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.messagegen.Event;
 import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
-import raf.dsw.classycraft.app.model.modelImpl.classes.Interfejs;
 import raf.dsw.classycraft.app.model.modelImpl.connections.*;
-import raf.dsw.classycraft.app.state.ClassyState;
 
 import java.awt.*;
 import java.util.List;
-import java.util.Map;
 
 public class AddConnectionState implements ClassyState{
 
@@ -73,11 +71,7 @@ public class AddConnectionState implements ClassyState{
         Connection currentEl = (Connection) current.getElement();
         currentEl.setX(p.getX());
         currentEl.setY(p.getY());
-
-        Diagram diagram = diagramView.getDiagram();
-        diagram.addChild(currentEl);
-        diagram.removeChild(currentEl);
-
+        diagramView.repaint();
     }
 
     @Override
@@ -93,7 +87,7 @@ public class AddConnectionState implements ClassyState{
                 ((Connection)cp.getElement()).setToElement(to);
                 ((Connection)cp.getElement()).setName(((Connection)cp.getElement()).getTypeSign() + ": " + from.getName() + "-" + to.getName());
                 MainFrame.getInstance().getPackageView().addPainterToMap(cp);
-                ((ClassyTreeImpl)MainFrame.getInstance().getClassyTree()).addToTree(diagramView.getDiagram(), cp.getElement());
+                cp.getElement().addToTree(diagramView);
                 this.cp=null;
                 return;
             }

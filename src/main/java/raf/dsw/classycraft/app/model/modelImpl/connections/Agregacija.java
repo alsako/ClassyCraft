@@ -2,7 +2,6 @@ package raf.dsw.classycraft.app.model.modelImpl.connections;
 
 
 import lombok.Getter;
-import raf.dsw.classycraft.app.gui.swing.painters.InterclassPainter;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
 

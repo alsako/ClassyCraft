@@ -51,8 +51,6 @@ public class ClassyTreeImpl implements ClassyTree{
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
 
-
-
     }
 
     public void removeChild(ClassyTreeItem node){

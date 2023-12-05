@@ -1,5 +1,6 @@
-package raf.dsw.classycraft.app.gui.swing.painters;
+package raf.dsw.classycraft.app.gui.swing.view.painters.interclasses;
 
+import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.model.modelImpl.DiagramElement;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Enum;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
@@ -10,7 +11,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-public abstract class InterclassPainter extends ElementPainter{
+public abstract class InterclassPainter extends ElementPainter {
     public InterclassPainter(DiagramElement element) {
         super(element);
     }
@@ -50,10 +51,9 @@ public abstract class InterclassPainter extends ElementPainter{
         else
             width=calculateMaxWidth(fontMetrics, contents) + 20;
 
-        ((Interclass) super.getElement()).setWidth(width);
-
         int height = totalHeight + 10;
-        ((Interclass) super.getElement()).setHeight(height);
+
+        interclass.setSize(width, height);
 
         //crtanje
         this.setShape(new Rectangle2D.Double(startX, startY-10, width, height));
@@ -74,10 +74,6 @@ public abstract class InterclassPainter extends ElementPainter{
         }
 
     }
-
-
-
-
 
     @Override
     public boolean elementAt(int x, int y) {

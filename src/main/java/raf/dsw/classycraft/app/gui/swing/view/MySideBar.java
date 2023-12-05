@@ -10,7 +10,10 @@ public class MySideBar extends JToolBar {
 
         add(MainFrame.getInstance().getActionManager().getNewInterclassAction());
         add(MainFrame.getInstance().getActionManager().getNewConnectionAction());
-        add(MainFrame.getInstance().getActionManager().getNewMethodAction());
+        add(MainFrame.getInstance().getActionManager().getChangeContentAction());
         add(MainFrame.getInstance().getActionManager().getDeleteElementAction());
+        add(MainFrame.getInstance().getActionManager().getSelectAction());
+        add(MainFrame.getInstance().getActionManager().getMoveAction());
+        add(MainFrame.getInstance().getActionManager().getDuplicateAction());
     }
 }

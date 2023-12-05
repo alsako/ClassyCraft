@@ -2,10 +2,11 @@ package raf.dsw.classycraft.app.state;
 
 import raf.dsw.classycraft.app.controller.actionsImpl.NewInterclassAction;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
-import raf.dsw.classycraft.app.gui.swing.painters.ElementPainter;
-import raf.dsw.classycraft.app.gui.swing.painters.EnumPainter;
-import raf.dsw.classycraft.app.gui.swing.painters.InterfejsPainter;
-import raf.dsw.classycraft.app.gui.swing.painters.KlasaPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.EnumPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.InterclassPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.InterfejsPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.KlasaPainter;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImpl;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
@@ -13,7 +14,6 @@ import raf.dsw.classycraft.app.messagegen.Event;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Enum;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interfejs;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Klasa;
-import raf.dsw.classycraft.app.state.ClassyState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,17 +38,17 @@ public class AddInterclassState implements ClassyState {
             Klasa klasa = new Klasa(nameInput, diagramView.getDiagram(), p.x, p.y);
             ElementPainter painter = new KlasaPainter(klasa);
             MainFrame.getInstance().getPackageView().addPainterToMap(painter);
-            ((ClassyTreeImpl)MainFrame.getInstance().getClassyTree()).addToTree(diagramView.getDiagram(), klasa);
+            klasa.addToTree(diagramView);
         } else if (NewInterclassAction.selectedOption.equalsIgnoreCase("interface")) {
             Interfejs interfejs = new Interfejs(nameInput, diagramView.getDiagram(), p.x, p.y);
             ElementPainter painter = new InterfejsPainter(interfejs);
             MainFrame.getInstance().getPackageView().addPainterToMap(painter);
-            ((ClassyTreeImpl)MainFrame.getInstance().getClassyTree()).addToTree(diagramView.getDiagram(), interfejs);
+            interfejs.addToTree(diagramView);
         } else if (NewInterclassAction.selectedOption.equalsIgnoreCase("enum")) {
             Enum en = new Enum(nameInput, diagramView.getDiagram(), p.x, p.y);
             ElementPainter painter = new EnumPainter(en);
             MainFrame.getInstance().getPackageView().addPainterToMap(painter);
-            ((ClassyTreeImpl)MainFrame.getInstance().getClassyTree()).addToTree(diagramView.getDiagram(), en);
+            en.addToTree(diagramView);
         }
     }
 

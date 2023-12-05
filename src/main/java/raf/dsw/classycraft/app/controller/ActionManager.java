@@ -14,8 +14,11 @@ public class ActionManager {
     private SetAuthorAction setAuthorAction;
     private NewInterclassAction newInterclassAction;
     private NewConnectionAction newConnectionAction;
-    private NewMethodAction newMethodAction;
+    private ChangeContentAction changeContentAction;
     private DeleteElementAction deleteElementAction;
+    private SelectAction selectAction;
+    private MoveAction moveAction;
+    private DuplicateAction duplicateAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -25,8 +28,11 @@ public class ActionManager {
         setAuthorAction = new SetAuthorAction();
         newInterclassAction = new NewInterclassAction();
         newConnectionAction = new NewConnectionAction();
-        newMethodAction = new NewMethodAction();
+        changeContentAction = new ChangeContentAction();
         deleteElementAction = new DeleteElementAction();
+        moveAction = new MoveAction();
+        selectAction = new SelectAction();
+        duplicateAction = new DuplicateAction();
     }
 
 }

@@ -3,9 +3,11 @@ package raf.dsw.classycraft.app.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.classycraft.app.gui.swing.controller.DiagramViewMouseListener;
-import raf.dsw.classycraft.app.gui.swing.painters.ConnectionPainter;
-import raf.dsw.classycraft.app.gui.swing.painters.ElementPainter;
-import raf.dsw.classycraft.app.gui.swing.painters.InterclassPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.HighlightPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.SelectionPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.connections.ConnectionPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.InterclassPainter;
 import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.observer.ISubscriber;
@@ -22,6 +24,7 @@ public class DiagramView extends JPanel implements ISubscriber {
     private Diagram diagram;
 
     private List<ElementPainter> painters = new ArrayList<>();
+    private List<HighlightPainter> highlights = new ArrayList<>();
 
     public DiagramView(Diagram diagram) {
         this.diagram = diagram;
@@ -51,7 +54,6 @@ public class DiagramView extends JPanel implements ISubscriber {
         MainFrame.getInstance().repaint();
     }
 
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -62,6 +64,14 @@ public class DiagramView extends JPanel implements ISubscriber {
         }
         for (ElementPainter painter:painters) {
             if (painter instanceof InterclassPainter)
+                painter.draw(graphics2D);
+        }
+        for (ElementPainter painter:painters) {
+            if (painter instanceof SelectionPainter)
+                painter.draw(graphics2D);
+        }
+        for (ElementPainter painter:highlights) {
+            if (painter instanceof HighlightPainter)
                 painter.draw(graphics2D);
         }
     }

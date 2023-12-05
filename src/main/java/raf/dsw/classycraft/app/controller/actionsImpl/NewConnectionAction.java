@@ -18,7 +18,7 @@ public class NewConnectionAction extends AbstractClassyAction {
     public static String selectedOption;
 
     public NewConnectionAction() {
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON, loadIcon("/images/connection.png"));
         putValue(NAME, "New Connection");
         putValue(SHORT_DESCRIPTION, "New Connection");

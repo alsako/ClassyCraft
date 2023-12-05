@@ -1,11 +1,13 @@
-package raf.dsw.classycraft.app.gui.swing.painters;
+package raf.dsw.classycraft.app.gui.swing.view.painters.connections;
 
+import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.model.modelImpl.DiagramElement;
 
 import java.awt.*;
 
 public class ConnectionPainter extends ElementPainter {
 
+    public double startX, startY, endX, endY;
 
 
     public ConnectionPainter(DiagramElement element) {
@@ -14,12 +16,10 @@ public class ConnectionPainter extends ElementPainter {
     public ConnectionPainter() {
     }
 
-
     @Override
     public void draw(Graphics g) {
 
     }
-
     @Override
     public boolean elementAt(int x, int y) {
         if(getShape() == null) return false;
