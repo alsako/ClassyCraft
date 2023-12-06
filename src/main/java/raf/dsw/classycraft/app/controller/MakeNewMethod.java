@@ -6,7 +6,7 @@ import raf.dsw.classycraft.app.gui.swing.view.optionframes.NewMethodOption;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.messagegen.Event;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
-import raf.dsw.classycraft.app.model.modelImpl.classes.Metoda;
+import raf.dsw.classycraft.app.model.modelImpl.classcontent.Metoda;
 import raf.dsw.classycraft.app.model.modelImpl.classes.VisibilityTypes;
 
 import javax.swing.*;

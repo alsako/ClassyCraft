@@ -2,9 +2,12 @@ package raf.dsw.classycraft.app.model.modelImpl.classes;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.InterclassPainter;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelImpl.DiagramElement;
+import raf.dsw.classycraft.app.model.modelImpl.classcontent.Atribut;
+import raf.dsw.classycraft.app.model.modelImpl.classcontent.ClassContent;
+import raf.dsw.classycraft.app.model.modelImpl.classcontent.Metoda;
+import raf.dsw.classycraft.app.observer.ISubscriber;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,11 +15,13 @@ import java.util.List;
 
 @Getter
 @Setter
-public abstract class Interclass extends DiagramElement {
+public abstract class Interclass extends DiagramElement{
 
     private boolean visibility;
     private double width, height;
     private List<ClassContent> classContentList;
+
+    List<ISubscriber> subscribers;
 
 
     public Interclass(String name, ClassyNode parent, double x, double y) {
@@ -56,6 +61,12 @@ public abstract class Interclass extends DiagramElement {
         this.setY(p.y-height/2);
     }
 
+    public void translate(Point delta){
+        this.setX(this.getX()+delta.x);
+        this.setY(this.getY()+delta.y);
+    }
+
+
     public List<Point> connectionPoints(){
         List<Point> list = new ArrayList<>();
         double x = this.getX();
@@ -73,8 +84,5 @@ public abstract class Interclass extends DiagramElement {
     }
 
     public abstract Interclass duplicate();
-
-
-
 
 }

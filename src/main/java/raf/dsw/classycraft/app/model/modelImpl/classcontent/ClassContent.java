@@ -1,7 +1,9 @@
-package raf.dsw.classycraft.app.model.modelImpl.classes;
+package raf.dsw.classycraft.app.model.modelImpl.classcontent;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
+import raf.dsw.classycraft.app.model.modelImpl.classes.VisibilityTypes;
 
 @Getter
 @Setter

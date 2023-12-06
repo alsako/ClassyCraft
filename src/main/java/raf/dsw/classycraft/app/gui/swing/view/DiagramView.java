@@ -43,7 +43,6 @@ public class DiagramView extends JPanel implements ISubscriber {
                     MainFrame.getInstance().getPackageView().getTabs().remove(index);
                 break;
             case RENAME:
-//                System.out.println("index = " + index);
                 if (index>=0)
                     MainFrame.getInstance().getPackageView().getTabbedPane().setTitleAt(index, this.diagram.getName());
                 break;

@@ -1,14 +1,16 @@
-package raf.dsw.classycraft.app.model.modelImpl.classes;
+package raf.dsw.classycraft.app.model.modelImpl.classcontent;
 
-public class Atribut extends ClassContent{
+import raf.dsw.classycraft.app.model.modelImpl.classcontent.ClassContent;
+import raf.dsw.classycraft.app.model.modelImpl.classes.VisibilityTypes;
 
-    public Atribut(String name, VisibilityTypes visibility, String type) {
+public class Metoda extends ClassContent {
+
+    public Metoda(String name, VisibilityTypes visibility, String type) {
         super(name, visibility, type);
     }
 
     @Override
     public String toString() {
-
         char typeSign;
         switch (getVisibility()){
             case PRIVATE:
@@ -23,7 +25,6 @@ public class Atribut extends ClassContent{
             default:
                 typeSign=' ';
         }
-        return typeSign + getName() + ": " + getType();
-
+        return typeSign + getName() + "(): " + getType();
     }
 }
