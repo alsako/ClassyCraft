@@ -150,6 +150,7 @@ public class PackageView extends JPanel implements ISubscriber {
     public void startMoveState(){this.stateManager.setMoveState();}
     public void startDuplicateState(){this.stateManager.setDuplicateState();}
 
+
     public void misKliknut(Point p){
         if (this.tabbedPane!=null) {
             DiagramView diagramView = (DiagramView) this.tabbedPane.getSelectedComponent();
@@ -174,6 +175,7 @@ public class PackageView extends JPanel implements ISubscriber {
         Diagram selectedDiagram = ((DiagramView)tabbedPane.getSelectedComponent()).getDiagram();
         diagramPainters.get(selectedDiagram).add(painter);
         selectedDiagram.addChild(painter.getElement());
+        painter.getElement().addToTree((DiagramView)tabbedPane.getSelectedComponent());
         repaint();
     }
 

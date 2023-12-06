@@ -18,18 +18,19 @@ public class ZavisnostPainter extends ConnectionPainter {
         Zavisnost zavisnost = (Zavisnost) (super.getElement());
         Graphics2D g2D = (Graphics2D)g;
 
+
         if (zavisnost.getToElement()==null) {
             this.startX = zavisnost.getFromElement().getCenterCoordinates().x;
             this.startY = zavisnost.getFromElement().getCenterCoordinates().y;
             this.endX = zavisnost.getX();
             this.endY = zavisnost.getY();
-        } else {
+        } else if (!(zavisnost.getFromElement().equals(zavisnost.getToElement()))){
             Point[] points = zavisnost.getLineCoordinates();
             startX=points[0].x;
             startY=points[0].y;
             endX=points[1].x;
             endY=points[1].y;
-        }
+        } else return;
 
         Line2D.Double line = new Line2D.Double(startX, startY, endX, endY);
         setShape(line);

@@ -23,13 +23,13 @@ public class KompozicijaPainter extends ConnectionPainter {
             this.startY = kompozicija.getFromElement().getCenterCoordinates().y;
             this.endX = kompozicija.getX();
             this.endY = kompozicija.getY();
-        } else {
+        } else if (!(kompozicija.getToElement().equals(kompozicija.getFromElement()))){
             Point[] points = kompozicija.getLineCoordinates();
             startX=points[0].x;
             startY=points[0].y;
             endX=points[1].x;
             endY=points[1].y;
-        }
+        } else return;
 
 
         Line2D.Double line = new Line2D.Double(startX, startY, endX, endY);

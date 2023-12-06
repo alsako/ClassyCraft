@@ -41,7 +41,6 @@ public class DuplicateState implements ClassyState{
         }
         else duplicatePainter = new EnumPainter((Enum) duplicate);
         MainFrame.getInstance().getPackageView().addPainterToMap(duplicatePainter);
-        duplicate.addToTree(diagramView);
     }
 
     @Override

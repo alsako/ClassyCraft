@@ -7,10 +7,9 @@ import java.awt.event.ActionListener;
 
 public class NewInterclassOption extends JFrame{
 
-    private JRadioButton klasaRadioButton;
-    private JRadioButton interfejsRadioButton;
-    private JRadioButton enumRadioButton;
-    private JButton confirmButton;
+    private JButton klasaButton;
+    private JButton interfejsButton;
+    private JButton enumButton;
     private JLabel choiceLabel;
 
     private String selectedClassOption;
@@ -28,50 +27,43 @@ public class NewInterclassOption extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        klasaRadioButton = new JRadioButton("Class");
-        interfejsRadioButton = new JRadioButton("Interface");
-        enumRadioButton = new JRadioButton("Enum");
-
-
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(klasaRadioButton);
-        buttonGroup.add(interfejsRadioButton);
-        buttonGroup.add(enumRadioButton);
-
         choiceLabel = new JLabel("Choose the type of element you want to add: ");
 
-        ActionListener radioListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (klasaRadioButton.isSelected()) {
-                    selectedClassOption = "class";
-                } else if (interfejsRadioButton.isSelected()) {
-                    selectedClassOption = "interface";
-                } else if (enumRadioButton.isSelected()){
-                    selectedClassOption = "enum";
-                }
-                else selectedClassOption = null;
-            }
-        };
 
-        confirmButton = new JButton("Confirm");
-        confirmButton.addActionListener(new ActionListener() {
+        klasaButton = new JButton("Class");
+        klasaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                selectedClassOption = "class";
+                dispose();
+            }
+        });
+        interfejsButton = new JButton("Interface");
+        interfejsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedClassOption = "interface";
+                dispose();
+            }
+        });
+        enumButton = new JButton("Enum");
+        enumButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedClassOption = "enum";
                 dispose();
             }
         });
 
-        klasaRadioButton.addActionListener(radioListener);
-        interfejsRadioButton.addActionListener(radioListener);
-        enumRadioButton.addActionListener(radioListener);
 
 
         add(choiceLabel);
-        add(klasaRadioButton);
-        add(interfejsRadioButton);
-        add(enumRadioButton);
-        add(confirmButton);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(klasaButton);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(interfejsButton);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(enumButton);
 
         setSize(300, 150);
 

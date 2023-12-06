@@ -58,7 +58,9 @@ public class MainFrame extends JFrame implements ISubscriber {
         add(myToolBar, BorderLayout.NORTH);
 
         MySideBar mySideBar = new MySideBar();
-        add(mySideBar, BorderLayout.EAST);
+        JScrollPane scrollPane = new JScrollPane(mySideBar);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        add(scrollPane, BorderLayout.EAST);
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));

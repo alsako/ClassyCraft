@@ -66,6 +66,23 @@ public abstract class Interclass extends DiagramElement{
         this.setY(this.getY()+delta.y);
     }
 
+    public Point[] getRecursonConnectionPoints(){
+        double x = this.getX();
+        double y = this.getY()-10;
+        Point p1 = new Point((int)x, (int)(y+height*0.75));
+        Point p2 = new Point((int)(x-width/8), (int)(y+height*0.75));
+        Point p3 = new Point((int)(x-width/8), (int)(y+height*1.25));
+        Point p4 = new Point((int)(x+width*0.25), (int)(y+height*1.25));
+        Point p5 = new Point((int)(x+width*0.25), (int)(y+height));
+        Point[] result = new Point[5];
+        result[0]=p1;
+        result[1]=p2;
+        result[2]=p3;
+        result[3]=p4;
+        result[4]=p5;
+        return result;
+    }
+
 
     public List<Point> connectionPoints(){
         List<Point> list = new ArrayList<>();

@@ -82,12 +82,25 @@ public class AddConnectionState implements ClassyState{
 
         for (ElementPainter painter:diagramPainters) {
             if (painter instanceof InterclassPainter && painter.elementAt(p.x, p.y)) {
+//                if (painter.getElement().equals(((Connection)cp.getElement()).getFromElement())){
+//                    Interclass to = ((Connection)cp.getElement()).getFromElement();
+//                    ((Connection)cp.getElement()).setToElement(to);
+//                    ((Connection)cp.getElement()).setName(((Connection)cp.getElement()).getTypeSign() + ": recursive " + to.getName());
+//                    MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).remove(cp);
+//                    MainFrame.getInstance().getPackageView().addPainterToMap(cp);
+//                    this.cp=null;
+//                    return;
+//                }
+                if (painter.getElement().equals(((Connection)cp.getElement()).getFromElement())){
+                    MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).remove(cp);
+                    return;
+                }
                 Interclass to = (Interclass) painter.getElement();
                 Interclass from = ((Connection)cp.getElement()).getFromElement();
                 ((Connection)cp.getElement()).setToElement(to);
                 ((Connection)cp.getElement()).setName(((Connection)cp.getElement()).getTypeSign() + ": " + from.getName() + "-" + to.getName());
+                MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).remove(cp);
                 MainFrame.getInstance().getPackageView().addPainterToMap(cp);
-                cp.getElement().addToTree(diagramView);
                 this.cp=null;
                 return;
             }

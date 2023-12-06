@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.state;
 import lombok.Getter;
 import raf.dsw.classycraft.app.controller.actionsImpl.DuplicateAction;
 import raf.dsw.classycraft.app.controller.actionsImpl.MoveAction;
+import raf.dsw.classycraft.app.controller.actionsImpl.ZoomInAction;
 
 @Getter
 public class StateManager {
@@ -15,6 +16,7 @@ public class StateManager {
     private ClassyState currentState;
     private MoveState moveState;
     private DuplicateState duplicateState;
+
 
     public StateManager() {
         addConnectionState = new AddConnectionState();
@@ -38,4 +40,5 @@ public class StateManager {
     public void setSelectState() {this.currentState = selectState;}
     public void setMoveState(){this.currentState = moveState;}
     public void setDuplicateState(){this.currentState = duplicateState;}
+
 }

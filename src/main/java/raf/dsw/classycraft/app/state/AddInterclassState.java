@@ -38,17 +38,14 @@ public class AddInterclassState implements ClassyState {
             Klasa klasa = new Klasa(nameInput, diagramView.getDiagram(), p.x, p.y);
             ElementPainter painter = new KlasaPainter(klasa);
             MainFrame.getInstance().getPackageView().addPainterToMap(painter);
-            klasa.addToTree(diagramView);
         } else if (NewInterclassAction.selectedOption.equalsIgnoreCase("interface")) {
             Interfejs interfejs = new Interfejs(nameInput, diagramView.getDiagram(), p.x, p.y);
             ElementPainter painter = new InterfejsPainter(interfejs);
             MainFrame.getInstance().getPackageView().addPainterToMap(painter);
-            interfejs.addToTree(diagramView);
         } else if (NewInterclassAction.selectedOption.equalsIgnoreCase("enum")) {
             Enum en = new Enum(nameInput, diagramView.getDiagram(), p.x, p.y);
             ElementPainter painter = new EnumPainter(en);
             MainFrame.getInstance().getPackageView().addPainterToMap(painter);
-            en.addToTree(diagramView);
         }
     }
 

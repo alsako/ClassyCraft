@@ -6,13 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class NewConnectionOption extends JFrame {
-    private JRadioButton agregacijaRadioButton;
-    private JRadioButton kompozicijaRadioButton;
-    private JRadioButton zavisnostRadioButton;
 
-    private JRadioButton generalizacijaRadioButton;
+    private JButton agregacijaButton;
+    private JButton kompozicijaButton;
+    private JButton zavisnostButton;
 
-    private JButton confirmButton;
+    private JButton generalizacijaButton;
+
     private JLabel choiceLabel;
 
     private String selectedConnectionOption;
@@ -28,62 +28,59 @@ public class NewConnectionOption extends JFrame {
         setTitle("Connection choice");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-
-        agregacijaRadioButton = new JRadioButton("Aggregation");
-        kompozicijaRadioButton = new JRadioButton("Composition");
-        zavisnostRadioButton = new JRadioButton("Dependency");
-        generalizacijaRadioButton = new JRadioButton("Generalization");
-
-
-
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(agregacijaRadioButton);
-        buttonGroup.add(kompozicijaRadioButton);
-        buttonGroup.add(zavisnostRadioButton);
-        buttonGroup.add(generalizacijaRadioButton);
-
         choiceLabel = new JLabel("Choose the type of connection you want to add: ");
 
-        ActionListener radioListener = new ActionListener() {
+        agregacijaButton = new JButton("Aggregation");
+        agregacijaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (agregacijaRadioButton.isSelected()) {
-                    selectedConnectionOption = "aggregation";
-                } else if (kompozicijaRadioButton.isSelected()) {
-                    selectedConnectionOption = "composition";
-                } else if (zavisnostRadioButton.isSelected()){
-                    selectedConnectionOption = "dependency";
-                } else if (generalizacijaRadioButton.isSelected()) {
-                    selectedConnectionOption = "generalization";
-                } else selectedConnectionOption = null;
-            }
-        };
-
-        confirmButton = new JButton("Confirm");
-        confirmButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+                selectedConnectionOption = "aggregation";
                 dispose();
             }
         });
 
-        agregacijaRadioButton.addActionListener(radioListener);
-        kompozicijaRadioButton.addActionListener(radioListener);
-        zavisnostRadioButton.addActionListener(radioListener);
-        generalizacijaRadioButton.addActionListener(radioListener);
+        kompozicijaButton = new JButton("Composition");
+        kompozicijaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedConnectionOption = "composition";
+                dispose();
+            }
+        });
+
+        zavisnostButton = new JButton("Dependency");
+        zavisnostButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedConnectionOption = "dependency";
+                dispose();
+            }
+        });
+
+        generalizacijaButton = new JButton("Generalization");
+        generalizacijaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedConnectionOption = "generalization";
+                dispose();
+            }
+        });
 
 
         add(choiceLabel);
-        add(agregacijaRadioButton);
-        add(kompozicijaRadioButton);
-        add(zavisnostRadioButton);
-        add(generalizacijaRadioButton);
-        add(confirmButton);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(agregacijaButton);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(kompozicijaButton);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(zavisnostButton);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(generalizacijaButton);
+        add(Box.createRigidArea(new Dimension(0, 10)));
 
         setSize(300, 150);
 
     }
-
 
     public String getSelectedConnectionOption() {
         return selectedConnectionOption;

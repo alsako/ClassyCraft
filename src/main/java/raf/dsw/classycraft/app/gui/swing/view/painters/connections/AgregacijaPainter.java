@@ -22,13 +22,13 @@ public class AgregacijaPainter extends ConnectionPainter {
             this.startY = a.getFromElement().getCenterCoordinates().y;
             this.endX = a.getX();
             this.endY = a.getY();
-        } else {
+        } else if(!(a.getToElement().equals(a.getFromElement()))){
           Point[] points = a.getLineCoordinates();
           startX=points[0].x;
           startY=points[0].y;
           endX=points[1].x;
           endY=points[1].y;
-        }
+        } else return;
 
 
         Line2D.Double line = new Line2D.Double(startX, startY, endX, endY);

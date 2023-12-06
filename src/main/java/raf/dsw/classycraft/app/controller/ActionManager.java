@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.controller;
 
 
 import lombok.Getter;
+import raf.dsw.classycraft.app.controller.actionsImpl.ZoomOutAction;
 import raf.dsw.classycraft.app.controller.actionsImpl.*;
 
 @Getter
@@ -19,6 +20,8 @@ public class ActionManager {
     private SelectAction selectAction;
     private MoveAction moveAction;
     private DuplicateAction duplicateAction;
+    private ZoomInAction zoomInAction;
+    private ZoomOutAction zoomOutAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -33,6 +36,8 @@ public class ActionManager {
         moveAction = new MoveAction();
         selectAction = new SelectAction();
         duplicateAction = new DuplicateAction();
+        zoomInAction = new ZoomInAction();
+        zoomOutAction = new ZoomOutAction();
     }
 
 }

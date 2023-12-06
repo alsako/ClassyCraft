@@ -8,6 +8,8 @@ import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+
 @Getter
 @Setter
 public abstract class ElementPainter{
