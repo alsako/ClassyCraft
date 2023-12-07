@@ -27,6 +27,7 @@ public class DiagramView extends JPanel implements ISubscriber {
     private List<ElementPainter> painters = new ArrayList<>();
     private List<HighlightPainter> highlights = new ArrayList<>();
     private AffineTransform transform = null;
+    public static FontMetrics fontMetrics;
     double scaling = 1.0;
     double xTranslation =0.0;
     double yTranslation =0.0;
@@ -107,6 +108,8 @@ public class DiagramView extends JPanel implements ISubscriber {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
+        fontMetrics = graphics2D.getFontMetrics();
+
         if (transform!=null)
             graphics2D.transform(transform);
         for (ElementPainter painter:painters) {

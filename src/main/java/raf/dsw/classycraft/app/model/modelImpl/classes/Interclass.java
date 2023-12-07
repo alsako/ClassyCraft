@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.model.modelImpl.classes;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelImpl.DiagramElement;
 import raf.dsw.classycraft.app.model.modelImpl.classcontent.Atribut;
@@ -17,7 +18,7 @@ import java.util.List;
 @Setter
 public abstract class Interclass extends DiagramElement{
 
-    private boolean visibility;
+    private VisibilityTypes visibility;
     private double width, height;
     private List<ClassContent> classContentList;
 
@@ -25,15 +26,12 @@ public abstract class Interclass extends DiagramElement{
 
 
     public Interclass(String name, ClassyNode parent, double x, double y) {
-
         super(name, parent, Color.BLACK, x, y);
         this.classContentList = new ArrayList<>();
+        width = DiagramView.fontMetrics.stringWidth(name) + 20;
+        height = 2 * (DiagramView.fontMetrics.getHeight()) + 10;
     }
 
-    public void setSize(double w, double h){
-        this.width = w;
-        this.height = h;
-    }
 
     public Point getCenterCoordinates(){
         Point point = new Point();
@@ -66,14 +64,14 @@ public abstract class Interclass extends DiagramElement{
         this.setY(this.getY()+delta.y);
     }
 
-    public Point[] getRecursonConnectionPoints(){
+    public Point[] getReflexiveConnectionPoints(){
         double x = this.getX();
         double y = this.getY()-10;
-        Point p1 = new Point((int)x, (int)(y+height*0.75));
-        Point p2 = new Point((int)(x-width/8), (int)(y+height*0.75));
-        Point p3 = new Point((int)(x-width/8), (int)(y+height*1.25));
-        Point p4 = new Point((int)(x+width*0.25), (int)(y+height*1.25));
-        Point p5 = new Point((int)(x+width*0.25), (int)(y+height));
+        Point p1 = new Point((int)x, (int)(y+height*0.5));
+        Point p2 = new Point((int)(x-width*0.4), (int)(y+height*0.5));
+        Point p3 = new Point((int)(x-width*0.4), (int)(y+height*1.25));
+        Point p4 = new Point((int)(x+width*0.5), (int)(y+height*1.25));
+        Point p5 = new Point((int)(x+width*0.5), (int)(y+height));
         Point[] result = new Point[5];
         result[0]=p1;
         result[1]=p2;
@@ -100,6 +98,36 @@ public abstract class Interclass extends DiagramElement{
         return list;
     }
 
+    public void addContent(ClassContent c){
+        List<ClassContent> newClassContentList = this.classContentList;
+        newClassContentList.add(c);
+        this.setClassContentList(newClassContentList);
+        this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
+        this.height = (getContentStrings().size() + 2) * (DiagramView.fontMetrics.getHeight()) + 10;
+    }
+
+    public int calculateMaxWidth(FontMetrics fontMetrics, List<String> contents) {
+        int maxWidth = 0;
+        for (String s : contents) {
+            int stringWidth = fontMetrics.stringWidth(s);
+            if (stringWidth > maxWidth) {
+                maxWidth = stringWidth;
+            }
+        }
+        return maxWidth;
+    }
+
     public abstract Interclass duplicate();
+
+    public void copyContent(Interclass duplicate){
+        duplicate.setHeight(this.getHeight());
+        duplicate.setWidth(this.getWidth());
+        List<ClassContent> classContentListCopy = new ArrayList<>(this.classContentList);
+        duplicate.setClassContentList(classContentListCopy);
+        duplicate.setVisibility(this.getVisibility());
+        duplicate.setColourInside(this.getColourInside());
+        duplicate.setStrokeWidth(this.getStrokeWidth());
+        duplicate.setColourOutline(this.getColourOutline());
+    }
 
 }

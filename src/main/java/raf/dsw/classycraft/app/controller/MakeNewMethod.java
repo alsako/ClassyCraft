@@ -36,10 +36,9 @@ public class MakeNewMethod {
                     return;
                 }
                 Metoda metoda = new Metoda(selectedName, selectedVisibility, selectedType);
-                metoda.setInterclass((Interclass) painter.getElement());
-                ((Interclass)painter.getElement()).getClassContentList().add(metoda);
+                ((Interclass)painter.getElement()).addContent(metoda);
                 diagramView.repaint();
-                return;
+
             }
         });
         return;

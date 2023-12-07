@@ -9,7 +9,7 @@ public class Zavisnost extends Connection{
 
 
     public Zavisnost(String name, ClassyNode parent, Interclass from) {
-        super(name, parent, new Color(97, 154, 206, 140), from);
+        super(name, parent, Color.black, from);
         this.setTypeSign("d");
     }
 }

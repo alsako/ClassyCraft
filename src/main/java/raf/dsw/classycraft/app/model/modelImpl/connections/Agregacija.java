@@ -11,7 +11,7 @@ public class Agregacija extends Connection {
 
 
     public Agregacija(String name, ClassyNode parent, Interclass from) {
-        super(name, parent, new Color(169, 51, 51), from);
+        super(name, parent, Color.black, from);
         this.setTypeSign("a");
     }
 }

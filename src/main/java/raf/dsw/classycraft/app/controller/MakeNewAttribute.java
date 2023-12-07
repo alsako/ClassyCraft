@@ -36,10 +36,8 @@ public class MakeNewAttribute {
                     return;
                 }
                 Atribut atribut = new Atribut(selectedName, selectedVisibility, selectedType);
-                atribut.setInterclass((Interclass) painter.getElement());
-                ((Interclass)painter.getElement()).getClassContentList().add(atribut);
+                ((Interclass)painter.getElement()).addContent(atribut);
                 diagramView.repaint();
-                return;
             }
         });
         return;

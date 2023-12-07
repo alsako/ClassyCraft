@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.view.painters.interclasses;
 
+import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.model.modelImpl.DiagramElement;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Enum;
@@ -12,6 +13,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 public abstract class InterclassPainter extends ElementPainter {
+
     public InterclassPainter(DiagramElement element) {
         super(element);
     }
@@ -35,25 +37,21 @@ public abstract class InterclassPainter extends ElementPainter {
 
 
         Graphics2D g2D = (Graphics2D)g;
-        FontMetrics fontMetrics = g2D.getFontMetrics();
+        FontMetrics fontMetrics = DiagramView.fontMetrics;
         g2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         double startX = interclass.getX();
         double startY = interclass.getY();
 
-        // ukupna duzina
-        int totalHeight = (contents.size() + 2) * (fontMetrics.getHeight());
+
 
         // w i h okvira
-        int width;
-        if (contents.isEmpty())
-            width=fontMetrics.stringWidth(interclass.getName()) + 20;
-        else
-            width=calculateMaxWidth(fontMetrics, contents) + 20;
+        double width;
+        double height;
+        width = interclass.getWidth();
+        height = interclass.getHeight();
 
-        int height = totalHeight + 10;
 
-        interclass.setSize(width, height);
 
         //crtanje
         this.setShape(new Rectangle2D.Double(startX, startY-10, width, height));
@@ -63,14 +61,14 @@ public abstract class InterclassPainter extends ElementPainter {
         g2D.setColor(interclass.getColourOutline());
         g2D.draw(getShape());
 
-        drawStringCentered(g2D, "[" + type + "]", startX, startY + 2, width,fontMetrics);
-        drawStringCentered(g2D, interclass.getName(), startX, startY+ fontMetrics.getHeight(), width,fontMetrics);
+        drawStringCentered(g2D, "[" + type + "]", startX, startY + 2, (int) width,fontMetrics);
+        drawStringCentered(g2D, interclass.getName(), startX, startY+ fontMetrics.getHeight(), (int) width,fontMetrics);
 
         g2D.drawLine((int) startX, (int) (startY+5+fontMetrics.getHeight()), (int) (startX+width), (int) (startY+5+fontMetrics.getHeight()));
 
         // metode i atributi
         for (int i = 0; i < contents.size(); i++) {
-            drawStringCentered(g2D, contents.get(i), startX, startY + 2 + (fontMetrics.getHeight()) * (i+2), width, fontMetrics);
+            drawStringCentered(g2D, contents.get(i), startX, startY + 2 + (fontMetrics.getHeight()) * (i+2), (int)width, fontMetrics);
         }
 
     }
@@ -85,14 +83,4 @@ public abstract class InterclassPainter extends ElementPainter {
     }
 
 
-    public int calculateMaxWidth(FontMetrics fontMetrics, List<String> contents) {
-        int maxWidth = 0;
-        for (String s : contents) {
-            int stringWidth = fontMetrics.stringWidth(s);
-            if (stringWidth > maxWidth) {
-                maxWidth = stringWidth;
-            }
-        }
-        return maxWidth;
-    }
 }

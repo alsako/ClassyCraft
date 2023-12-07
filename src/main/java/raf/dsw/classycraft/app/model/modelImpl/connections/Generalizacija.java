@@ -10,7 +10,7 @@ public class Generalizacija extends Connection{
 
 
     public Generalizacija(String name, ClassyNode parent, Interclass from) {
-        super(name, parent, new Color(58, 128, 65), from);
+        super(name, parent, Color.black, from);
         this.setTypeSign("g");
     }
 }

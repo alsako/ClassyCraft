@@ -9,7 +9,7 @@ public class Kompozicija extends Connection{
 
 
     public Kompozicija(String name, ClassyNode parent, Interclass from) {
-        super(name, parent, new Color(222, 134, 66), from);
+        super(name, parent, Color.black, from);
         this.setTypeSign("c");
     }
 
