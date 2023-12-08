@@ -22,6 +22,8 @@ public class ActionManager {
     private DuplicateAction duplicateAction;
     private ZoomInAction zoomInAction;
     private ZoomOutAction zoomOutAction;
+    private ZoomToFitAction zoomToFitAction;
+    private ResetZoomAction resetZoomAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -38,6 +40,8 @@ public class ActionManager {
         duplicateAction = new DuplicateAction();
         zoomInAction = new ZoomInAction();
         zoomOutAction = new ZoomOutAction();
+        zoomToFitAction = new ZoomToFitAction();
+        resetZoomAction = new ResetZoomAction();
     }
 
 }

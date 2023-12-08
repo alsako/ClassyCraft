@@ -17,5 +17,7 @@ public class MySideBar extends JToolBar {
         add(MainFrame.getInstance().getActionManager().getDuplicateAction());
         add(MainFrame.getInstance().getActionManager().getZoomInAction());
         add(MainFrame.getInstance().getActionManager().getZoomOutAction());
+        add(MainFrame.getInstance().getActionManager().getZoomToFitAction());
+        add(MainFrame.getInstance().getActionManager().getResetZoomAction());
     }
 }

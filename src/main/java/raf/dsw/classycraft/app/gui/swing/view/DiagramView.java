@@ -8,6 +8,7 @@ import raf.dsw.classycraft.app.gui.swing.view.painters.SelectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.connections.ConnectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.InterclassPainter;
+import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
 import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.observer.ISubscriber;
@@ -15,6 +16,8 @@ import raf.dsw.classycraft.app.observer.ISubscriber;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,8 +69,7 @@ public class DiagramView extends JPanel implements ISubscriber {
         double newScaling = scaling * 1.1;
         if(newScaling >= 2) newScaling = 2;
         this.scaling = newScaling;
-        setupTransformation(scaling);
-        repaint();
+        applyTransformation();
     }
 
     public void zoomOut(){
@@ -76,11 +78,53 @@ public class DiagramView extends JPanel implements ISubscriber {
         double newScaling = scaling/1.1;
         if(newScaling <= 0.5) newScaling = 0.5;
         this.scaling = newScaling;
-        setupTransformation(scaling);
+        applyTransformation();
+    }
+
+    public void zoomToFit(){
+        double height = getHeight();
+        double width = getWidth();
+        double maxX =0, minX=width, maxY=0, minY=height;
+        for (ElementPainter p:painters) {
+            if (p instanceof InterclassPainter){
+                if (p.getElement().getX()<minX)
+                    minX = p.getElement().getX();
+                if (p.getElement().getX()+((Interclass)p.getElement()).getWidth()>maxX)
+                    maxX = p.getElement().getX()+((Interclass)p.getElement()).getWidth();
+                if (p.getElement().getY()-10<minY)
+                    minY = p.getElement().getY()-10;
+                if (p.getElement().getY()+((Interclass)p.getElement()).getHeight()-10>maxY)
+                    maxY = p.getElement().getY()+((Interclass)p.getElement()).getHeight()-10;
+            }
+        }
+        double graphicWidth = maxX-minX;
+        double graphicHeight = maxY-minY;
+        double ratioWidth = width/graphicWidth;
+        double ratioHeight = height/graphicHeight;
+        double scaling =0.9*Math.min(ratioHeight, ratioWidth);
+        double newCenterX = width/(2*scaling);
+        double newCenterY = height/(2*scaling);
+        double figureCenterX = (maxX+minX)/2;
+        double figureCenterY = (maxY+minY)/2;
+        setXTranslation((newCenterX-figureCenterX)*scaling);
+        setYTranslation((newCenterY-figureCenterY)*scaling);
+        this.scaling = scaling;
+        applyTransformation();
+    }
+
+    public void reset() throws NoninvertibleTransformException{
+        if (transform!=null) {
+            transform.invert();
+            transform.setToIdentity();
+        }
+        scaling=1;
+        xTranslation=0;
+        yTranslation=0;
         repaint();
     }
 
-    private void setupTransformation(double scaling){
+
+    private void applyTransformation(){
         if (transform==null)
             transform = new AffineTransform();
         transform.setToIdentity();
@@ -92,17 +136,9 @@ public class DiagramView extends JPanel implements ISubscriber {
     public void moveView(double deltaX, double deltaY){
         this.xTranslation += deltaX;
         this.yTranslation += deltaY;
-        setupTransformation(scaling);
+        applyTransformation();
     }
 
-    public void reset(){
-        if (transform!=null)
-            transform.setToIdentity();
-        scaling = 1;
-        xTranslation = 0;
-        yTranslation = 0;
-        repaint();
-    }
 
     @Override
     protected void paintComponent(Graphics g) {

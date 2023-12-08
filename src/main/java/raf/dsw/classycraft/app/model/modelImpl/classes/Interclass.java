@@ -32,6 +32,14 @@ public abstract class Interclass extends DiagramElement{
         height = 2 * (DiagramView.fontMetrics.getHeight()) + 10;
     }
 
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+        if (!classContentList.isEmpty()) {
+            this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
+        }
+        else width = DiagramView.fontMetrics.stringWidth(name)+20;
+    }
 
     public Point getCenterCoordinates(){
         Point point = new Point();
@@ -114,6 +122,8 @@ public abstract class Interclass extends DiagramElement{
                 maxWidth = stringWidth;
             }
         }
+        if(fontMetrics.stringWidth(this.getName())>maxWidth)
+            maxWidth=fontMetrics.stringWidth(this.getName());
         return maxWidth;
     }
 
