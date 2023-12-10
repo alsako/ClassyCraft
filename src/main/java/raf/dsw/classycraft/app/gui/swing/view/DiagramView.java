@@ -8,6 +8,7 @@ import raf.dsw.classycraft.app.gui.swing.view.painters.SelectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.connections.ConnectionPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.InterclassPainter;
+import raf.dsw.classycraft.app.model.modelImpl.classcontent.ClassContent;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
 import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 import raf.dsw.classycraft.app.model.modelImpl.Diagram;
@@ -67,7 +68,7 @@ public class DiagramView extends JPanel implements ISubscriber {
         if (transform==null)
             transform = new AffineTransform();
         double newScaling = scaling * 1.1;
-        if(newScaling >= 2) newScaling = 2;
+        if(newScaling >= 4) newScaling = 4;
         this.scaling = newScaling;
         applyTransformation();
     }
@@ -124,6 +125,7 @@ public class DiagramView extends JPanel implements ISubscriber {
     }
 
 
+    //prvo moram da postavim na neutral da bi se primenili setovani scaling i translacija
     private void applyTransformation(){
         if (transform==null)
             transform = new AffineTransform();
@@ -139,13 +141,28 @@ public class DiagramView extends JPanel implements ISubscriber {
         applyTransformation();
     }
 
+    public void subscribeToPainterElements(){
+        for (ElementPainter painter : this.painters) {
+            painter.getElement().removeAllSubscribers(); //skidanje ugasenih diagram viewova
+            painter.getElement().addSubscriber(this);
+            if (painter.getElement() instanceof Interclass){ // subscribuje se na njegove metode i atribute
+                List<ClassContent> classContents = ((Interclass) painter.getElement()).getClassContentList();
+                if (classContents!=null){
+                    for (ClassContent classContent:classContents) {
+                        classContent.removeAllSubscribers();
+                        classContent.addSubscriber(this);
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
         fontMetrics = graphics2D.getFontMetrics();
-
+        //redosled iscrtavanja - prvo sve veze, pa sve klase, pa lasso, pa selektovano
         if (transform!=null)
             graphics2D.transform(transform);
         for (ElementPainter painter:painters) {

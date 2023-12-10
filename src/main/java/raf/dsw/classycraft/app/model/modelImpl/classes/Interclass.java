@@ -7,11 +7,12 @@ import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelImpl.DiagramElement;
 import raf.dsw.classycraft.app.model.modelImpl.classcontent.Atribut;
 import raf.dsw.classycraft.app.model.modelImpl.classcontent.ClassContent;
-import raf.dsw.classycraft.app.model.modelImpl.classcontent.Metoda;
-import raf.dsw.classycraft.app.observer.ISubscriber;
+import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
+
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Getter
@@ -20,14 +21,13 @@ public abstract class Interclass extends DiagramElement{
 
     private VisibilityTypes visibility;
     private double width, height;
-    private List<ClassContent> classContentList;
+    private LinkedList<ClassContent> classContentList;
 
-    List<ISubscriber> subscribers;
 
 
     public Interclass(String name, ClassyNode parent, double x, double y) {
         super(name, parent, Color.BLACK, x, y);
-        this.classContentList = new ArrayList<>();
+        this.classContentList = new LinkedList<>();
         width = DiagramView.fontMetrics.stringWidth(name) + 20;
         height = 2 * (DiagramView.fontMetrics.getHeight()) + 10;
     }
@@ -39,6 +39,35 @@ public abstract class Interclass extends DiagramElement{
             this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
         }
         else width = DiagramView.fontMetrics.stringWidth(name)+20;
+        notifySubscribers(DiagramNtfType.REPAINT);
+    }
+
+    public void setBasedOnCenterpoint(Point p){
+        this.setX(p.x-width/2);
+        this.setY(p.y-height/2);
+        notifySubscribers(DiagramNtfType.REPAINT);
+    }
+
+    public void translate(Point delta){
+        this.setX(this.getX()+delta.x);
+        this.setY(this.getY()+delta.y);
+        notifySubscribers(DiagramNtfType.REPAINT);
+    }
+
+    public void addContent(ClassContent c){
+        if (c instanceof Atribut)
+            this.classContentList.addFirst(c);
+        else this.classContentList.addLast(c); // prvo hocu sve atribute pa sve metode
+        this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
+        this.height = (getContentStrings().size() + 2) * (DiagramView.fontMetrics.getHeight()) + 10;
+        notifySubscribers(DiagramNtfType.REPAINT);
+    }
+
+    public void removeContent(int index){
+        this.classContentList.remove(index);
+        this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
+        this.height = (getContentStrings().size() + 2) * (DiagramView.fontMetrics.getHeight()) + 10;
+        notifySubscribers(DiagramNtfType.REPAINT);
     }
 
     public Point getCenterCoordinates(){
@@ -52,27 +81,13 @@ public abstract class Interclass extends DiagramElement{
     public List<String> getContentStrings(){
         List<String> strings = new ArrayList<>();
         for (ClassContent c:classContentList) {
-            if (c instanceof Atribut)
-                strings.add(c.toString());
-        }
-        for (ClassContent c:classContentList) {
-            if (c instanceof Metoda)
-                strings.add(c.toString());
+            strings.add(c.toString());
         }
         return strings;
     }
 
-    public void setBasedOnCenterpoint(Point p){
-        this.setX(p.x-width/2);
-        this.setY(p.y-height/2);
-    }
 
-    public void translate(Point delta){
-        this.setX(this.getX()+delta.x);
-        this.setY(this.getY()+delta.y);
-    }
-
-    public Point[] getReflexiveConnectionPoints(){
+    public Point[] getReflexiveConnectionPoints(){ // connection pointovi za refleksivne veze
         double x = this.getX();
         double y = this.getY()-10;
         Point p1 = new Point((int)x, (int)(y+height*0.5));
@@ -106,14 +121,6 @@ public abstract class Interclass extends DiagramElement{
         return list;
     }
 
-    public void addContent(ClassContent c){
-        List<ClassContent> newClassContentList = this.classContentList;
-        newClassContentList.add(c);
-        this.setClassContentList(newClassContentList);
-        this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
-        this.height = (getContentStrings().size() + 2) * (DiagramView.fontMetrics.getHeight()) + 10;
-    }
-
     public int calculateMaxWidth(FontMetrics fontMetrics, List<String> contents) {
         int maxWidth = 0;
         for (String s : contents) {
@@ -132,12 +139,14 @@ public abstract class Interclass extends DiagramElement{
     public void copyContent(Interclass duplicate){
         duplicate.setHeight(this.getHeight());
         duplicate.setWidth(this.getWidth());
-        List<ClassContent> classContentListCopy = new ArrayList<>(this.classContentList);
+        LinkedList<ClassContent> classContentListCopy = new LinkedList<>(this.classContentList);
         duplicate.setClassContentList(classContentListCopy);
         duplicate.setVisibility(this.getVisibility());
         duplicate.setColourInside(this.getColourInside());
         duplicate.setStrokeWidth(this.getStrokeWidth());
         duplicate.setColourOutline(this.getColourOutline());
     }
+
+
 
 }

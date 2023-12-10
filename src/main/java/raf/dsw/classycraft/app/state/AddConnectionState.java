@@ -37,21 +37,25 @@ public class AddConnectionState implements ClassyState{
                 if (NewConnectionAction.selectedOption.equalsIgnoreCase("aggregation")){
                     Agregacija con = new Agregacija("a: " + from.getName() +"-", diagramView.getDiagram(), from);
                     AgregacijaPainter conPainter = new AgregacijaPainter(con);
-                    this.cp = conPainter;
+                    con.addSubscriber(diagramView);
+                    this.cp = conPainter; //ne zelim jos uvek da ga dodajem u stablo jer ne znam da li ce veza biti validna
                     MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).add(conPainter);
                 } else  if (NewConnectionAction.selectedOption.equalsIgnoreCase("composition")){
                     Kompozicija con = new Kompozicija("c: " + from.getName() +"-", diagramView.getDiagram(), from);
                     KompozicijaPainter conPainter = new KompozicijaPainter(con);
+                    con.addSubscriber(diagramView);
                     this.cp = conPainter;
                     MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).add(conPainter);
                 } else  if (NewConnectionAction.selectedOption.equalsIgnoreCase("dependency")){
                     Zavisnost con = new Zavisnost("d: " + from.getName() +"-", diagramView.getDiagram(), from);
                     ZavisnostPainter conPainter = new ZavisnostPainter(con);
+                    con.addSubscriber(diagramView);
                     this.cp = conPainter;
                     MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).add(conPainter);
                 } else  if (NewConnectionAction.selectedOption.equalsIgnoreCase("generalization")){
                     Generalizacija con = new Generalizacija("g: " + from.getName() +"-", diagramView.getDiagram(), from);
                     GeneralizacijaPainter conPainter = new GeneralizacijaPainter(con);
+                    con.addSubscriber(diagramView);
                     this.cp = conPainter;
                     MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).add(conPainter);
                 } else return;
@@ -66,19 +70,19 @@ public class AddConnectionState implements ClassyState{
 
     @Override
     public void misPrevucen(Point p, DiagramView diagramView) {
-
         ConnectionPainter current = this.cp;
         Connection currentEl = (Connection) current.getElement();
         currentEl.setX(p.getX());
         currentEl.setY(p.getY());
-        diagramView.repaint();
     }
 
     @Override
     public void misOtpusten(Point p, DiagramView diagramView) {
 
         List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
-        diagramPainters.remove(diagramPainters.size() - 1);
+        diagramPainters.remove(diagramPainters.size() - 1); //skida poslednji u slucaju da se ne zavrsava na validnom mestu
+        diagramView.repaint(); //pozivam repaint u slucaju da veza nije zavrsena na dobrom mestu da ne ostaje
+
 
         for (ElementPainter painter:diagramPainters) {
             if (painter instanceof InterclassPainter && painter.elementAt(p.x, p.y)) {
@@ -101,7 +105,6 @@ public class AddConnectionState implements ClassyState{
                 return;
             }
         }
-        diagramView.repaint();
         ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.CONNECTION_MUST_END_IN_ENTITY);
     }
 }

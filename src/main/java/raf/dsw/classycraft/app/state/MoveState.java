@@ -49,11 +49,11 @@ public class MoveState implements ClassyState{
             if (current==null)
                 return;
             ((Interclass)current.getElement()).setBasedOnCenterpoint(p);
-            diagramView.repaint();
+//            diagramView.repaint();
         } else { //pomera se sam panel
             diagramView.moveView(translationVector(initialPoint, p).x, translationVector(initialPoint, p).getY());
             initialPoint = p;
-            diagramView.repaint();
+//            diagramView.repaint();
         }
 
     }
@@ -69,7 +69,7 @@ public class MoveState implements ClassyState{
                 }
             }
             somethingSelected = false;
-            diagramView.repaint();
+//            diagramView.repaint();
         }else if (somethingSelected){ //pojedinacni element
             if (current == null)
                 return;
@@ -81,7 +81,7 @@ public class MoveState implements ClassyState{
             diagramView.moveView(translationVector(initialPoint, p).x, translationVector(initialPoint, p).getY());
             initialPoint = p;
             somethingSelected = false;
-            diagramView.repaint();
+//            diagramView.repaint();
         }
     }
 

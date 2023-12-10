@@ -5,6 +5,7 @@ import lombok.Setter;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelImpl.DiagramElement;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
+import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,6 +24,16 @@ public abstract class Connection extends DiagramElement {
         this.fromElement = from;
     }
 
+    public void setFromElement(Interclass fromElement) {
+        this.fromElement = fromElement;
+        notifySubscribers(DiagramNtfType.REPAINT);
+    }
+
+    public void setToElement(Interclass toElement) {
+        this.toElement = toElement;
+        notifySubscribers(DiagramNtfType.REPAINT);
+    }
+
     public List<Interclass> getAssociatedInterclasses(){
         List<Interclass> classes = new ArrayList<>();
         classes.add(fromElement);
@@ -31,12 +42,10 @@ public abstract class Connection extends DiagramElement {
     }
 
     public Point[] getLineCoordinates(){
-
         return findMinDistancePoints(fromElement, toElement);
-
     }
 
-    public Point[] findMinDistancePoints(Interclass i1, Interclass i2) {
+    public Point[] findMinDistancePoints(Interclass i1, Interclass i2) { //odredjuje connection pointove
         List<Point> list1 = i1.connectionPoints();
         List<Point> list2 = i2.connectionPoints();
 
@@ -63,7 +72,6 @@ public abstract class Connection extends DiagramElement {
     private double pointDistance(Point p1, Point p2){
         double deltaX = p2.getX() - p1.getX();
         double deltaY = p2.getY() - p1.getY();
-
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 

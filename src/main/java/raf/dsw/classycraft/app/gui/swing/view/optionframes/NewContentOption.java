@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 @Getter
-public class NewAttributeOption extends JFrame {
+public class NewContentOption extends JFrame {
     private JRadioButton publicRadioButton;
     private JRadioButton privateRadioButton;
     private JRadioButton protectedRadioButton;
@@ -27,15 +27,15 @@ public class NewAttributeOption extends JFrame {
     private String enteredType;
     private VisibilityTypes selectedVisibility;
 
-    public NewAttributeOption() throws HeadlessException {
+    public NewContentOption(String existingName, String existingType, VisibilityTypes existingVisibility) throws HeadlessException {
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
-        setSize(screenWidth / 4, screenHeight / 2);
+        setSize(screenWidth / 8, screenHeight / 2);
         setLocationRelativeTo(null);
-        setTitle("Attribute setup");
+        setTitle("Content setup");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -50,13 +50,31 @@ public class NewAttributeOption extends JFrame {
         bg.add(privateRadioButton);
         bg.add(protectedRadioButton);
 
+        if (existingVisibility!=null){
+            switch (existingVisibility){
+                case PRIVATE:
+                    privateRadioButton.setSelected(true);
+                    break;
+                case PROTECTED:
+                    protectedRadioButton.setSelected(true);
+                    break;
+                case PUBLIC:
+                    publicRadioButton.setSelected(true);
+                    break;
+            }
+        }
+
         visibilityLabel = new JLabel("Choose visibility:");
         typeLabel = new JLabel("Enter return type:");
-        nameLabel = new JLabel("Enter attribute name:");
+        nameLabel = new JLabel("Enter name:");
 
         nameInput = new JTextField(20);
+        if (existingName!=null)
+            nameInput.setText(existingName);
         nameInput.setMaximumSize(new Dimension(nameInput.getPreferredSize().width, nameInput.getPreferredSize().height));
         typeInput = new JTextField(20);
+        if (existingType!=null)
+            typeInput.setText(existingType);
         typeInput.setMaximumSize(new Dimension(typeInput.getPreferredSize().width, typeInput.getPreferredSize().height));
 
 

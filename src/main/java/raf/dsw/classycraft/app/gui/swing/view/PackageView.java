@@ -176,7 +176,7 @@ public class PackageView extends JPanel implements ISubscriber {
         diagramPainters.get(selectedDiagram).add(painter);
         selectedDiagram.addChild(painter.getElement());
         painter.getElement().addToTree((DiagramView)tabbedPane.getSelectedComponent());
-        repaint();
+        ((DiagramView)tabbedPane.getSelectedComponent()).repaint();
     }
 
     public void removePainterFromMap(ElementPainter painter){
@@ -185,7 +185,7 @@ public class PackageView extends JPanel implements ISubscriber {
         selectedDiagram.removeChild(painter.getElement());
         if (!(painter instanceof HighlightPainter))
             painter.getElement().removeFromTree();
-        repaint();
+        ((DiagramView)tabbedPane.getSelectedComponent()).repaint();
     }
 
     public DiagramView getCurrentDiagramView(){
@@ -196,7 +196,7 @@ public class PackageView extends JPanel implements ISubscriber {
         selectedPainters.clear();
         DiagramView selectedDiagram = (DiagramView) tabbedPane.getSelectedComponent();
         selectedDiagram.getHighlights().clear();
-        repaint();
+        selectedDiagram.repaint();
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -204,6 +204,7 @@ public class PackageView extends JPanel implements ISubscriber {
         if(tabbedPane == null || tabs == null || tabs.size() == 0) return;
         DiagramView selectedDiagram = (DiagramView) tabbedPane.getSelectedComponent();
         selectedDiagram.setPainters(diagramPainters.get(selectedDiagram.getDiagram()));
+        selectedDiagram.subscribeToPainterElements();
         selectedDiagram.revalidate();
         selectedDiagram.repaint();
     }
