@@ -22,7 +22,8 @@ public class DuplicateAction extends AbstractClassyAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
+//        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
+        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getCurrentDiagramView().getSelectedPainters();
 
         if (selectedList.isEmpty())
             MainFrame.getInstance().getPackageView().startDuplicateState();

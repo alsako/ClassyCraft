@@ -45,9 +45,6 @@ public class ClassyTreeCellEditor extends DefaultTreeCellEditor implements Actio
         }
         ClassyTreeItem clicked = (ClassyTreeItem) clickedOn;
         clicked.setName(e.getActionCommand());
-
-
-
     }
 }
 

@@ -24,7 +24,6 @@ public class Diagram extends ClassyNodeComposite implements IPublisher {
     public void addChild(ClassyNode child) {
         if (child != null &&  child instanceof DiagramElement){
             DiagramElement element = (DiagramElement) child;
-            this.notifySubscribers(DiagramNtfType.REPAINT);
             if (!this.getChildren().contains(element)){
                 this.getChildren().add(element);
             }
@@ -34,7 +33,6 @@ public class Diagram extends ClassyNodeComposite implements IPublisher {
     @Override
     public void removeChild(ClassyNode child) {
         if (child != null &&  child instanceof DiagramElement){
-            this.notifySubscribers(DiagramNtfType.REPAINT);
             this.getChildren().remove(child);
         }
     }
@@ -51,7 +49,6 @@ public class Diagram extends ClassyNodeComposite implements IPublisher {
         }
         super.setName(name);
         this.notifySubscribers(DiagramNtfType.RENAME);
-
     }
 
     @Override

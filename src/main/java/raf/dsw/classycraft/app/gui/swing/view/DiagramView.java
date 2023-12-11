@@ -29,7 +29,9 @@ public class DiagramView extends JPanel implements ISubscriber {
     private Diagram diagram;
 
     private List<ElementPainter> painters = new ArrayList<>();
-    private List<HighlightPainter> highlights = new ArrayList<>();
+    private List<HighlightPainter> highlights = new ArrayList<>(); //painteri za obelezavanje selektovanih elemenata
+    private List<ElementPainter> selectedPainters = new ArrayList<>(); //lista selektovanih
+
     private AffineTransform transform = null;
     public static FontMetrics fontMetrics;
     double scaling = 1.0;
@@ -124,8 +126,7 @@ public class DiagramView extends JPanel implements ISubscriber {
         repaint();
     }
 
-
-    //prvo moram da postavim na neutral da bi se primenili setovani scaling i translacija
+    //prvo moram da postavim na neutral da bi se primenili trenutni scaling i translacija
     private void applyTransformation(){
         if (transform==null)
             transform = new AffineTransform();
@@ -141,10 +142,18 @@ public class DiagramView extends JPanel implements ISubscriber {
         applyTransformation();
     }
 
+    public void deselectAll(){
+        selectedPainters.clear();
+        highlights.clear();
+        repaint();
+    }
+
     public void subscribeToPainterElements(){
         for (ElementPainter painter : this.painters) {
-            painter.getElement().removeAllSubscribers(); //skidanje ugasenih diagram viewova
-            painter.getElement().addSubscriber(this);
+            if (painter.getElement()!=null) { //selectionPainter nema element
+                painter.getElement().removeAllSubscribers(); //skidanje ugasenih diagram viewova
+                painter.getElement().addSubscriber(this);
+            }
             if (painter.getElement() instanceof Interclass){ // subscribuje se na njegove metode i atribute
                 List<ClassContent> classContents = ((Interclass) painter.getElement()).getClassContentList();
                 if (classContents!=null){
@@ -162,9 +171,10 @@ public class DiagramView extends JPanel implements ISubscriber {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
         fontMetrics = graphics2D.getFontMetrics();
-        //redosled iscrtavanja - prvo sve veze, pa sve klase, pa lasso, pa selektovano
+        //primenjuje transformaciju ako je ima
         if (transform!=null)
             graphics2D.transform(transform);
+        //redosled iscrtavanja - prvo sve veze, pa sve klase, pa lasso, pa obelezavanje selektovanih
         for (ElementPainter painter:painters) {
             if (painter instanceof ConnectionPainter)
                      painter.draw(graphics2D);

@@ -48,7 +48,6 @@ public class NewProjectAction extends AbstractClassyAction {
                         return;
                     }
                     MainFrame.getInstance().getClassyTree().addChild(selected);
-//                    return;
                 }
             });
 

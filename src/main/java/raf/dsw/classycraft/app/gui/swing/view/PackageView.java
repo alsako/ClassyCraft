@@ -32,7 +32,6 @@ public class PackageView extends JPanel implements ISubscriber {
     private StateManager stateManager;
     private List<DiagramView> tabs = new ArrayList<>();
     private Map<Diagram, List<ElementPainter>> diagramPainters = new HashMap<>();
-    private List<ElementPainter> selectedPainters = new ArrayList<>();
 
 
     private JTabbedPane tabbedPane = new JTabbedPane();
@@ -192,12 +191,6 @@ public class PackageView extends JPanel implements ISubscriber {
         return ((DiagramView)tabbedPane.getSelectedComponent());
     }
 
-    public void deselectAll(){
-        selectedPainters.clear();
-        DiagramView selectedDiagram = (DiagramView) tabbedPane.getSelectedComponent();
-        selectedDiagram.getHighlights().clear();
-        selectedDiagram.repaint();
-    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

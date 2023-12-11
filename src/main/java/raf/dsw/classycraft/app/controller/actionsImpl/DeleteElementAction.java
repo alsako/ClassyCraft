@@ -26,7 +26,9 @@ public class DeleteElementAction extends AbstractClassyAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
+        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getCurrentDiagramView().getSelectedPainters();
+
+
 
         if (selectedList.isEmpty()) {
             MainFrame.getInstance().getPackageView().startDeleteElementState();
@@ -56,7 +58,7 @@ public class DeleteElementAction extends AbstractClassyAction {
                 MainFrame.getInstance().getPackageView().removePainterFromMap(selected);
             }
 
-            MainFrame.getInstance().getPackageView().deselectAll();
+            MainFrame.getInstance().getPackageView().getCurrentDiagramView().deselectAll();
 
         }
     }

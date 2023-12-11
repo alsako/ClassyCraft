@@ -17,7 +17,10 @@ public class MoveState implements ClassyState{
     @Override
     public void misKliknut(Point p, DiagramView diagramView) {
         List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
-        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
+//        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
+        List<ElementPainter> selectedList = diagramView.getSelectedPainters();
+
+
 
         if (selectedList.isEmpty()) //nema selecta
             for (int i=diagramPainters.size()-1; i>=0; i--){
@@ -34,7 +37,8 @@ public class MoveState implements ClassyState{
 
     @Override
     public void misPrevucen(Point p, DiagramView diagramView) {
-        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
+//        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
+        List<ElementPainter> selectedList = diagramView.getSelectedPainters();
 
 
         if (!selectedList.isEmpty()){ //pomeraju se selektovani elementi
@@ -44,7 +48,7 @@ public class MoveState implements ClassyState{
                 }
             }
             initialPoint = p;
-            diagramView.repaint();
+//            diagramView.repaint();
         } else if (somethingSelected){ //pomera se jedan element
             if (current==null)
                 return;
@@ -60,7 +64,9 @@ public class MoveState implements ClassyState{
 
     @Override
     public void misOtpusten(Point p, DiagramView diagramView) {
-        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
+//        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
+        List<ElementPainter> selectedList = diagramView.getSelectedPainters();
+
 
         if (!selectedList.isEmpty()) { //lista selektovanih
             for (ElementPainter painter:selectedList) {
