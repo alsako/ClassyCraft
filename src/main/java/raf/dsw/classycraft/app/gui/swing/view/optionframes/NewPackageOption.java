@@ -1,4 +1,4 @@
-package raf.dsw.classycraft.app.gui.swing.view;
+package raf.dsw.classycraft.app.gui.swing.view.optionframes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class NewPackageOption extends JFrame {
     private JButton confirmButton;
     private JLabel choiceLabel;
 
-    private static String selectedOption;
+    private String selectedOption;
 
     public NewPackageOption() throws HeadlessException {
 
@@ -44,6 +44,7 @@ public class NewPackageOption extends JFrame {
                 } else if (diagramRadioButton.isSelected()) {
                     selectedOption = "diagram";
                 }
+                else selectedOption = null;
             }
         };
 

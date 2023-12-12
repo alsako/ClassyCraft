@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public abstract class ClassyNode {
 
-    String name;
-    ClassyNode parent;
+    private String name;
+    private ClassyNode parent;
 
     public ClassyNode(String name, ClassyNode parent) {
         this.name = name;

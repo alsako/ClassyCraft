@@ -46,7 +46,7 @@ public class MainFrame extends JFrame implements ISubscriber {
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
-        setSize(screenWidth / 2, screenHeight / 2);
+        setSize(screenWidth, screenHeight);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("ClassyCrafT");
@@ -56,6 +56,11 @@ public class MainFrame extends JFrame implements ISubscriber {
 
         MyToolBar myToolBar = new MyToolBar();
         add(myToolBar, BorderLayout.NORTH);
+
+        MySideBar mySideBar = new MySideBar();
+        JScrollPane scrollPane = new JScrollPane(mySideBar);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        add(scrollPane, BorderLayout.EAST);
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
