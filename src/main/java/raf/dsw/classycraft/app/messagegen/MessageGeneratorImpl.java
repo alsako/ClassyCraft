@@ -20,12 +20,15 @@ public class MessageGeneratorImpl implements MessageGenerator {
                 return new Message(MessageType.ERROR, timestamp, event.toString());
             case AUTHOR_MUST_BE_A_PROJECT:
             case NAME_TAKEN:
+            case OPTION_NOT_SELECTED:
+            case USE_SIDE_TOOLBAR_OPTION:
+            case CONNECTION_MUST_START_FROM_ENTITY:
+            case CONNECTION_MUST_END_IN_ENTITY:
                 return new Message(MessageType.INFO, timestamp, event.toString());
             case PARENT_NOT_SELECTED:
             case NODE_NOT_SELECTED:
+            case CLASS_NOT_SELECTED:
                 return new Message(MessageType.WARNING, timestamp, event.toString());
-            //case PROBA:
-               // return new Message(MessageType.INFO, timestamp, "OVO JE PROBA");
 
         }
         return null;

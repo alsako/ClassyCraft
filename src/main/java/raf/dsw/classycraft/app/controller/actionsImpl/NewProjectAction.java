@@ -5,9 +5,10 @@ import raf.dsw.classycraft.app.controller.AbstractClassyAction;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
-import raf.dsw.classycraft.app.gui.swing.view.NewPackageOption;
+import raf.dsw.classycraft.app.gui.swing.view.optionframes.NewPackageOption;
 import raf.dsw.classycraft.app.messagegen.Event;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
+import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.model.modelImpl.Package;
 
 import javax.swing.*;
@@ -42,13 +43,17 @@ public class NewProjectAction extends AbstractClassyAction {
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                     selectedOption = newPackageOption.getSelectedOption();
                     System.out.println("Selected Option: " + selectedOption);
+                    if (selectedOption==null){
+                        ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.OPTION_NOT_SELECTED);
+                        return;
+                    }
                     MainFrame.getInstance().getClassyTree().addChild(selected);
-//                    return;
                 }
             });
 
-        }
-        else
+        } else if (selectedClassyNode instanceof Diagram) {
+            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.USE_SIDE_TOOLBAR_OPTION);
+        } else
             MainFrame.getInstance().getClassyTree().addChild(selected);
     }
 }
