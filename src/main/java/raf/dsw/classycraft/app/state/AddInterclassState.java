@@ -37,14 +37,17 @@ public class AddInterclassState implements ClassyState {
         if (NewInterclassAction.selectedOption.equalsIgnoreCase("class")){
             Klasa klasa = new Klasa(nameInput, diagramView.getDiagram(), p.x, p.y);
             ElementPainter painter = new KlasaPainter(klasa);
+            klasa.addSubscriber(diagramView);
             MainFrame.getInstance().getPackageView().addPainterToMap(painter);
         } else if (NewInterclassAction.selectedOption.equalsIgnoreCase("interface")) {
             Interfejs interfejs = new Interfejs(nameInput, diagramView.getDiagram(), p.x, p.y);
             ElementPainter painter = new InterfejsPainter(interfejs);
+            interfejs.addSubscriber(diagramView);
             MainFrame.getInstance().getPackageView().addPainterToMap(painter);
         } else if (NewInterclassAction.selectedOption.equalsIgnoreCase("enum")) {
             Enum en = new Enum(nameInput, diagramView.getDiagram(), p.x, p.y);
             ElementPainter painter = new EnumPainter(en);
+            en.addSubscriber(diagramView);
             MainFrame.getInstance().getPackageView().addPainterToMap(painter);
         }
     }

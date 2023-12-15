@@ -1,9 +1,7 @@
 package raf.dsw.classycraft.app.gui.swing.view.optionframes;
 
 import lombok.Getter;
-import lombok.Setter;
 import raf.dsw.classycraft.app.model.modelImpl.classcontent.Atribut;
-import raf.dsw.classycraft.app.model.modelImpl.classcontent.ClassContent;
 import raf.dsw.classycraft.app.model.modelImpl.classcontent.Metoda;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interfejs;
@@ -11,11 +9,7 @@ import raf.dsw.classycraft.app.model.modelImpl.classes.VisibilityTypes;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
+import java.awt.event.*;
 import java.util.List;
 
 @Getter
@@ -25,6 +19,7 @@ public class InterclassContentWindow extends JFrame {
     private JButton addAttributeButton;
     private JButton deleteButton;
     private JButton editButton;
+    private JButton changeNameButton;
 
 
     private JLabel contentLabel;
@@ -53,12 +48,13 @@ public class InterclassContentWindow extends JFrame {
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
-        setSize(screenWidth / 3, screenHeight / 2);
+        setSize(screenWidth / 3, screenHeight / 3);
         setLocationRelativeTo(null);
         setTitle("Interclass content");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+
 
         contentLabel=new JLabel("Class content");
 
@@ -67,6 +63,7 @@ public class InterclassContentWindow extends JFrame {
         addAttributeButton = new JButton("Add attribute");
         deleteButton = new JButton("Delete");
         editButton = new JButton("Edit");
+        changeNameButton = new JButton("Change entity name");
 
 
 
@@ -153,11 +150,31 @@ public class InterclassContentWindow extends JFrame {
             }
         });
 
+        changeNameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ChangeNameOption changeNameOption = new ChangeNameOption(interclass.getName());
+                changeNameOption.setVisible(true);
+                changeNameOption.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                changeNameOption.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent windowEvent) {
+                        String newName = changeNameOption.getNewName();
+                        if(newName!= null) {
+                            interclass.setName(newName);
+                        }
+                    }
+                });
+            }
+        });
+
+
         contentPanel.add(contentLabel);
         contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         if (!contents.isEmpty())
             contentPanel.add(new JScrollPane(classContentJList), BorderLayout.CENTER);
         add(contentPanel, BorderLayout.SOUTH);
+        contentPanel.add(changeNameButton);
         contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         contentPanel.add(addMethodButton);
         contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -168,6 +185,8 @@ public class InterclassContentWindow extends JFrame {
         contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         contentPanel.add(editButton);
         contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+
 
 
 
