@@ -33,6 +33,7 @@ public class DuplicateState implements ClassyState{
 
     public static void duplicate(InterclassPainter painter, DiagramView diagramView){
         Interclass duplicate = ((Interclass)painter.getElement()).duplicate();
+        duplicate.addSubscriber(diagramView);
         ElementPainter duplicatePainter;
         if (duplicate instanceof Klasa)
             duplicatePainter = new KlasaPainter((Klasa)duplicate);

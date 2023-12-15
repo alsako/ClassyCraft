@@ -17,7 +17,6 @@ public class MoveState implements ClassyState{
     @Override
     public void misKliknut(Point p, DiagramView diagramView) {
         List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
-//        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
         List<ElementPainter> selectedList = diagramView.getSelectedPainters();
 
 
@@ -37,7 +36,6 @@ public class MoveState implements ClassyState{
 
     @Override
     public void misPrevucen(Point p, DiagramView diagramView) {
-//        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
         List<ElementPainter> selectedList = diagramView.getSelectedPainters();
 
 
@@ -48,23 +46,19 @@ public class MoveState implements ClassyState{
                 }
             }
             initialPoint = p;
-//            diagramView.repaint();
         } else if (somethingSelected){ //pomera se jedan element
             if (current==null)
                 return;
             ((Interclass)current.getElement()).setBasedOnCenterpoint(p);
-//            diagramView.repaint();
         } else { //pomera se sam panel
             diagramView.moveView(translationVector(initialPoint, p).x, translationVector(initialPoint, p).getY());
             initialPoint = p;
-//            diagramView.repaint();
         }
 
     }
 
     @Override
     public void misOtpusten(Point p, DiagramView diagramView) {
-//        List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getSelectedPainters();
         List<ElementPainter> selectedList = diagramView.getSelectedPainters();
 
 
@@ -75,19 +69,16 @@ public class MoveState implements ClassyState{
                 }
             }
             somethingSelected = false;
-//            diagramView.repaint();
         }else if (somethingSelected){ //pojedinacni element
             if (current == null)
                 return;
             ((Interclass) current.getElement()).setBasedOnCenterpoint(p);
-            diagramView.repaint();
             current = null;
             somethingSelected = false;
         } else { //ceo panel
             diagramView.moveView(translationVector(initialPoint, p).x, translationVector(initialPoint, p).getY());
             initialPoint = p;
             somethingSelected = false;
-//            diagramView.repaint();
         }
     }
 
