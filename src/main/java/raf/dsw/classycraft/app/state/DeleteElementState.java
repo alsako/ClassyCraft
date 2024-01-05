@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.state;
 
+import raf.dsw.classycraft.app.commands.DeleteCommand;
 import raf.dsw.classycraft.app.gui.swing.view.painters.*;
 import raf.dsw.classycraft.app.gui.swing.view.painters.connections.ConnectionPainter;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImpl;
@@ -17,34 +18,36 @@ public class DeleteElementState implements ClassyState{
     @Override
     public void misKliknut(Point p, DiagramView diagramView) {
 
-        List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
-
-        DiagramElement removed = null;
-
-        for (ElementPainter painter:diagramPainters) {
-            if (painter.elementAt(p.x, p.y)){
-                MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
-                removed = painter.getElement();
-                break;
-            }
-        }
-
-        List<ConnectionPainter> toRemove = new ArrayList<>();
-
-        if (removed instanceof Interclass) {
-            for (ElementPainter painter : diagramPainters) {
-                if (painter instanceof ConnectionPainter) {
-                    if (((Connection)painter.getElement()).getAssociatedInterclasses().contains(removed)) {
-                        toRemove.add((ConnectionPainter) painter);
-                    }
-                }
-            }
-        }
-
-        for (ConnectionPainter painter:toRemove) {
-            MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
-
-        }
+        DeleteCommand deleteCommand = new DeleteCommand(p, diagramView);
+        diagramView.getCommandManager().addCommand(deleteCommand);
+//        List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
+//
+//        DiagramElement removed = null;
+//
+//        for (ElementPainter painter:diagramPainters) {
+//            if (painter.elementAt(p.x, p.y)){
+//                MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
+//                removed = painter.getElement();
+//                break;
+//            }
+//        }
+//
+//        List<ConnectionPainter> toRemove = new ArrayList<>();
+//
+//        if (removed instanceof Interclass) {
+//            for (ElementPainter painter : diagramPainters) {
+//                if (painter instanceof ConnectionPainter) {
+//                    if (((Connection)painter.getElement()).getAssociatedInterclasses().contains(removed)) {
+//                        toRemove.add((ConnectionPainter) painter);
+//                    }
+//                }
+//            }
+//        }
+//
+//        for (ConnectionPainter painter:toRemove) {
+//            MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
+//
+//        }
 
     }
 

@@ -20,7 +20,7 @@ import java.util.List;
 @Getter
 public class Package extends ClassyNodeComposite implements IPublisher {
 
-    List<ISubscriber> subscribers;
+    transient List<ISubscriber> subscribers;
     public Package(String name, ClassyNode parent) {
         super(name, parent);
     }

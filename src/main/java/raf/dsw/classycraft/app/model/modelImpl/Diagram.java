@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Diagram extends ClassyNodeComposite implements IPublisher {
 
-    List<ISubscriber> subscribers;
+    transient List<ISubscriber> subscribers;
 
     public Diagram(String name, ClassyNode parent) {
         super(name, parent);

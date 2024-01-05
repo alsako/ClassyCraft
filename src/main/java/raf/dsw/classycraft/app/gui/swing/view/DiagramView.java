@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.gui.swing.view;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.classycraft.app.commands.CommandManager;
 import raf.dsw.classycraft.app.gui.swing.controller.DiagramViewMouseListener;
 import raf.dsw.classycraft.app.gui.swing.view.painters.HighlightPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.SelectionPainter;
@@ -27,7 +28,7 @@ import java.util.List;
 public class DiagramView extends JPanel implements ISubscriber {
 
     private Diagram diagram;
-
+    private CommandManager commandManager;
     private List<ElementPainter> painters = new ArrayList<>();
     private List<HighlightPainter> highlights = new ArrayList<>(); //painteri za obelezavanje selektovanih elemenata
     private List<ElementPainter> selectedPainters = new ArrayList<>(); //lista selektovanih
@@ -40,6 +41,7 @@ public class DiagramView extends JPanel implements ISubscriber {
 
     public DiagramView(Diagram diagram) {
         this.diagram = diagram;
+        this.commandManager =new CommandManager();
         DiagramViewMouseListener dvml = new DiagramViewMouseListener();
         this.addMouseListener(dvml);
         this.addMouseMotionListener(dvml);

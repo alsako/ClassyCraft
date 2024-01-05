@@ -56,4 +56,23 @@ public class Utility {
 
         return new Point(rotatedX, rotatedY);
     }
+
+    public static Point translationVector(Point a, Point b){
+        double initialX = a.x;
+        double initialY = a.y;
+        double finalX = b.x;
+        double finalY = b.y;
+        int deltaX = Math.abs(a.x-b.x);
+        int deltaY = Math.abs(a.y-b.y);
+
+        if (finalX>=initialX && finalY>=initialY){
+            return new Point(deltaX, deltaY);
+        } else if (finalX>=initialX && finalY<=initialY) {
+            return new Point(deltaX, -deltaY);
+        } else if (finalX<=initialX && finalY<=initialY) {
+            return new Point(-deltaX, -deltaY);
+        }else{
+            return new Point(-deltaX, deltaY);
+        }
+    }
 }

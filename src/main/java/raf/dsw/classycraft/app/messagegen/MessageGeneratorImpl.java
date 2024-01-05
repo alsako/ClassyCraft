@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MessageGeneratorImpl implements MessageGenerator {
 
-    List<ISubscriber> subscribers;
+    transient List<ISubscriber> subscribers;
 
     @Override
     public Message formulateMessage(Event event) {

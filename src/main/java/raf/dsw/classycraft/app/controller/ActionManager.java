@@ -24,6 +24,8 @@ public class ActionManager {
     private ZoomOutAction zoomOutAction;
     private ZoomToFitAction zoomToFitAction;
     private ResetZoomAction resetZoomAction;
+    private RedoAction redoAction;
+    private UndoAction undoAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -42,6 +44,8 @@ public class ActionManager {
         zoomOutAction = new ZoomOutAction();
         zoomToFitAction = new ZoomToFitAction();
         resetZoomAction = new ResetZoomAction();
+        redoAction = new RedoAction();
+        undoAction = new UndoAction();
     }
 
 }

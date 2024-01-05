@@ -19,7 +19,7 @@ public abstract class ClassContent implements IPublisher {
     private VisibilityTypes visibility;
     private String type;
 
-    private List<ISubscriber> subscribers;
+    private transient List<ISubscriber> subscribers;
 
     public void setName(String name) {
         this.name = name;

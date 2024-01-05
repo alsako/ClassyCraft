@@ -23,7 +23,7 @@ public abstract class DiagramElement extends ClassyNode implements IPublisher{
     private Color colourOutline;
     private double x, y;
 
-    private List<ISubscriber> subscribers;
+    private transient List<ISubscriber> subscribers;
 
 
     public DiagramElement(String name, ClassyNode parent, Color colourOutline) {

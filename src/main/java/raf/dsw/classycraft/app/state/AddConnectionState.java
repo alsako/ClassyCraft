@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.state;
 
+import raf.dsw.classycraft.app.commands.NewConnectionCommand;
 import raf.dsw.classycraft.app.controller.actionsImpl.NewConnectionAction;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.view.painters.*;
@@ -79,32 +80,37 @@ public class AddConnectionState implements ClassyState{
     @Override
     public void misOtpusten(Point p, DiagramView diagramView) {
 
+
         List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
         diagramPainters.remove(diagramPainters.size() - 1); //skida poslednji u slucaju da se ne zavrsava na validnom mestu
         diagramView.repaint(); //pozivam repaint u slucaju da veza nije zavrsena na dobrom mestu da ne ostaje
 
 
-        for (ElementPainter painter:diagramPainters) {
-            if (painter instanceof InterclassPainter && painter.elementAt(p.x, p.y)) {
-                if (painter.getElement().equals(((Connection)cp.getElement()).getFromElement())){
-                    Interclass to = ((Connection)cp.getElement()).getFromElement();
-                    ((Connection)cp.getElement()).setToElement(to);
-                    ((Connection)cp.getElement()).setName(((Connection)cp.getElement()).getTypeSign() + ": reflexive " + to.getName());
-                    MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).remove(cp);
-                    MainFrame.getInstance().getPackageView().addPainterToMap(cp);
-                    this.cp=null;
-                    return;
-                }
-                Interclass to = (Interclass) painter.getElement();
-                Interclass from = ((Connection)cp.getElement()).getFromElement();
-                ((Connection)cp.getElement()).setToElement(to);
-                ((Connection)cp.getElement()).setName(((Connection)cp.getElement()).getTypeSign() + ": " + from.getName() + "-" + to.getName());
-                MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).remove(cp);
-                MainFrame.getInstance().getPackageView().addPainterToMap(cp);
-                this.cp=null;
-                return;
-            }
-        }
-        ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.CONNECTION_MUST_END_IN_ENTITY);
-    }
+            NewConnectionCommand newConnectionCommand = new NewConnectionCommand(p, diagramView, cp);
+            diagramView.getCommandManager().addCommand(newConnectionCommand);
+
+
+//        for (ElementPainter painter:diagramPainters) {
+//            if (painter instanceof InterclassPainter && painter.elementAt(p.x, p.y)) {
+//                if (painter.getElement().equals(((Connection)cp.getElement()).getFromElement())){
+//                    Interclass to = ((Connection)cp.getElement()).getFromElement();
+//                    ((Connection)cp.getElement()).setToElement(to);
+//                    ((Connection)cp.getElement()).setName(((Connection)cp.getElement()).getTypeSign() + ": reflexive " + to.getName());
+//                    MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).remove(cp);
+//                    MainFrame.getInstance().getPackageView().addPainterToMap(cp);
+//                    this.cp=null;
+//                    return;
+//                }
+//                Interclass to = (Interclass) painter.getElement();
+//                Interclass from = ((Connection)cp.getElement()).getFromElement();
+//                ((Connection)cp.getElement()).setToElement(to);
+//                ((Connection)cp.getElement()).setName(((Connection)cp.getElement()).getTypeSign() + ": " + from.getName() + "-" + to.getName());
+//                MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).remove(cp);
+//                MainFrame.getInstance().getPackageView().addPainterToMap(cp);
+//                this.cp=null;
+//                return;
+//            }
+//        }
+//        ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.CONNECTION_MUST_END_IN_ENTITY);
+     }
 }

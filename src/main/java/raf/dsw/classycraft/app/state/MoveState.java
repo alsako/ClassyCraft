@@ -1,8 +1,10 @@
 package raf.dsw.classycraft.app.state;
 
+import raf.dsw.classycraft.app.commands.MoveCommand;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
+import raf.dsw.classycraft.app.gui.swing.view.painters.connections.Utility;
 import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.InterclassPainter;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
 import java.awt.*;
@@ -11,6 +13,7 @@ import java.util.List;
 public class MoveState implements ClassyState{
 
     ElementPainter current = null;
+    Point currentPoint = null;
     Point initialPoint = null;
 
     Boolean somethingSelected = false;
@@ -26,12 +29,15 @@ public class MoveState implements ClassyState{
                 if (diagramPainters.get(i) instanceof InterclassPainter && diagramPainters.get(i).elementAt(p.x, p.y)) {
                     current = diagramPainters.get(i);
                     somethingSelected = true;
+                    initialPoint = new Point((int)((Interclass)current.getElement()).getX(),(int)((Interclass)current.getElement()).getY());
                     return;
                 }
             }
-        else
+        else {
             somethingSelected = true;
-        initialPoint = p;
+            initialPoint = p;
+        }
+        currentPoint = p;
     }
 
     @Override
@@ -42,63 +48,48 @@ public class MoveState implements ClassyState{
         if (!selectedList.isEmpty()){ //pomeraju se selektovani elementi
             for (ElementPainter painter:selectedList) {
                 if (painter instanceof InterclassPainter){
-                    ((Interclass)painter.getElement()).translate(translationVector(initialPoint, p));
+                    ((Interclass)painter.getElement()).translate(Utility.translationVector(currentPoint, p));
                 }
             }
-            initialPoint = p;
+            currentPoint = p;
         } else if (somethingSelected){ //pomera se jedan element
             if (current==null)
                 return;
             ((Interclass)current.getElement()).setBasedOnCenterpoint(p);
         } else { //pomera se sam panel
-            diagramView.moveView(translationVector(initialPoint, p).x, translationVector(initialPoint, p).getY());
-            initialPoint = p;
+            diagramView.moveView(Utility.translationVector(currentPoint, p).x, Utility.translationVector(currentPoint, p).getY());
         }
 
     }
 
     @Override
     public void misOtpusten(Point p, DiagramView diagramView) {
-        List<ElementPainter> selectedList = diagramView.getSelectedPainters();
 
-
-        if (!selectedList.isEmpty()) { //lista selektovanih
-            for (ElementPainter painter:selectedList) {
-                if (painter instanceof InterclassPainter){
-                    ((Interclass)painter.getElement()).translate(translationVector(initialPoint, p));
-                }
-            }
-            somethingSelected = false;
-        }else if (somethingSelected){ //pojedinacni element
-            if (current == null)
-                return;
-            ((Interclass) current.getElement()).setBasedOnCenterpoint(p);
-            current = null;
-            somethingSelected = false;
-        } else { //ceo panel
-            diagramView.moveView(translationVector(initialPoint, p).x, translationVector(initialPoint, p).getY());
-            initialPoint = p;
-            somethingSelected = false;
-        }
+        MoveCommand moveCommand = new MoveCommand(diagramView, p, currentPoint, initialPoint, somethingSelected, current);
+        diagramView.getCommandManager().addCommand(moveCommand);
+        somethingSelected=false;
+        current=null;
+//        List<ElementPainter> selectedList = diagramView.getSelectedPainters();
+//
+//
+//        if (!selectedList.isEmpty()) { //lista selektovanih
+//            for (ElementPainter painter:selectedList) {
+//                if (painter instanceof InterclassPainter){
+//                    ((Interclass)painter.getElement()).translate(translationVector(currentPoint, p));
+//                }
+//            }
+//            somethingSelected = false;
+//        }else if (somethingSelected){ //pojedinacni element
+//            if (current == null)
+//                return;
+//            ((Interclass) current.getElement()).setBasedOnCenterpoint(p);
+//            current = null;
+//            somethingSelected = false;
+//        } else { //ceo panel
+//            diagramView.moveView(translationVector(initialPoint, p).x, translationVector(currentPoint, p).getY());
+//            somethingSelected = false;
+//        }
     }
 
-    private Point translationVector(Point a, Point b){
-        double initialX = a.x;
-        double initialY = a.y;
-        double finalX = b.x;
-        double finalY = b.y;
-        int deltaX = Math.abs(a.x-b.x);
-        int deltaY = Math.abs(a.y-b.y);
-
-        if (finalX>=initialX && finalY>=initialY){
-            return new Point(deltaX, deltaY);
-        } else if (finalX>=initialX && finalY<=initialY) {
-            return new Point(deltaX, -deltaY);
-        } else if (finalX<=initialX && finalY<=initialY) {
-            return new Point(-deltaX, -deltaY);
-        }else{
-            return new Point(-deltaX, deltaY);
-        }
-    }
 
 }

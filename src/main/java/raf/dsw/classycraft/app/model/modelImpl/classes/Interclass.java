@@ -12,6 +12,7 @@ import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public abstract class Interclass extends DiagramElement{
     private VisibilityTypes visibility;
     private double width, height;
     private LinkedList<ClassContent> classContentList;
-
+    private List<ClassContent> additionOrder = new ArrayList<>();
 
 
     public Interclass(String name, ClassyNode parent, double x, double y) {
@@ -54,17 +55,33 @@ public abstract class Interclass extends DiagramElement{
         notifySubscribers(DiagramNtfType.REPAINT);
     }
 
+    public void translateTo(Point newPoint){
+        this.setX(newPoint.x);
+        this.setY(newPoint.y);
+        notifySubscribers(DiagramNtfType.REPAINT);
+    }
+
     public void addContent(ClassContent c){
         if (c instanceof Atribut)
             this.classContentList.addFirst(c);
         else this.classContentList.addLast(c); // prvo hocu sve atribute pa sve metode
-        this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
-        this.height = (getContentStrings().size() + 2) * (DiagramView.fontMetrics.getHeight()) + 10;
-        notifySubscribers(DiagramNtfType.REPAINT);
+        if(!additionOrder.contains(c))
+            additionOrder.add(c);//dodajem klas kontent u listu ako vec ne postoji
+//        this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
+//        this.height = (getContentStrings().size() + 2) * (DiagramView.fontMetrics.getHeight()) + 10;
+//        notifySubscribers(DiagramNtfType.REPAINT);
+        resize();
     }
 
     public void removeContent(int index){
         this.classContentList.remove(index);
+//        this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
+//        this.height = (getContentStrings().size() + 2) * (DiagramView.fontMetrics.getHeight()) + 10;
+//        notifySubscribers(DiagramNtfType.REPAINT);
+        resize();
+    }
+
+    public void resize(){
         this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
         this.height = (getContentStrings().size() + 2) * (DiagramView.fontMetrics.getHeight()) + 10;
         notifySubscribers(DiagramNtfType.REPAINT);

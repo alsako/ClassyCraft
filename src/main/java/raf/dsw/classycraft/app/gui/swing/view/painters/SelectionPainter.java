@@ -14,7 +14,7 @@ import java.util.List;
 public class SelectionPainter extends ElementPainter implements IPublisher {
 
     private double startX, startY, width, height;
-    private List<ISubscriber> subscribers;
+    private transient List<ISubscriber> subscribers;
 
 
     public SelectionPainter(double x, double y) {
