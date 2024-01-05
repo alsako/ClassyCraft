@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.core;
 
+import lombok.Getter;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImpl;
 import raf.dsw.classycraft.app.gui.swing.tree.controller.TreeMouseListener;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
@@ -11,7 +12,9 @@ import raf.dsw.classycraft.app.messagegen.MessageGeneratorImpl;
 
 import java.io.FileWriter;
 
+@Getter
 public class ApplicationFramework {
+
 
     private static ApplicationFramework instance;
     private ClassyRepository classyRepository;
@@ -47,6 +50,8 @@ public class ApplicationFramework {
         tree.getTreeView().addMouseListener(new TreeMouseListener());
 
     }
+
+
 
     public MessageGenerator getMessageGenerator() {
         return messageGenerator;
