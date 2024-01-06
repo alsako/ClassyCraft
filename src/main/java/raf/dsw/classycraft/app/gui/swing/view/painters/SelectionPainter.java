@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.gui.swing.view.painters;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 import raf.dsw.classycraft.app.observer.IPublisher;
@@ -14,6 +15,7 @@ import java.util.List;
 public class SelectionPainter extends ElementPainter implements IPublisher {
 
     private double startX, startY, width, height;
+    @JsonIgnore
     private transient List<ISubscriber> subscribers;
 
 

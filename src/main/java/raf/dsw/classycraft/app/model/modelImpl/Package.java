@@ -1,6 +1,9 @@
 package raf.dsw.classycraft.app.model.modelImpl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.jshell.Diag;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
@@ -18,8 +21,9 @@ import java.util.List;
 
 @Setter
 @Getter
+@NoArgsConstructor
 public class Package extends ClassyNodeComposite implements IPublisher {
-
+    @JsonIgnore
     transient List<ISubscriber> subscribers;
     public Package(String name, ClassyNode parent) {
         super(name, parent);
@@ -31,14 +35,18 @@ public class Package extends ClassyNodeComposite implements IPublisher {
             ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NAME_CANNOT_BE_EMPTY);
             return;
         }
-        if(((ClassyNodeComposite)(this.getParent())).childNameTaken(name)){
-            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NAME_TAKEN);
-            return;
-        }
+        if (this.getParent()!=null)
+            if(((ClassyNodeComposite)(this.getParent())).childNameTaken(name)){
+                ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NAME_TAKEN);
+                return;
+            }
         PackageNotification pn = new PackageNotification(name, PackageNtfType.RENAME);
         this.notifySubscribers(pn);
         super.setName(name);
+        if (this.getParent()!=null)
+            this.getParentProject().setChanged(true);
     }
+
 
     @Override
     public void addChild(ClassyNode child) {
@@ -59,6 +67,7 @@ public class Package extends ClassyNodeComposite implements IPublisher {
                     this.getChildren().add(pack);
                 }
             }
+            this.getParentProject().setChanged(true);
         }
     }
 
@@ -77,6 +86,7 @@ public class Package extends ClassyNodeComposite implements IPublisher {
             }
         }
         this.getChildren().remove(child);
+        this.getParentProject().setChanged(true);
     }
 
     public int countPackageChildren(){
@@ -97,22 +107,25 @@ public class Package extends ClassyNodeComposite implements IPublisher {
         return i;
     }
 
-    public List<String> getDiagramChildrenNames(){
-        List<String> diagramChildren = new ArrayList<>();
+    @JsonIgnore
+    public List<Diagram> getDiagramChildren(){
+        List<Diagram> diagramChildren = new ArrayList<>();
         for (ClassyNode child:this.getChildren()) {
             if (child instanceof Diagram)
-                diagramChildren.add(child.getName());
+                diagramChildren.add((Diagram) child);
+            else diagramChildren.addAll(((Package)child).getDiagramChildren());
         }
         return diagramChildren;
     }
 
+    @JsonIgnore
     public Project getParentProject(){
         if (this.getParent() instanceof Project)
             return (Project) this.getParent();
         else
             return ((Package)this.getParent()).getParentProject();
     }
-
+    @JsonIgnore
     public Diagram getLastDiagramChild(){
         int length = this.getChildren().size();
         for (int i = length-1; i>=0; i--){
@@ -121,7 +134,7 @@ public class Package extends ClassyNodeComposite implements IPublisher {
         }
         return null;
     }
-
+    @JsonIgnore
     public String getAuthor(){
         return this.getParentProject().getAuthor();
     }

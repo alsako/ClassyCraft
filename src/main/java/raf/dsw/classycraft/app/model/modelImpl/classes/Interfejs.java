@@ -1,10 +1,11 @@
 package raf.dsw.classycraft.app.model.modelImpl.classes;
 
+import lombok.NoArgsConstructor;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
 
 import java.awt.*;
-
+@NoArgsConstructor
 public class Interfejs extends Interclass {
 
     public Interfejs(String name, ClassyNode parent, double x, double y) {

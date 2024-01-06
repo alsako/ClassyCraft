@@ -26,6 +26,9 @@ public class ActionManager {
     private ResetZoomAction resetZoomAction;
     private RedoAction redoAction;
     private UndoAction undoAction;
+    private SaveAction saveAction;
+    private OpenProjectAction openProjectAction;
+    private LoadDiagramAction loadDiagramAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -46,6 +49,9 @@ public class ActionManager {
         resetZoomAction = new ResetZoomAction();
         redoAction = new RedoAction();
         undoAction = new UndoAction();
+        saveAction = new SaveAction();
+        openProjectAction = new OpenProjectAction();
+        loadDiagramAction = new LoadDiagramAction();
     }
 
 }

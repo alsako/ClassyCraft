@@ -1,6 +1,9 @@
 package raf.dsw.classycraft.app.model.modelImpl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.messagegen.Event;
@@ -10,13 +13,18 @@ import raf.dsw.classycraft.app.model.notifications.PackageNtfType;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Setter
 @Getter
+@NoArgsConstructor
 public class Project extends ClassyNodeComposite {
 
     public String author;
-    public String folderPath;
-
+    public String filePath;
+    @JsonIgnore
+    public Boolean changed = false;
     public Project(String name, ClassyNode parent) {
         super(name, parent);
     }
@@ -27,11 +35,13 @@ public class Project extends ClassyNodeComposite {
             ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NAME_CANNOT_BE_EMPTY);
             return;
         }
-        if(((ClassyNodeComposite)(this.getParent())).childNameTaken(name)){
-            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NAME_TAKEN);
-            return;
-        }
+        if (this.getParent()!=null)
+            if(((ClassyNodeComposite)(this.getParent())).childNameTaken(name)){
+                ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NAME_TAKEN);
+                return;
+            }
         super.setName(name);
+        changed = true;
     }
 
     public void setAuthor(String author) {
@@ -50,6 +60,7 @@ public class Project extends ClassyNodeComposite {
             }
         }
         this.author = author;
+        changed = true;
     }
 
     @Override
@@ -58,6 +69,7 @@ public class Project extends ClassyNodeComposite {
             Package pack = (Package) child;
             if (!this.getChildren().contains(pack)){
                 this.getChildren().add(pack);
+                changed = true;
             }
         }
     }
@@ -71,6 +83,8 @@ public class Project extends ClassyNodeComposite {
                     ((Diagram)child1).notifySubscribers(DiagramNtfType.DELETE);
             }
             this.getChildren().remove(child);
+            changed = true;
         }
     }
+
 }

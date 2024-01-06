@@ -9,5 +9,8 @@ public interface Serializer {
 
     Project loadProject(File file);
     void saveProject(Project project);
+
+    void loadDiagram(File file);
+    public void loadDiagramContent(File file, Diagram toDiagram);
     void saveDiagram(Diagram diagram);
 }

@@ -17,7 +17,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,7 +58,9 @@ public class ChangeContentCommand extends AbstractCommand{
 
 
                     currPainter = painter;
-                    InterclassContentWindow icw = new InterclassContentWindow((Interclass) painter.getElement());
+                    Interclass element = (Interclass) painter.getElement();
+                    element.changed();
+                    InterclassContentWindow icw = new InterclassContentWindow(element);
                     icw.setVisible(true);
                     icw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,21 +96,24 @@ public class ChangeContentCommand extends AbstractCommand{
             }
             ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.CLASS_NOT_SELECTED);
         }else{
+            int index = diagramPainters.indexOf(currPainter);
+            Interclass element = (Interclass) diagramPainters.get(index).getElement();
+            element.changed();
             if(edited){
-                int index = diagramPainters.indexOf(currPainter);
-                Interclass element = (Interclass) diagramPainters.get(index).getElement();
+//                int index = diagramPainters.indexOf(currPainter);
+//                Interclass element = (Interclass) diagramPainters.get(index).getElement();
                 ClassContent editovan = element.getClassContentList().get(editedIndex);
                 editovan.setName(newName);
                 editovan.setVisibility(newVisibility);
-                editovan.setType(newType);
+                editovan.setContentType(newType);
                 element.resize();
             }else if(nameEdited) {
-                int index = diagramPainters.indexOf(currPainter);
-                Interclass element = (Interclass) diagramPainters.get(index).getElement();
+//                int index = diagramPainters.indexOf(currPainter);
+//                Interclass element = (Interclass) diagramPainters.get(index).getElement();
                 element.setName(newClassName);
             }else{
-                int index = diagramPainters.indexOf(currPainter);
-                Interclass element = (Interclass) diagramPainters.get(index).getElement();
+//                int index = diagramPainters.indexOf(currPainter);
+//                Interclass element = (Interclass) diagramPainters.get(index).getElement();
                 element.addContent(removed.get(0));
             }
         }
@@ -126,7 +130,7 @@ public class ChangeContentCommand extends AbstractCommand{
            ClassContent editovan = element.getClassContentList().get(editedIndex);
            editovan.setName(oldName);
            editovan.setVisibility(oldVisibility);
-           editovan.setType(oldType);
+           editovan.setContentType(oldType);
            element.resize();
         }else if(nameEdited){
             element.setName(oldClassName);

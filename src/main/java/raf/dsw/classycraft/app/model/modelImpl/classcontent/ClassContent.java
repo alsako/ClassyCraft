@@ -1,9 +1,12 @@
 package raf.dsw.classycraft.app.model.modelImpl.classcontent;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
-import raf.dsw.classycraft.app.model.modelImpl.classes.VisibilityTypes;
+import raf.dsw.classycraft.app.model.modelImpl.classes.*;
 import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 import raf.dsw.classycraft.app.observer.IPublisher;
 import raf.dsw.classycraft.app.observer.ISubscriber;
@@ -13,13 +16,26 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Metoda.class, name = "Metoda"),
+        @JsonSubTypes.Type(value = Atribut.class, name = "Atribut")
+})
 public abstract class ClassContent implements IPublisher {
 
     private String name;
     private VisibilityTypes visibility;
-    private String type;
-
+    private String contentType;
+    @JsonIgnore
     private transient List<ISubscriber> subscribers;
+
+    public ClassContent(String name, VisibilityTypes visibility, String contentType) {
+        this.name = name;
+        this.visibility = visibility;
+        this.contentType = contentType;
+    }
+
 
     public void setName(String name) {
         this.name = name;
@@ -31,16 +47,11 @@ public abstract class ClassContent implements IPublisher {
         notifySubscribers(DiagramNtfType.REPAINT);
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
         notifySubscribers(DiagramNtfType.REPAINT);
     }
 
-    public ClassContent(String name, VisibilityTypes visibility, String type) {
-        this.name = name;
-        this.visibility = visibility;
-        this.type = type;
-    }
 
     @Override
     public void addSubscriber(ISubscriber sub) {

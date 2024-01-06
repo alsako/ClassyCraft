@@ -39,7 +39,8 @@ public class SelectState implements ClassyState {
 
     @Override
     public void misOtpusten(Point p, DiagramView diagramView) {
-        painter.calculateCoordinates(initialPoint.x, initialPoint.y, p.x, p.y);
+        if (initialPoint!=null && p!=null)
+            painter.calculateCoordinates(initialPoint.x, initialPoint.y, p.x, p.y);
         MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram()).remove(painter);
         painter.removeSubscriber(diagramView);
 

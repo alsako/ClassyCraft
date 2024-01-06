@@ -91,8 +91,6 @@ public class PackageView extends JPanel implements ISubscriber {
         for (DiagramView tab:this.tabs) {
             tabbedPane.addTab(tab.getDiagram().getName(),new ImageIcon("src/main/resources/images/diagram.png"), tab);
         }
-
-
     }
 
     @Override
@@ -175,6 +173,12 @@ public class PackageView extends JPanel implements ISubscriber {
         diagramPainters.get(selectedDiagram).add(painter);
         selectedDiagram.addChild(painter.getElement());
         painter.getElement().addToTree((DiagramView)tabbedPane.getSelectedComponent());
+        ((DiagramView)tabbedPane.getSelectedComponent()).repaint();
+    }
+
+    public void addPainterForDiagram(Diagram diagram, ElementPainter painter){
+        diagramPainters.get(diagram).add(painter);
+        diagram.addChild(painter.getElement());
         ((DiagramView)tabbedPane.getSelectedComponent()).repaint();
     }
 

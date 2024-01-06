@@ -21,7 +21,7 @@ public class KompozicijaPainter extends ConnectionPainter {
         Graphics2D g2D = (Graphics2D)g;
 
         g2D.setStroke(new BasicStroke(kompozicija.getStrokeWidth()));
-        g2D.setColor(kompozicija.getColourOutline());
+        g2D.setColor(Color.BLACK);
 
         if (kompozicija.getToElement()==null) {
             this.startX = kompozicija.getFromElement().getCenterCoordinates().x;

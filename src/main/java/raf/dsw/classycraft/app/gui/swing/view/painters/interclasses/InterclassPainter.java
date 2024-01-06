@@ -56,9 +56,9 @@ public abstract class InterclassPainter extends ElementPainter {
         //crtanje
         this.setShape(new Rectangle2D.Double(startX, startY-10, width, height));
         g2D.setStroke(new BasicStroke(interclass.getStrokeWidth()));
-        g2D.setColor(interclass.getColourInside());
+        g2D.setColor(Color.white);
         g2D.fill(getShape());
-        g2D.setColor(interclass.getColourOutline());
+        g2D.setColor(Color.BLACK);
         g2D.draw(getShape());
 
         drawStringCentered(g2D, "[" + type + "]", startX, startY + 2, (int) width,fontMetrics);

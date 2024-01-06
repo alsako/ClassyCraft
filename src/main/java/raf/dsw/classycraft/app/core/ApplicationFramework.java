@@ -9,6 +9,8 @@ import raf.dsw.classycraft.app.logger.LoggerFactory;
 import raf.dsw.classycraft.app.logger.LoggerType;
 import raf.dsw.classycraft.app.messagegen.MessageGenerator;
 import raf.dsw.classycraft.app.messagegen.MessageGeneratorImpl;
+import raf.dsw.classycraft.app.serializer.JacksonSerializer;
+import raf.dsw.classycraft.app.serializer.Serializer;
 
 import java.io.FileWriter;
 
@@ -21,6 +23,7 @@ public class ApplicationFramework {
     private MessageGenerator messageGenerator;
     private Logger consoleLogger;
     private Logger fileLogger;
+    private Serializer serializer;
 
     public ApplicationFramework() {
     }
@@ -34,6 +37,7 @@ public class ApplicationFramework {
         LoggerFactory loggerFactory = new LoggerFactory();
         consoleLogger = loggerFactory.createLogger(LoggerType.CONSOLE);
         fileLogger = loggerFactory.createLogger(LoggerType.FILE);
+        serializer = new JacksonSerializer();
         //restartuje log.txt
         try {
             String filePath = "src/main/resources/log.txt";

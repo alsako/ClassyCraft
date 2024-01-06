@@ -1,8 +1,8 @@
 package raf.dsw.classycraft.app.model.modelImpl.classcontent;
 
-import raf.dsw.classycraft.app.model.modelImpl.classcontent.ClassContent;
+import lombok.NoArgsConstructor;
 import raf.dsw.classycraft.app.model.modelImpl.classes.VisibilityTypes;
-
+@NoArgsConstructor
 public class Metoda extends ClassContent {
 
     public Metoda(String name, VisibilityTypes visibility, String type) {
@@ -25,6 +25,6 @@ public class Metoda extends ClassContent {
             default:
                 typeSign=' ';
         }
-        return typeSign + getName() + "(): " + getType();
+        return typeSign + getName() + "(): " + getContentType();
     }
 }

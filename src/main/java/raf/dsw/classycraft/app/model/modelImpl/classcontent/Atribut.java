@@ -1,8 +1,8 @@
 package raf.dsw.classycraft.app.model.modelImpl.classcontent;
 
-import raf.dsw.classycraft.app.model.modelImpl.classcontent.ClassContent;
+import lombok.NoArgsConstructor;
 import raf.dsw.classycraft.app.model.modelImpl.classes.VisibilityTypes;
-
+@NoArgsConstructor
 public class Atribut extends ClassContent {
 
     public Atribut(String name, VisibilityTypes visibility, String type) {
@@ -26,7 +26,7 @@ public class Atribut extends ClassContent {
             default:
                 typeSign=' ';
         }
-        return typeSign + getName() + ": " + getType();
+        return typeSign + getName() + ": " + getContentType();
 
     }
 }

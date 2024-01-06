@@ -20,7 +20,7 @@ public class AgregacijaPainter extends ConnectionPainter {
 
 
         g2D.setStroke(new BasicStroke(agregacija.getStrokeWidth()));
-        g2D.setColor(agregacija.getColourOutline());
+        g2D.setColor(Color.BLACK);
 
 
         if (agregacija.getToElement()==null) {

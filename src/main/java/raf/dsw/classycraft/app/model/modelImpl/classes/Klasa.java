@@ -1,6 +1,7 @@
 package raf.dsw.classycraft.app.model.modelImpl.classes;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
@@ -10,6 +11,7 @@ import java.awt.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class Klasa extends Interclass {
 
 
@@ -17,6 +19,7 @@ public class Klasa extends Interclass {
     public Klasa(String name, ClassyNode parent, double x, double y) {
         super(name, parent, x, y);
     }
+
 
     @Override
     public Interclass duplicate() {

@@ -1,11 +1,17 @@
 package raf.dsw.classycraft.app.model.modelImpl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImpl;
 import raf.dsw.classycraft.app.gui.swing.view.DiagramView;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
+import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
+import raf.dsw.classycraft.app.model.modelImpl.connections.Connection;
 import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 import raf.dsw.classycraft.app.observer.IPublisher;
 import raf.dsw.classycraft.app.observer.ISubscriber;
@@ -16,42 +22,45 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Connection.class, name = "Connection"),
+        @JsonSubTypes.Type(value = Interclass.class, name = "Interclass")
+})
 public abstract class DiagramElement extends ClassyNode implements IPublisher{
 
     private int strokeWidth;
-    private Color colourInside;
-    private Color colourOutline;
     private double x, y;
-
+    @JsonIgnore
     private transient List<ISubscriber> subscribers;
 
 
     public DiagramElement(String name, ClassyNode parent, Color colourOutline) {
         super(name, parent);
         this.strokeWidth = 2;
-        this.colourInside = Color.WHITE;
-        this.colourOutline = colourOutline;
     }
     public DiagramElement(String name, ClassyNode parent, Color colourOutline, double x, double y) {
         super(name, parent);
         this.strokeWidth = 2;
-        this.colourInside = Color.WHITE;
-        this.colourOutline = colourOutline;
         this.x = x;
         this.y = y;
     }
+
+
 
 
     public void setX(double x) {
         this.x = x;
         notifySubscribers(DiagramNtfType.REPAINT);
+        changed();
     }
 
     public void setY(double y) {
         this.y = y;
         notifySubscribers(DiagramNtfType.REPAINT);
+        changed();
     }
-
 
     public void addToTree(DiagramView diagramView){
         ((ClassyTreeImpl) MainFrame.getInstance().getClassyTree()).addToTree(diagramView.getDiagram(), this);
@@ -93,5 +102,12 @@ public abstract class DiagramElement extends ClassyNode implements IPublisher{
         for (ISubscriber sub: subscribers) {
             sub.update(diagramNotification);
         }
+    }
+
+    public void changed(){
+        if (this.getParent()==null)
+            return;
+        Package parentPack = (Package) this.getParent().getParent();
+        parentPack.getParentProject().setChanged(true);
     }
 }

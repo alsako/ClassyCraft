@@ -1,10 +1,20 @@
 package raf.dsw.classycraft.app.model.modelImpl.connections;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
+import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.model.modelImpl.DiagramElement;
+import raf.dsw.classycraft.app.model.modelImpl.Project;
+import raf.dsw.classycraft.app.model.modelImpl.classcontent.Atribut;
+import raf.dsw.classycraft.app.model.modelImpl.classcontent.Metoda;
+import raf.dsw.classycraft.app.model.modelImpl.classes.Enum;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
+import raf.dsw.classycraft.app.model.modelImpl.classes.Interfejs;
+import raf.dsw.classycraft.app.model.modelImpl.classes.Klasa;
 import raf.dsw.classycraft.app.model.notifications.DiagramNtfType;
 
 import java.awt.*;
@@ -13,6 +23,13 @@ import java.util.List;
 
 @Setter
 @Getter
+@NoArgsConstructor
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Agregacija.class, name = "Agregacija"),
+        @JsonSubTypes.Type(value = Generalizacija.class, name = "Generalizacija"),
+        @JsonSubTypes.Type(value = Kompozicija.class, name = "Kompozicija"),
+        @JsonSubTypes.Type(value = Zavisnost.class, name = "Zavisnost")
+})
 public abstract class Connection extends DiagramElement {
 
     private String typeSign;
@@ -34,6 +51,7 @@ public abstract class Connection extends DiagramElement {
         notifySubscribers(DiagramNtfType.REPAINT);
     }
 
+    @JsonIgnore
     public List<Interclass> getAssociatedInterclasses(){
         List<Interclass> classes = new ArrayList<>();
         classes.add(fromElement);
@@ -41,6 +59,7 @@ public abstract class Connection extends DiagramElement {
         return  classes;
     }
 
+    @JsonIgnore
     public Point[] getLineCoordinates(){
         return findMinDistancePoints(fromElement, toElement);
     }
@@ -76,6 +95,12 @@ public abstract class Connection extends DiagramElement {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Connection{" +
+                "typeSign='" + typeSign + '\'' +
+                ", fromElement=" + fromElement +
+                ", toElement=" + toElement +
+                '}';
+    }
 }

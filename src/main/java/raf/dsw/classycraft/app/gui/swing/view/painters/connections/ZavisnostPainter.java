@@ -24,7 +24,7 @@ public class ZavisnostPainter extends ConnectionPainter {
         BasicStroke dashedStroke = new BasicStroke(zavisnost.getStrokeWidth(), BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 0, dashPattern, 0);
 
         g2D.setStroke(dashedStroke);
-        g2D.setColor(zavisnost.getColourOutline());
+        g2D.setColor(Color.BLACK);
 
 
         if (zavisnost.getToElement()==null) {

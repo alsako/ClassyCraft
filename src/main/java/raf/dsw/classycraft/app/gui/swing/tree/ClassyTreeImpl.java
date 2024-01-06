@@ -10,6 +10,8 @@ import raf.dsw.classycraft.app.model.factory.FactoryUtils;
 import raf.dsw.classycraft.app.model.factory.NodeFactory;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
+import raf.dsw.classycraft.app.model.modelImpl.Package;
+import raf.dsw.classycraft.app.model.modelImpl.Project;
 import raf.dsw.classycraft.app.model.modelImpl.ProjectExplorer;
 
 import javax.swing.*;
@@ -17,6 +19,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import java.util.Enumeration;
+import java.util.List;
 
 @Getter
 public class ClassyTreeImpl implements ClassyTree{
@@ -107,6 +110,28 @@ public class ClassyTreeImpl implements ClassyTree{
         ((ClassyTreeImpl)tree).getTreeView().setSelectionPath(pathToChild);
         ClassyTreeItem childItem = tree.getSelectedNode();
         tree.removeChild(childItem);
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+    @Override
+    public void loadProject(Project node) {
+        ClassyTreeItem loadProject = new ClassyTreeItem(node);
+        root.add(loadProject);
+        addChildrenToTree(loadProject);
+        ((ClassyNodeComposite) root.getClassyNode()).addChild(node);
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+    public void addChildrenToTree(ClassyTreeItem node){
+        List<ClassyNode> children = ((ClassyNodeComposite)node.getClassyNode()).getChildren();
+        for (ClassyNode child:children) {
+            ClassyTreeItem newItem = new ClassyTreeItem(child);
+            node.add(newItem);
+            if (child instanceof ClassyNodeComposite)
+                addChildrenToTree(newItem);
+        }
+        treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 

@@ -1,5 +1,6 @@
 package raf.dsw.classycraft.app.messagegen;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import raf.dsw.classycraft.app.observer.ISubscriber;
 
 import java.time.LocalDateTime;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageGeneratorImpl implements MessageGenerator {
-
+    @JsonIgnore
     transient List<ISubscriber> subscribers;
 
     @Override
@@ -24,6 +25,7 @@ public class MessageGeneratorImpl implements MessageGenerator {
             case USE_SIDE_TOOLBAR_OPTION:
             case CONNECTION_MUST_START_FROM_ENTITY:
             case CONNECTION_MUST_END_IN_ENTITY:
+            case SAVE_PROJECT_OR_DIAGRAM:
                 return new Message(MessageType.INFO, timestamp, event.toString());
             case PARENT_NOT_SELECTED:
             case NODE_NOT_SELECTED:

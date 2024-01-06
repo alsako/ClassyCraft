@@ -116,12 +116,12 @@ public class InterclassContentWindow extends JFrame {
                 if (selectedIndex!=-1){
                     if (interclass.getClassContentList().get(selectedIndex) instanceof Atribut){
                         Atribut atribut = (Atribut)interclass.getClassContentList().get(selectedIndex);
-                        NewContentOption newContentOption = new NewContentOption(atribut.getName(), atribut.getType(),atribut.getVisibility());
+                        NewContentOption newContentOption = new NewContentOption(atribut.getName(), atribut.getContentType(),atribut.getVisibility());
                         newContentOption.setVisible(true);
                         newContentOption.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                         oldName = atribut.getName();
                         oldVisibility = atribut.getVisibility();
-                        oldType = atribut.getType();
+                        oldType = atribut.getContentType();
                         newName = oldName;
                         newType = oldType;
                         newVisibility = oldVisibility;
@@ -140,7 +140,7 @@ public class InterclassContentWindow extends JFrame {
                                     newName = selectedName;
                                 }
                                 if (selectedType!=null) {
-                                    atribut.setType(selectedType);
+                                    atribut.setContentType(selectedType);
                                     newType = selectedType;
                                 }
                                 interclass.resize();
@@ -151,12 +151,12 @@ public class InterclassContentWindow extends JFrame {
                     }
                     else if (interclass.getClassContentList().get(selectedIndex) instanceof Metoda) {
                         Metoda metoda = (Metoda) interclass.getClassContentList().get(selectedIndex);
-                        NewContentOption newContentOption = new NewContentOption(metoda.getName(), metoda.getType(),metoda.getVisibility());
+                        NewContentOption newContentOption = new NewContentOption(metoda.getName(), metoda.getContentType(),metoda.getVisibility());
                         newContentOption.setVisible(true);
                         newContentOption.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                         oldName = metoda.getName();
                         oldVisibility = metoda.getVisibility();
-                        oldType = metoda.getType();
+                        oldType = metoda.getContentType();
                         newName = oldName;
                         newVisibility = oldVisibility;
                         newType = oldType;
@@ -175,7 +175,7 @@ public class InterclassContentWindow extends JFrame {
                                     newName = selectedName;
                                 }
                                 if (selectedType!=null) {
-                                    metoda.setType(selectedType);
+                                    metoda.setContentType(selectedType);
                                     newType = selectedType;
                                 }
                                 interclass.resize();

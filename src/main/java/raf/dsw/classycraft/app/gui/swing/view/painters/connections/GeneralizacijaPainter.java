@@ -22,7 +22,7 @@ public class GeneralizacijaPainter extends ConnectionPainter {
         Graphics2D g2D = (Graphics2D)g;
 
         g2D.setStroke(new BasicStroke(generalizacija.getStrokeWidth()));
-        g2D.setColor(generalizacija.getColourOutline());
+        g2D.setColor(Color.BLACK);
 
         if (generalizacija.getToElement()==null) {
             this.startX = generalizacija.getFromElement().getCenterCoordinates().x;
