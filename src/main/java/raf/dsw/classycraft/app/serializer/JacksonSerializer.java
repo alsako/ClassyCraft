@@ -3,6 +3,7 @@ package raf.dsw.classycraft.app.serializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImpl;
+import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
 import raf.dsw.classycraft.app.gui.swing.view.PackageView;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
@@ -70,12 +71,19 @@ public class JacksonSerializer implements Serializer{
     @Override
     public void loadDiagram(File file) {
         Package currentPackage = MainFrame.getInstance().getPackageView().getPack();
+        if (currentPackage==null){
+            ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
+            ClassyNode selectedClassyNode = selected.getClassyNode();
+            if (selectedClassyNode instanceof Package)
+                currentPackage = (Package) selectedClassyNode;
+        }
         try(FileReader fileReader = new FileReader(file)){
             Diagram diagram = objectMapper.readValue(fileReader, Diagram.class);
             diagram.setParent(currentPackage);
             currentPackage.addChild(diagram);
             establishParentRelationships(diagram);
             ((ClassyTreeImpl)MainFrame.getInstance().getClassyTree()).addToTree(currentPackage, diagram);
+            MainFrame.getInstance().getPackageView().updatePackageView(currentPackage);
             makePainters(diagram);
             return;
         }catch (IOException e){
