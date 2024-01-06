@@ -29,6 +29,7 @@ public class ActionManager {
     private SaveAction saveAction;
     private OpenProjectAction openProjectAction;
     private LoadDiagramAction loadDiagramAction;
+    private ExportPhotoAction exportPhotoAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -52,6 +53,7 @@ public class ActionManager {
         saveAction = new SaveAction();
         openProjectAction = new OpenProjectAction();
         loadDiagramAction = new LoadDiagramAction();
+        exportPhotoAction = new ExportPhotoAction();
     }
 
 }

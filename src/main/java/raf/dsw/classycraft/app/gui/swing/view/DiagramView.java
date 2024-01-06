@@ -20,6 +20,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -166,6 +167,12 @@ public class DiagramView extends JPanel implements ISubscriber {
                 }
             }
         }
+    }
+
+    public BufferedImage createImage(){
+        BufferedImage image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        this.paint(image.getGraphics());
+        return image;
     }
 
     @Override

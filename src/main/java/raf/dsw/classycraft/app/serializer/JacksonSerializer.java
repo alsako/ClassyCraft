@@ -71,7 +71,7 @@ public class JacksonSerializer implements Serializer{
     @Override
     public void loadDiagram(File file) {
         Package currentPackage = MainFrame.getInstance().getPackageView().getPack();
-        if (currentPackage==null){
+        if (currentPackage==null){ //ako je otvoren package view dodaje u njega, ako nije dodaje u selektovani
             ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
             ClassyNode selectedClassyNode = selected.getClassyNode();
             if (selectedClassyNode instanceof Package)
@@ -96,9 +96,7 @@ public class JacksonSerializer implements Serializer{
         try(FileReader fileReader = new FileReader(file)){
             Diagram fromDiagram = objectMapper.readValue(fileReader, Diagram.class);
             toDiagram.setChildren(fromDiagram.getChildren());
-            Package currentPackage = MainFrame.getInstance().getPackageView().getPack();
-            if (currentPackage==null)
-                currentPackage = (Package) toDiagram.getParent();
+            Package currentPackage = (Package) toDiagram.getParent();
             MainFrame.getInstance().getPackageView().updatePackageView(currentPackage);
             makePainters(toDiagram);
         }catch (IOException e){

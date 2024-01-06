@@ -91,6 +91,7 @@ public class PackageView extends JPanel implements ISubscriber {
         for (DiagramView tab:this.tabs) {
             tabbedPane.addTab(tab.getDiagram().getName(),new ImageIcon("src/main/resources/images/diagram.png"), tab);
         }
+
     }
 
     @Override

@@ -25,6 +25,8 @@ public class LoadDiagramAction extends AbstractClassyAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
+        if (selected==null)
+            return;
         ClassyNode selectedClassyNode = selected.getClassyNode();
 
         if (selectedClassyNode instanceof Package){
