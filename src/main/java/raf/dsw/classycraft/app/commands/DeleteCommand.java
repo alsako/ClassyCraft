@@ -35,7 +35,6 @@ public class DeleteCommand extends AbstractCommand{
         selectedList = MainFrame.getInstance().getPackageView().getCurrentDiagramView().getSelectedPainters();
 
         if(selectedList.isEmpty()){
-            System.out.println("USLO JE OVDE");
             //BRISANJE POJEDINACNOG EL PREKO DUGMETA
             List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
 

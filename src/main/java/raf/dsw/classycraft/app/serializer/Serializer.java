@@ -7,7 +7,7 @@ import java.io.File;
 
 public interface Serializer {
 
-    Project loadProject(File file);
+    void loadProject(File file);
     void saveProject(Project project);
 
     void loadDiagram(File file);

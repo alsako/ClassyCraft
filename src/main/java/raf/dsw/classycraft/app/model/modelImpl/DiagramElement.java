@@ -62,8 +62,8 @@ public abstract class DiagramElement extends ClassyNode implements IPublisher{
         changed();
     }
 
-    public void addToTree(DiagramView diagramView){
-        ((ClassyTreeImpl) MainFrame.getInstance().getClassyTree()).addToTree(diagramView.getDiagram(), this);
+    public void addToTree(Diagram diagram){
+        ((ClassyTreeImpl) MainFrame.getInstance().getClassyTree()).addToTree(diagram, this);
     }
 
     public void removeFromTree(){

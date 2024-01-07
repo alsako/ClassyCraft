@@ -5,7 +5,6 @@ import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.ClassyTreeImpl;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
-import raf.dsw.classycraft.app.gui.swing.view.PackageView;
 import raf.dsw.classycraft.app.gui.swing.view.painters.ElementPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.connections.AgregacijaPainter;
 import raf.dsw.classycraft.app.gui.swing.view.painters.connections.GeneralizacijaPainter;
@@ -17,7 +16,6 @@ import raf.dsw.classycraft.app.gui.swing.view.painters.interclasses.KlasaPainter
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
 import raf.dsw.classycraft.app.model.modelImpl.Diagram;
-import raf.dsw.classycraft.app.model.modelImpl.DiagramElement;
 import raf.dsw.classycraft.app.model.modelImpl.Package;
 import raf.dsw.classycraft.app.model.modelImpl.Project;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Enum;
@@ -27,8 +25,6 @@ import raf.dsw.classycraft.app.model.modelImpl.connections.Agregacija;
 import raf.dsw.classycraft.app.model.modelImpl.connections.Generalizacija;
 import raf.dsw.classycraft.app.model.modelImpl.connections.Kompozicija;
 import raf.dsw.classycraft.app.model.modelImpl.connections.Zavisnost;
-
-import javax.swing.*;
 import java.io.*;
 import java.util.List;
 
@@ -37,12 +33,13 @@ public class JacksonSerializer implements Serializer{
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public Project loadProject(File file) {
+    public void loadProject(File file) {
         try(FileReader fileReader = new FileReader(file)){
             Project project = objectMapper.readValue(fileReader, Project.class);
             project.setParent(ApplicationFramework.getInstance().getClassyRepository().getRoot());
             ApplicationFramework.getInstance().getClassyRepository().getRoot().addChild(project);
             establishParentRelationships(project);
+            MainFrame.getInstance().getClassyTree().loadProject(project);
             for (ClassyNode child: project.getChildren()) {
                 if (child instanceof Package){
                     MainFrame.getInstance().getPackageView().updatePackageView((Package) child);
@@ -52,10 +49,10 @@ public class JacksonSerializer implements Serializer{
                     }
                 }
             }
-            return project;
+            return;
         }catch (IOException e){
             e.printStackTrace();
-            return null;
+            return;
         }
     }
 
@@ -70,8 +67,9 @@ public class JacksonSerializer implements Serializer{
     }
     @Override
     public void loadDiagram(File file) {
+        //ako je otvoren package view nekog paketa dodaje u njega, ako nije dodaje u selektovani
         Package currentPackage = MainFrame.getInstance().getPackageView().getPack();
-        if (currentPackage==null){ //ako je otvoren package view dodaje u njega, ako nije dodaje u selektovani
+        if (currentPackage==null){
             ClassyTreeItem selected = (ClassyTreeItem) MainFrame.getInstance().getClassyTree().getSelectedNode();
             ClassyNode selectedClassyNode = selected.getClassyNode();
             if (selectedClassyNode instanceof Package)
@@ -96,6 +94,7 @@ public class JacksonSerializer implements Serializer{
         try(FileReader fileReader = new FileReader(file)){
             Diagram fromDiagram = objectMapper.readValue(fileReader, Diagram.class);
             toDiagram.setChildren(fromDiagram.getChildren());
+            establishParentRelationships(toDiagram);
             Package currentPackage = (Package) toDiagram.getParent();
             MainFrame.getInstance().getPackageView().updatePackageView(currentPackage);
             makePainters(toDiagram);
@@ -149,5 +148,4 @@ public class JacksonSerializer implements Serializer{
         }
     }
 
-    
 }

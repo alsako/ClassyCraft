@@ -173,13 +173,14 @@ public class PackageView extends JPanel implements ISubscriber {
         Diagram selectedDiagram = ((DiagramView)tabbedPane.getSelectedComponent()).getDiagram();
         diagramPainters.get(selectedDiagram).add(painter);
         selectedDiagram.addChild(painter.getElement());
-        painter.getElement().addToTree((DiagramView)tabbedPane.getSelectedComponent());
+        painter.getElement().addToTree(selectedDiagram);
         ((DiagramView)tabbedPane.getSelectedComponent()).repaint();
     }
 
     public void addPainterForDiagram(Diagram diagram, ElementPainter painter){
         diagramPainters.get(diagram).add(painter);
         diagram.addChild(painter.getElement());
+        painter.getElement().addToTree(diagram);
         ((DiagramView)tabbedPane.getSelectedComponent()).repaint();
     }
 

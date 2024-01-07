@@ -4,7 +4,6 @@ import raf.dsw.classycraft.app.controller.AbstractClassyAction;
 import raf.dsw.classycraft.app.core.ApplicationFramework;
 import raf.dsw.classycraft.app.gui.swing.tree.model.ClassyTreeItem;
 import raf.dsw.classycraft.app.gui.swing.view.MainFrame;
-import raf.dsw.classycraft.app.gui.swing.view.painters.connections.AgregacijaPainter;
 import raf.dsw.classycraft.app.messagegen.Event;
 import raf.dsw.classycraft.app.model.modelImpl.Project;
 import raf.dsw.classycraft.app.model.modelImpl.ProjectExplorer;
@@ -38,8 +37,7 @@ public class OpenProjectAction extends AbstractClassyAction {
         if (jfc.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
             try {
                 File file = jfc.getSelectedFile();
-                Project p = ApplicationFramework.getInstance().getSerializer().loadProject(file);
-                MainFrame.getInstance().getClassyTree().loadProject(p);
+                ApplicationFramework.getInstance().getSerializer().loadProject(file);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

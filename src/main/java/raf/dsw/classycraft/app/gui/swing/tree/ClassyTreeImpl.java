@@ -10,6 +10,7 @@ import raf.dsw.classycraft.app.model.factory.FactoryUtils;
 import raf.dsw.classycraft.app.model.factory.NodeFactory;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNode;
 import raf.dsw.classycraft.app.model.modelAbs.ClassyNodeComposite;
+import raf.dsw.classycraft.app.model.modelImpl.Diagram;
 import raf.dsw.classycraft.app.model.modelImpl.Package;
 import raf.dsw.classycraft.app.model.modelImpl.Project;
 import raf.dsw.classycraft.app.model.modelImpl.ProjectExplorer;
@@ -99,7 +100,10 @@ public class ClassyTreeImpl implements ClassyTree{
         ClassyTree tree = MainFrame.getInstance().getClassyTree();
         ((ClassyTreeImpl)tree).getTreeView().setSelectionPath(pathToDiagram);
         ClassyTreeItem parentItem = tree.getSelectedNode();
-        parentItem.add(new ClassyTreeItem(child));
+        if (parentItem==null)
+            return;
+        ClassyTreeItem childItem = new ClassyTreeItem(child);
+        parentItem.add(childItem);
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
@@ -113,7 +117,6 @@ public class ClassyTreeImpl implements ClassyTree{
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
-    @Override
     public void loadProject(Project node) {
         ClassyTreeItem loadProject = new ClassyTreeItem(node);
         root.add(loadProject);
@@ -128,7 +131,8 @@ public class ClassyTreeImpl implements ClassyTree{
         for (ClassyNode child:children) {
             ClassyTreeItem newItem = new ClassyTreeItem(child);
             node.add(newItem);
-            if (child instanceof ClassyNodeComposite)
+            //treba da se dodaju sva deca sem elemenata dijagrama
+            if (child instanceof ClassyNodeComposite && !(child instanceof Diagram))
                 addChildrenToTree(newItem);
         }
         treeView.expandPath(treeView.getSelectionPath());

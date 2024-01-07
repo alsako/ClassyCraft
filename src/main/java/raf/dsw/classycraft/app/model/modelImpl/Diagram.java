@@ -20,6 +20,7 @@ public class Diagram extends ClassyNodeComposite implements IPublisher {
     public String filePath;
 
 
+
     public Diagram(String name, ClassyNode parent) {
         super(name, parent);
     }
