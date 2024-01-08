@@ -2,6 +2,7 @@ package raf.dsw.classycraft.app.gui.swing.view.optionframes;
 
 import lombok.Getter;
 import raf.dsw.classycraft.app.model.modelImpl.classcontent.Atribut;
+import raf.dsw.classycraft.app.model.modelImpl.classcontent.ClassContent;
 import raf.dsw.classycraft.app.model.modelImpl.classcontent.Metoda;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interclass;
 import raf.dsw.classycraft.app.model.modelImpl.classes.Interfejs;
@@ -116,73 +117,13 @@ public class InterclassContentWindow extends JFrame {
                 if (selectedIndex!=-1){
                     if (interclass.getClassContentList().get(selectedIndex) instanceof Atribut){
                         Atribut atribut = (Atribut)interclass.getClassContentList().get(selectedIndex);
-                        NewContentOption newContentOption = new NewContentOption(atribut.getName(), atribut.getContentType(),atribut.getVisibility());
-                        newContentOption.setVisible(true);
-                        newContentOption.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-                        oldName = atribut.getName();
-                        oldVisibility = atribut.getVisibility();
-                        oldType = atribut.getContentType();
-                        newName = oldName;
-                        newType = oldType;
-                        newVisibility = oldVisibility;
-                        newContentOption.addWindowListener(new WindowAdapter() {
-                            @Override
-                            public void windowClosed(WindowEvent windowEvent) {
-                                VisibilityTypes selectedVisibility = newContentOption.getSelectedVisibility();
-                                String selectedName = newContentOption.getEnteredName();
-                                String selectedType = newContentOption.getEnteredType();
-                                if (selectedVisibility!=null) {
-                                    atribut.setVisibility(selectedVisibility);
-                                    newVisibility = selectedVisibility;
-                                }
-                                if (selectedName!=null) {
-                                    atribut.setName(selectedName);
-                                    newName = selectedName;
-                                }
-                                if (selectedType!=null) {
-                                    atribut.setContentType(selectedType);
-                                    newType = selectedType;
-                                }
-                                interclass.resize();
-                                defaultListModel.set(selectedIndex,interclass.getClassContentList().get(selectedIndex).toString());
+                        startNewContentOption(atribut, interclass, selectedIndex);
 
-                            }
-                        });
                     }
                     else if (interclass.getClassContentList().get(selectedIndex) instanceof Metoda) {
                         Metoda metoda = (Metoda) interclass.getClassContentList().get(selectedIndex);
-                        NewContentOption newContentOption = new NewContentOption(metoda.getName(), metoda.getContentType(),metoda.getVisibility());
-                        newContentOption.setVisible(true);
-                        newContentOption.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-                        oldName = metoda.getName();
-                        oldVisibility = metoda.getVisibility();
-                        oldType = metoda.getContentType();
-                        newName = oldName;
-                        newVisibility = oldVisibility;
-                        newType = oldType;
-                        newContentOption.addWindowListener(new WindowAdapter() {
-                            @Override
-                            public void windowClosed(WindowEvent windowEvent) {
-                                VisibilityTypes selectedVisibility = newContentOption.getSelectedVisibility();
-                                String selectedName = newContentOption.getEnteredName();
-                                String selectedType = newContentOption.getEnteredType();
-                                if (selectedVisibility!=null) {
-                                    metoda.setVisibility(selectedVisibility);
-                                    newVisibility = selectedVisibility;
-                                }
-                                if (selectedName!=null) {
-                                    metoda.setName(selectedName);
-                                    newName = selectedName;
-                                }
-                                if (selectedType!=null) {
-                                    metoda.setContentType(selectedType);
-                                    newType = selectedType;
-                                }
-                                interclass.resize();
-                                defaultListModel.set(selectedIndex,interclass.getClassContentList().get(selectedIndex).toString());
+                        startNewContentOption(metoda, interclass, selectedIndex);
 
-                            }
-                        });
                     }
 
                 }
@@ -197,7 +138,6 @@ public class InterclassContentWindow extends JFrame {
                 changeNameOption.setVisible(true);
                 changeNameOption.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 oldClassName = interclass.getName();
-                newClassName = oldClassName;
                 changeNameOption.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent windowEvent) {
@@ -228,13 +168,42 @@ public class InterclassContentWindow extends JFrame {
         contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         contentPanel.add(editButton);
         contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-
-
-
-
-
         getContentPane().add(contentPanel);
+    }
 
+    public void startNewContentOption(ClassContent classContent, Interclass interclass, int selectedIndex){
+        NewContentOption newContentOption = new NewContentOption(classContent.getName(), classContent.getContentType(),classContent.getVisibility());
+        newContentOption.setVisible(true);
+        newContentOption.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        oldName = classContent.getName();
+        oldVisibility = classContent.getVisibility();
+        oldType = classContent.getContentType();
+        newName = oldName;
+        newType = oldType;
+        newVisibility = oldVisibility;
+        newContentOption.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent windowEvent) {
+                VisibilityTypes selectedVisibility = newContentOption.getSelectedVisibility();
+                String selectedName = newContentOption.getEnteredName();
+                String selectedType = newContentOption.getEnteredType();
+                if (selectedVisibility!=null) {
+                    classContent.setVisibility(selectedVisibility);
+                    newVisibility = selectedVisibility;
+                }
+                if (selectedName!=null) {
+                    classContent.setName(selectedName);
+                    newName = selectedName;
+                }
+                if (selectedType!=null) {
+                    classContent.setContentType(selectedType);
+                    newType = selectedType;
+                }
+                interclass.resize();
+                defaultListModel.set(selectedIndex,interclass.getClassContentList().get(selectedIndex).toString());
+
+            }
+        });
 
     }
 

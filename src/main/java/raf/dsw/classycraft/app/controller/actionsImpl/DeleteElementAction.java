@@ -31,43 +31,11 @@ public class DeleteElementAction extends AbstractClassyAction {
         List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getCurrentDiagramView().getSelectedPainters();
         MainFrame.getInstance().getPackageView().startDeleteElementState();
 
-        if (!(selectedList.isEmpty())) {
+        if (!(selectedList.isEmpty())) { //ako ima selektovanih desava se na klik
             DiagramView diagramView = MainFrame.getInstance().getPackageView().getCurrentDiagramView();
             DeleteCommand deleteCommand = new DeleteCommand(null, diagramView, diagramView.getSelectedPainters());
             diagramView.getCommandManager().addCommand(deleteCommand);
         }
 
-
-//        if (selectedList.isEmpty()) {
-//            MainFrame.getInstance().getPackageView().startDeleteElementState();
-//        }
-//        else {
-//            List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getCurrentDiagramView().getPainters();
-//            List<ConnectionPainter> toRemove = new ArrayList<>();
-//
-//            //koje su sve veze asocirane sa entitetima za uklanjanje
-//            for (ElementPainter selected:selectedList) {
-//                if (selected.getElement() instanceof Interclass) {
-//                    for (ElementPainter painter : diagramPainters) {
-//                        if (painter instanceof ConnectionPainter) {
-//                            if (((Connection)painter.getElement()).getAssociatedInterclasses().contains(selected.getElement())) {
-//                                if (!(selectedList).contains(painter))
-//                                    toRemove.add((ConnectionPainter) painter);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//           //uklanjanje
-//            for (ConnectionPainter connectionPainter:toRemove) {
-//                MainFrame.getInstance().getPackageView().removePainterFromMap(connectionPainter);
-//            }
-//            for (ElementPainter selected:selectedList){
-//                MainFrame.getInstance().getPackageView().removePainterFromMap(selected);
-//            }
-//
-//            MainFrame.getInstance().getPackageView().getCurrentDiagramView().deselectAll();
-//
-//        }
     }
 }

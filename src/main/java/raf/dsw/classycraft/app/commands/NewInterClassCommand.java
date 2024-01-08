@@ -78,34 +78,12 @@ public class NewInterClassCommand extends AbstractCommand{
 
     @Override
     public void undoCommand() {
-//        connToEntity = findConnToEntity();
-//        for(ElementPainter p: connToEntity){
-//            MainFrame.getInstance().getPackageView().removePainterFromMap(p);
-//        }
         diagramView.deselectElement(currPainter);
         if(currPainter != null) {
             MainFrame.getInstance().getPackageView().removePainterFromMap(currPainter);
             currPainter.getElement().removeSubscriber(diagramView);
         }else{
-            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
         }
     }
 
-//    private List<ElementPainter> findConnToEntity(){
-//
-//        List<ElementPainter> conns = new ArrayList<>();
-//        List<ElementPainter> currPainters = MainFrame.getInstance().getPackageView().getCurrentDiagramView().getPainters();
-//
-//        for(ElementPainter p: currPainters){
-//            if(p instanceof ConnectionPainter){
-//                Connection connection = (Connection) p.getElement();
-//                DiagramElement element = p.getElement();
-//                if(connection.getFromElement().equals(element) || connection.getToElement().equals(element)){
-//                    conns.add(p);
-//                }
-//            }
-//        }
-//
-//        return conns;
-//    }
 }

@@ -24,15 +24,6 @@ public class DuplicateState implements ClassyState{
 
         DuplicateCommand duplicateCommand = new DuplicateCommand(diagramView, p, diagramView.getSelectedPainters());
         diagramView.getCommandManager().addCommand(duplicateCommand);
-//        List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
-//
-//            for (int i=diagramPainters.size()-1; i>=0; i--){
-//                if (diagramPainters.get(i) instanceof InterclassPainter && diagramPainters.get(i).elementAt(p.x, p.y)){
-//                    duplicate((InterclassPainter) diagramPainters.get(i), diagramView);
-//                    return;
-//                }
-//            }
-
     }
 
     @Override

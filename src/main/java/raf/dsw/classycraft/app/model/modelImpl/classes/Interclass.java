@@ -64,7 +64,6 @@ public abstract class Interclass extends DiagramElement{
                 this.width = calculateMaxWidth(DiagramView.fontMetrics, getContentStrings()) + 20;
             } else width = DiagramView.fontMetrics.stringWidth(name) + 20;
         }
-//        else width = DiagramView.fontMetrics.stringWidth(name) + 20;
         notifySubscribers(DiagramNtfType.REPAINT);
         changed();
     }

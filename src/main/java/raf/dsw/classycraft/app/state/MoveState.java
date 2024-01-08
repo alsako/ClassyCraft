@@ -15,7 +15,6 @@ public class MoveState implements ClassyState{
     ElementPainter current = null;
     Point currentPoint = null;
     Point initialPoint = null;
-
     Boolean somethingSelected = false;
     @Override
     public void misKliknut(Point p, DiagramView diagramView) {
@@ -24,15 +23,18 @@ public class MoveState implements ClassyState{
 
 
 
-        if (selectedList.isEmpty()) //nema selecta
-            for (int i=diagramPainters.size()-1; i>=0; i--){
+        if (selectedList==null || selectedList.isEmpty()) { //nema selecta
+            for (int i = diagramPainters.size() - 1; i >= 0; i--) {
                 if (diagramPainters.get(i) instanceof InterclassPainter && diagramPainters.get(i).elementAt(p.x, p.y)) {
                     current = diagramPainters.get(i);
                     somethingSelected = true;
-                    initialPoint = new Point((int)((Interclass)current.getElement()).getX(),(int)((Interclass)current.getElement()).getY());
+                    initialPoint = new Point((int) ((Interclass) current.getElement()).getX(), (int) ((Interclass) current.getElement()).getY());
                     return;
                 }
             }
+            if (initialPoint == null)
+                initialPoint = p;
+        }
         else {
             somethingSelected = true;
             initialPoint = p;
@@ -66,30 +68,14 @@ public class MoveState implements ClassyState{
     public void misOtpusten(Point p, DiagramView diagramView) {
 
         List<ElementPainter> selectedList = diagramView.getSelectedPainters();
+        if (selectedList.isEmpty() && !somethingSelected){
+            somethingSelected = false;
+            return;
+        }
         MoveCommand moveCommand = new MoveCommand(diagramView, p, currentPoint, initialPoint, somethingSelected, current, selectedList);
         diagramView.getCommandManager().addCommand(moveCommand);
         somethingSelected=false;
         current=null;
-//        List<ElementPainter> selectedList = diagramView.getSelectedPainters();
-//
-//
-//        if (!selectedList.isEmpty()) { //lista selektovanih
-//            for (ElementPainter painter:selectedList) {
-//                if (painter instanceof InterclassPainter){
-//                    ((Interclass)painter.getElement()).translate(translationVector(currentPoint, p));
-//                }
-//            }
-//            somethingSelected = false;
-//        }else if (somethingSelected){ //pojedinacni element
-//            if (current == null)
-//                return;
-//            ((Interclass) current.getElement()).setBasedOnCenterpoint(p);
-//            current = null;
-//            somethingSelected = false;
-//        } else { //ceo panel
-//            diagramView.moveView(translationVector(initialPoint, p).x, translationVector(currentPoint, p).getY());
-//            somethingSelected = false;
-//        }
     }
 
 

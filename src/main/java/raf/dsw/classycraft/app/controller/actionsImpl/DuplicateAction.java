@@ -26,15 +26,6 @@ public class DuplicateAction extends AbstractClassyAction {
         List<ElementPainter> selectedList = MainFrame.getInstance().getPackageView().getCurrentDiagramView().getSelectedPainters();
         MainFrame.getInstance().getPackageView().startDuplicateState();
 
-//        if (selectedList.isEmpty())
-//            MainFrame.getInstance().getPackageView().startDuplicateState();
-//        else {
-//            DiagramView currentDiagramView = MainFrame.getInstance().getPackageView().getCurrentDiagramView();
-//            for (ElementPainter selectedPainter:selectedList) {
-//                if (selectedPainter instanceof InterclassPainter)
-//                    DuplicateState.duplicate((InterclassPainter) selectedPainter, currentDiagramView);
-//            }
-
         //ako ima selektovanih zelim akciju na klik dugmeta, ne cekam misKliknut
         if (!(selectedList.isEmpty())){
             DiagramView diagramView = MainFrame.getInstance().getPackageView().getCurrentDiagramView();

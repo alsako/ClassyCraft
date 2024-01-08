@@ -60,15 +60,7 @@ public class SetAuthorAction extends AbstractClassyAction {
             frame.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-//                    if (authorName.isEmpty())
-//                        ApplicationFramework.getInstance().getMessageGenerator().notifySubscribers(Event.NAME_CANNOT_BE_EMPTY);
                     ((Project)node).setAuthor(authorName);
-//                    if (!(((Project)node).getChildren().isEmpty())){
-//                        for (ClassyNode child:((Project) node).getChildren()) {
-//                            PackageNotification pn = new PackageNotification(authorName, PackageNtfType.AUTHOR_CHANGED);
-//                            ((Package)child).notifySubscribers(pn);
-//                        }
-//                    }
                     System.out.println( ((Project)node).getName() + " author: " + ((Project)node).getAuthor());
                 }
             });

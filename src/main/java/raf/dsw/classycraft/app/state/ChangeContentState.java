@@ -26,34 +26,6 @@ public class ChangeContentState implements ClassyState{
         ChangeContentCommand changeContentCommand = new ChangeContentCommand(diagramView, p);
         diagramView.getCommandManager().addCommand(changeContentCommand);
 
-//        List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
-//
-//        for (ElementPainter painter:diagramPainters) {
-//            if(painter instanceof InterclassPainter && painter.elementAt(p.x, p.y)){
-//
-//                InterclassContentWindow icw = new InterclassContentWindow((Interclass) painter.getElement());
-//                icw.setVisible(true);
-//                icw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-//
-//                icw.addWindowListener(new WindowAdapter() {
-//                    @Override
-//                    public void windowClosed(WindowEvent windowEvent) {
-//                        if (!icw.addMethod && !icw.addAttribute)
-//                            return;
-//                        if (icw.addAttribute && !icw.addMethod){
-//                            MakeNewAttribute mna = new MakeNewAttribute();
-//                            mna.trigger(diagramView, painter);
-//                        } else if (!icw.addAttribute && icw.addMethod) {
-//                            MakeNewMethod mnm = new MakeNewMethod();
-//                            mnm.trigger(diagramView, painter);
-//                        }
-//                    }
-//                });
-//                return;
-//            }
-//        }
-//        ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.CLASS_NOT_SELECTED);
-
     }
 
     @Override

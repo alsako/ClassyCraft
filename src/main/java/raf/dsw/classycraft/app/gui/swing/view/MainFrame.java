@@ -56,8 +56,6 @@ public class MainFrame extends JFrame implements ISubscriber {
 
         MyToolBar myToolBar = new MyToolBar();
         add(myToolBar, BorderLayout.NORTH);
-        actionManager.getUndoAction().setEnabled(false);
-        actionManager.getRedoAction().setEnabled(false);
         MySideBar mySideBar = new MySideBar();
         JScrollPane scrollPane = new JScrollPane(mySideBar);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);

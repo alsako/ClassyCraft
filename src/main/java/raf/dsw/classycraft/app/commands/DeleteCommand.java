@@ -42,18 +42,10 @@ public class DeleteCommand extends AbstractCommand{
                 fillToRemove(affectedPainter);
             }
             removeConnections(toRemove);
-
-//            for (ConnectionPainter painter : toRemove) {
-//                MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
-//            }
         } else if (removed!=null) { //redo za brisanje pojedinacnog elementa
             removed.getElement().removeSubscriber(diagramView);
             MainFrame.getInstance().getPackageView().removePainterFromMap(removed);
             removeConnections(toRemove);
-
-//            for (ConnectionPainter painter : toRemove) {
-//                MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
-//            }
         } else if(!(selectedPainters.isEmpty())){ //prvi do za multiselekciju
             System.out.println(selectedPainters);
             for (ElementPainter selectedPainter:selectedPainters) {
@@ -65,10 +57,6 @@ public class DeleteCommand extends AbstractCommand{
 
             }
             removeConnections(toRemove);
-
-//            for (ConnectionPainter painter : toRemove) {
-//                MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
-//            }
             diagramView.deselectAll();
         }
         else {
@@ -84,9 +72,6 @@ public class DeleteCommand extends AbstractCommand{
 
             fillToRemove(removed);
             removeConnections(toRemove);
-//            for (ConnectionPainter painter : toRemove) {
-//                MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
-//            }
         }
 
     }

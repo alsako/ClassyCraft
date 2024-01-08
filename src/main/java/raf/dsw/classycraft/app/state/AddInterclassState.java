@@ -26,33 +26,6 @@ public class AddInterclassState implements ClassyState {
 
         NewInterClassCommand newInterClassCommand = new NewInterClassCommand(p, diagramView);
         diagramView.getCommandManager().addCommand(newInterClassCommand);
-//        String nameInput = JOptionPane.showInputDialog(new JFrame(), "Enter class name", "Name entry", JOptionPane.PLAIN_MESSAGE);
-//
-//        if (nameInput==null || nameInput.trim().isEmpty()) {
-//            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NAME_CANNOT_BE_EMPTY);
-//            return;
-//        }
-//        if (NewInterclassAction.selectedOption==null) {
-//            ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.OPTION_NOT_SELECTED);
-//            return;
-//        }
-//
-//        if (NewInterclassAction.selectedOption.equalsIgnoreCase("class")){
-//            Klasa klasa = new Klasa(nameInput, diagramView.getDiagram(), p.x, p.y);
-//            ElementPainter painter = new KlasaPainter(klasa);
-//            klasa.addSubscriber(diagramView);
-//            MainFrame.getInstance().getPackageView().addPainterToMap(painter);
-//        } else if (NewInterclassAction.selectedOption.equalsIgnoreCase("interface")) {
-//            Interfejs interfejs = new Interfejs(nameInput, diagramView.getDiagram(), p.x, p.y);
-//            ElementPainter painter = new InterfejsPainter(interfejs);
-//            interfejs.addSubscriber(diagramView);
-//            MainFrame.getInstance().getPackageView().addPainterToMap(painter);
-//        } else if (NewInterclassAction.selectedOption.equalsIgnoreCase("enum")) {
-//            Enum en = new Enum(nameInput, diagramView.getDiagram(), p.x, p.y);
-//            ElementPainter painter = new EnumPainter(en);
-//            en.addSubscriber(diagramView);
-//            MainFrame.getInstance().getPackageView().addPainterToMap(painter);
-//        }
     }
 
     @Override

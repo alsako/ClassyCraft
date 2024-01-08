@@ -34,9 +34,6 @@ public class NewConnectionCommand extends AbstractCommand{
     public void doCommand() {
 
         List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
-        //diagramPainters.remove(diagramPainters.size() - 1); //skida poslednji u slucaju da se ne zavrsava na validnom mestu
-        //diagramView.repaint(); //pozivam repaint u slucaju da veza nije zavrsena na dobrom mestu da ne ostaje
-
         if(currPainter == null) {
             for (ElementPainter painter : diagramPainters) {
                 if (painter instanceof InterclassPainter && painter.elementAt(p.x, p.y)) {
@@ -62,13 +59,10 @@ public class NewConnectionCommand extends AbstractCommand{
                 }
             }
 
-//            diagramPainters.remove(diagramPainters.size()-1);
-//            diagramView.repaint();
             diagramView.getCommandManager().removeLastCommand();
             ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.CONNECTION_MUST_END_IN_ENTITY);
 
         }else{
-            //currPainter.getElement().addSubscriber(diagramView);
             MainFrame.getInstance().getPackageView().addPainterToMap(currPainter);
         }
     }
@@ -76,6 +70,7 @@ public class NewConnectionCommand extends AbstractCommand{
 
     @Override
     public void undoCommand() {
+        diagramView.deselectElement(currPainter);
         if (currPainter != null){
             MainFrame.getInstance().getPackageView().removePainterFromMap(currPainter);
         }

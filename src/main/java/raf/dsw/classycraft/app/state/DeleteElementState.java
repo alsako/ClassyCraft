@@ -20,34 +20,6 @@ public class DeleteElementState implements ClassyState{
 
         DeleteCommand deleteCommand = new DeleteCommand(p, diagramView, diagramView.getSelectedPainters());
         diagramView.getCommandManager().addCommand(deleteCommand);
-//        List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
-//
-//        DiagramElement removed = null;
-//
-//        for (ElementPainter painter:diagramPainters) {
-//            if (painter.elementAt(p.x, p.y)){
-//                MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
-//                removed = painter.getElement();
-//                break;
-//            }
-//        }
-//
-//        List<ConnectionPainter> toRemove = new ArrayList<>();
-//
-//        if (removed instanceof Interclass) {
-//            for (ElementPainter painter : diagramPainters) {
-//                if (painter instanceof ConnectionPainter) {
-//                    if (((Connection)painter.getElement()).getAssociatedInterclasses().contains(removed)) {
-//                        toRemove.add((ConnectionPainter) painter);
-//                    }
-//                }
-//            }
-//        }
-//
-//        for (ConnectionPainter painter:toRemove) {
-//            MainFrame.getInstance().getPackageView().removePainterFromMap(painter);
-//
-//        }
 
     }
 

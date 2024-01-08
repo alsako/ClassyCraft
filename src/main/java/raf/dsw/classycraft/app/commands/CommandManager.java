@@ -28,22 +28,18 @@ public class CommandManager {
     public void doCommand(){
         if(trKomanda < komande.size()){
             komande.get(trKomanda++).doCommand();
-           MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);//enable undo
         }
 
         if(trKomanda == komande.size()){
-            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);//disable Redo
         }
     }
 
     public void undoCommand() throws NoninvertibleTransformException {
         if(trKomanda > 0){
-            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);//enable redo
             komande.get(--trKomanda).undoCommand();
         }
 
         if(trKomanda == 0){
-            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);//disableUndo
         }
     }
 

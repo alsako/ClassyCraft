@@ -61,9 +61,8 @@ public class MoveCommand extends AbstractCommand{
             if (current == null)
                 return;
             ((Interclass) current.getElement()).setBasedOnCenterpoint(p);
-        } else { //ceo panel
-            diagramView.moveView(Utility.translationVector(currentPoint, p).x, Utility.translationVector(currentPoint, p).getY());
         }
+
     }
 
     @Override
