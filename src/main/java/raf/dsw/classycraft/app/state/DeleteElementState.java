@@ -18,7 +18,7 @@ public class DeleteElementState implements ClassyState{
     @Override
     public void misKliknut(Point p, DiagramView diagramView) {
 
-        DeleteCommand deleteCommand = new DeleteCommand(p, diagramView);
+        DeleteCommand deleteCommand = new DeleteCommand(p, diagramView, diagramView.getSelectedPainters());
         diagramView.getCommandManager().addCommand(deleteCommand);
 //        List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
 //

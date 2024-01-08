@@ -24,6 +24,8 @@ public class UndoAction extends AbstractClassyAction {
         try {
             PackageView trPackageView = MainFrame.getInstance().getPackageView();
             DiagramView trDiagramView = (DiagramView) trPackageView.getTabbedPane().getSelectedComponent();
+            if (trDiagramView==null)
+                return;
             trDiagramView.getCommandManager().undoCommand();
         }catch (NoninvertibleTransformException e1){
             e1.printStackTrace();

@@ -15,6 +15,7 @@ import java.awt.geom.AffineTransform;
 public abstract class ElementPainter{
     private DiagramElement element;
     private Shape shape;
+    private HighlightPainter highlightPainter;
 
     public ElementPainter(DiagramElement element) {
         this.element = element;

@@ -58,6 +58,7 @@ public class SelectState implements ClassyState {
 
         for (ElementPainter element:selected) { //prave se painteri za isticanje za sve selektovane
             HighlightPainter highlightPainter = new HighlightPainter(element);
+            element.setHighlightPainter(highlightPainter);
             diagramView.getHighlights().add(highlightPainter);
         }
         diagramView.repaint();

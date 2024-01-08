@@ -146,8 +146,18 @@ public class DiagramView extends JPanel implements ISubscriber {
     }
 
     public void deselectAll(){
+        for (ElementPainter selectedPainter:selectedPainters) {
+            selectedPainter.setHighlightPainter(null);
+        }
         selectedPainters.clear();
         highlights.clear();
+        repaint();
+    }
+
+    public void deselectElement(ElementPainter painter){
+        highlights.remove(painter.getHighlightPainter());
+        painter.setHighlightPainter(null);
+        selectedPainters.remove(painter);
         repaint();
     }
 

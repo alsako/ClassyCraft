@@ -114,6 +114,7 @@ public class ClassyTreeImpl implements ClassyTree{
         ((ClassyTreeImpl)tree).getTreeView().setSelectionPath(pathToChild);
         ClassyTreeItem childItem = tree.getSelectedNode();
         tree.removeChild(childItem);
+        treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 

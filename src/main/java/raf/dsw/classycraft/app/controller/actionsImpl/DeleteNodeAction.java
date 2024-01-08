@@ -31,6 +31,9 @@ public class DeleteNodeAction extends AbstractClassyAction {
         if (selectedClassyNode instanceof DiagramElement) {
             ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.USE_SIDE_TOOLBAR_OPTION);
             return;
+        } else if (selectedClassyNode instanceof Diagram) {
+            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
+            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
         }
         MainFrame.getInstance().getClassyTree().removeChild(selected);
 

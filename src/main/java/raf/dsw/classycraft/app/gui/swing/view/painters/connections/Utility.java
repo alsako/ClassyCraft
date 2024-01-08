@@ -57,7 +57,7 @@ public class Utility {
         return new Point(rotatedX, rotatedY);
     }
 
-    public static Point translationVector(Point a, Point b){
+    public static Point translationVector(Point a, Point b){ //a->b
         double initialX = a.x;
         double initialY = a.y;
         double finalX = b.x;

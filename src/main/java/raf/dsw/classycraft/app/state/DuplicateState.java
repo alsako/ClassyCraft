@@ -22,7 +22,7 @@ public class DuplicateState implements ClassyState{
     @Override
     public void misKliknut(Point p, DiagramView diagramView) {
 
-        DuplicateCommand duplicateCommand = new DuplicateCommand(diagramView, p);
+        DuplicateCommand duplicateCommand = new DuplicateCommand(diagramView, p, diagramView.getSelectedPainters());
         diagramView.getCommandManager().addCommand(duplicateCommand);
 //        List<ElementPainter> diagramPainters = MainFrame.getInstance().getPackageView().getDiagramPainters().get(diagramView.getDiagram());
 //
@@ -33,19 +33,6 @@ public class DuplicateState implements ClassyState{
 //                }
 //            }
 
-    }
-
-    public static void duplicate(InterclassPainter painter, DiagramView diagramView){
-        Interclass duplicate = ((Interclass)painter.getElement()).duplicate();
-        duplicate.addSubscriber(diagramView);
-        ElementPainter duplicatePainter;
-        if (duplicate instanceof Klasa)
-            duplicatePainter = new KlasaPainter((Klasa)duplicate);
-        else if (duplicate instanceof Interfejs) {
-            duplicatePainter = new InterfejsPainter((Interfejs) duplicate);
-        }
-        else duplicatePainter = new EnumPainter((Enum) duplicate);
-        MainFrame.getInstance().getPackageView().addPainterToMap(duplicatePainter);
     }
 
     @Override

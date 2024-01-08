@@ -65,7 +65,8 @@ public class MoveState implements ClassyState{
     @Override
     public void misOtpusten(Point p, DiagramView diagramView) {
 
-        MoveCommand moveCommand = new MoveCommand(diagramView, p, currentPoint, initialPoint, somethingSelected, current);
+        List<ElementPainter> selectedList = diagramView.getSelectedPainters();
+        MoveCommand moveCommand = new MoveCommand(diagramView, p, currentPoint, initialPoint, somethingSelected, current, selectedList);
         diagramView.getCommandManager().addCommand(moveCommand);
         somethingSelected=false;
         current=null;

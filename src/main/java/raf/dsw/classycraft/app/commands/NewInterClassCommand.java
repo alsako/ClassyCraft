@@ -82,6 +82,7 @@ public class NewInterClassCommand extends AbstractCommand{
 //        for(ElementPainter p: connToEntity){
 //            MainFrame.getInstance().getPackageView().removePainterFromMap(p);
 //        }
+        diagramView.deselectElement(currPainter);
         if(currPainter != null) {
             MainFrame.getInstance().getPackageView().removePainterFromMap(currPainter);
             currPainter.getElement().removeSubscriber(diagramView);
