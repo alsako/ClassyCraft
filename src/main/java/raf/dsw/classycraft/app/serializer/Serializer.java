@@ -12,5 +12,5 @@ public interface Serializer {
 
     void loadDiagram(File file);
     public void loadDiagramContent(File file, Diagram toDiagram);
-    void saveDiagram(Diagram diagram);
+    void saveDiagram(Diagram diagram, String nameInput);
 }

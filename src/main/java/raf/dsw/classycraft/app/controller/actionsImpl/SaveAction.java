@@ -51,7 +51,12 @@ public class SaveAction extends AbstractClassyAction {
             project.setChanged(false);
         } else if (selectedClassyNode instanceof Diagram){
             Diagram diagram = (Diagram) selectedClassyNode;
-            ApplicationFramework.getInstance().getSerializer().saveDiagram(diagram);
+            String nameInput = JOptionPane.showInputDialog(new JFrame(), "Enter template name", "Name entry", JOptionPane.PLAIN_MESSAGE);
+            if (nameInput == null || nameInput.trim().isEmpty()) {
+                ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.NAME_CANNOT_BE_EMPTY);
+                return;
+            }
+            ApplicationFramework.getInstance().getSerializer().saveDiagram(diagram, nameInput);
         } else {
             ApplicationFramework.getInstance().getMessageGenerator().generateMessage(Event.SAVE_PROJECT_OR_DIAGRAM);
         }

@@ -104,9 +104,9 @@ public class JacksonSerializer implements Serializer{
     }
 
     @Override
-    public void saveDiagram(Diagram diagram) {
+    public void saveDiagram(Diagram diagram, String nameInput) {
         try{
-            FileWriter fw = new FileWriter("src/main/resources/templates/" + diagram.getName() + ".json", false);
+            FileWriter fw = new FileWriter("src/main/resources/templates/" + nameInput + ".json", false);
             PrintWriter pw = new PrintWriter(fw);
             objectMapper.writeValue(pw, diagram);
         }catch (IOException e){
