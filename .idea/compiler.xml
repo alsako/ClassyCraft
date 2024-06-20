@@ -7,7 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="dizajn-softvera-projekat-tim_aleksandrakovacevic_vukasinkovacevi" />
+        <module name="ClassyCraft" />
       </profile>
     </annotationProcessing>
   </component>

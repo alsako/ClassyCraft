@@ -31,7 +31,6 @@ import java.util.List;
         @JsonSubTypes.Type(value = Klasa.class, name = "Klasa"),
         @JsonSubTypes.Type(value = Enum.class, name = "Enum"),
         @JsonSubTypes.Type(value = Interfejs.class, name = "Interfejs")
-
 })
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public abstract class Interclass extends DiagramElement{
